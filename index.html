@@ -1,769 +1,1483 @@
-<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M. M. Zion | Portfolio</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <style>
-        /* ===== Theme Variables ===== */
-        :root {
-            /* Light Theme (Default) */
-            --primary: #1a73e8;
-            --primary-light: rgba(26, 115, 232, 0.08);
-            --text-dark: #202124;
-            --text-gray: #5f6368;
-            --text-light: #80868b;
-            --bg-page: #f8f9fa;
-            --bg-card: #ffffff;
-            --border-color: #e8eaed;
-            --radius: 12px;
-            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
-            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
-            --hero-overlay: linear-gradient(to bottom, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.85));
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        [data-theme="dark"] {
-            /* Dark Theme */
-            --primary: #669df6; 
-            --primary-light: rgba(102, 157, 246, 0.15);
-            --text-dark: #e8eaed;
-            --text-gray: #bdc1c6;
-            --text-light: #9aa0a6;
-            --bg-page: #202124;
-            --bg-card: #292a2d;
-            --border-color: #3c4043;
-            --shadow-sm: 0 2px 4px rgba(0,0,0,0.2);
-            --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
-            --hero-overlay: linear-gradient(to bottom, rgba(32, 33, 36, 0.85), rgba(32, 33, 36, 1));
-        }
+<title>M. M. Zion | Embedded Systems & IoT Engineer</title>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta name="description" content="M. M. Zion - Embedded Systems & IoT Developer Portfolio">
 
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--text-gray);
-            background-color: var(--bg-page);
-            line-height: 1.7;
-            overflow-x: hidden;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        h1, h2, h3, h4 {
-            font-family: 'Merriweather', serif;
-            color: var(--text-dark);
-            line-height: 1.3;
-            transition: color 0.3s ease;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-        .container {
-            max-width: 1050px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 
-        /* ===== Dark Mode Toggle Button ===== */
-        .theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: var(--bg-card);
-            color: var(--text-dark);
-            border: 1px solid var(--border-color);
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: var(--shadow-md);
-            transition: 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-            font-size: 1.2rem;
-        }
+<style>
 
-        .theme-toggle:hover {
-            transform: translateY(-3px);
-            color: var(--primary);
-            border-color: var(--primary);
-        }
+:root{
 
-        /* ===== Hero Section ===== */
-        .hero {
-            position: relative;
-            height: 45vh;
-            min-height: 320px;
-            background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
+--primary:#1a73e8;
+--primary-light:rgba(26,115,232,0.08);
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: var(--hero-overlay);
-            z-index: 1;
-            transition: background 0.3s ease;
-        }
+--bg:#f8fafc;
+--card:#ffffff;
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            color: white;
-            animation: fadeIn 1s ease-out;
-        }
+--text:#111827;
+--text-gray:#4b5563;
+--text-light:#94a3b8;
 
-        .hero h1 {
-            color: white;
-            font-size: 3.5rem;
-            margin-bottom: 10px;
-            letter-spacing: -0.5px;
-        }
+--border:#e5e7eb;
 
-        .hero p {
-            font-size: 1.25rem;
-            font-weight: 300;
-            color: #e2e8f0;
-            letter-spacing: 0.5px;
-        }
+--shadow-sm:0 4px 12px rgba(0,0,0,0.04);
+--shadow-md:0 14px 35px rgba(0,0,0,0.08);
 
-        /* ===== Bio & Education Section ===== */
-        .bio-section {
-            padding: 80px 20px;
-            background-color: var(--bg-card);
-            border-bottom: 1px solid var(--border-color);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
+--radius:20px;
 
-        .bio-grid {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 50px;
-            align-items: center;
-        }
+--hero-overlay:linear-gradient(to bottom, rgba(2,6,23,.78), rgba(2,6,23,.92));
 
-        .bio-image-wrapper {
-            text-align: center;
-        }
+}
 
-        .bio-image {
-            width: 260px;
-            height: 260px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 6px solid var(--bg-page);
-            box-shadow: var(--shadow-md);
-            background-color: var(--bg-page);
-            transition: border-color 0.3s ease, background-color 0.3s ease;
-        }
+[data-theme="dark"]{
 
-        .bio-text h2 {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 15px;
-        }
+--primary:#78a9ff;
+--primary-light:rgba(120,169,255,0.15);
 
-        .bio-text h2::after {
-            content: '';
-            position: absolute;
-            width: 60px;
-            height: 4px;
-            background-color: var(--primary);
-            bottom: 0;
-            left: 0;
-            border-radius: 2px;
-        }
+--bg:#0f172a;
+--card:#111827;
 
-        .bio-text p {
-            font-size: 1.05rem;
-            margin-bottom: 20px;
-        }
+--text:#f3f4f6;
+--text-gray:#d1d5db;
+--text-light:#94a3b8;
 
-        .quick-info {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 25px;
-            padding-top: 25px;
-            border-top: 1px solid var(--border-color);
-            transition: border-color 0.3s ease;
-        }
+--border:#1f2937;
 
-        .info-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-        }
+--shadow-sm:0 5px 12px rgba(0,0,0,0.2);
+--shadow-md:0 14px 35px rgba(0,0,0,0.35);
 
-        .info-item i {
-            color: var(--primary);
-            margin-top: 4px;
-            font-size: 1.1rem;
-        }
+--hero-overlay:linear-gradient(to bottom, rgba(2,6,23,.75), rgba(2,6,23,.96));
 
-        .info-item div strong {
-            display: block;
-            color: var(--text-dark);
-            font-size: 0.95rem;
-        }
+}
 
-        .info-item div span {
-            font-size: 0.9rem;
-        }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-        /* ===== Section Shared Styles ===== */
-        .section-padding {
-            padding: 80px 0;
-        }
+html{
+scroll-behavior:smooth;
+}
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
+body{
 
-        .section-header h2 {
-            font-size: 2.2rem;
-            display: inline-block;
-            position: relative;
-            padding-bottom: 12px;
-        }
+font-family:'Inter',sans-serif;
 
-        .section-header h2::after {
-            content: '';
-            position: absolute;
-            width: 50%;
-            height: 3px;
-            background-color: var(--primary);
-            bottom: 0;
-            left: 25%;
-            border-radius: 2px;
-        }
+background:var(--bg);
 
-        /* ===== Skills & Certifications ===== */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
+color:var(--text-gray);
 
-        .skill-card {
-            background: var(--bg-card);
-            padding: 35px 25px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
-        }
+line-height:1.7;
 
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--primary);
-        }
+overflow-x:hidden;
 
-        .skill-card i.main-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-            display: block;
-        }
+transition:.3s ease;
 
-        .skill-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 20px;
-        }
+}
 
-        .skill-card ul {
-            list-style: none;
-        }
+h1,h2,h3,h4{
 
-        .skill-card li {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 12px;
-            font-size: 0.95rem;
-        }
+font-family:'Merriweather',serif;
 
-        .skill-card li i {
-            color: #0f9d58;
-            font-size: 0.9rem;
-        }
+color:var(--text);
 
-        /* ===== Certifications List ===== */
-        .cert-container {
-            margin-top: 40px;
-            background: var(--bg-card);
-            border-radius: var(--radius);
-            padding: 30px;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border-color);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
+line-height:1.3;
 
-        .cert-container h3 {
-            margin-bottom: 20px;
-            font-size: 1.4rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+}
 
-        .cert-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
+.container{
 
-        .cert-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 16px;
-            background: var(--primary-light);
-            border-radius: 8px;
-            font-weight: 500;
-            color: var(--text-dark);
-            font-size: 0.95rem;
-            transition: background-color 0.3s ease;
-        }
+width:100%;
+max-width:1150px;
 
-        .cert-item i {
-            color: var(--primary);
-        }
+margin:auto;
 
-        /* ===== Experience & Projects ===== */
-        .timeline-card {
-            background: var(--bg-card);
-            padding: 40px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border-color);
-            border-left: 5px solid var(--primary);
-            margin-bottom: 30px;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
+padding:0 20px;
 
-        .timeline-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
+}
 
-        .timeline-title h3 {
-            font-size: 1.5rem;
-            margin-bottom: 5px;
-        }
+/* ===== Theme Toggle ===== */
 
-        .timeline-title span {
-            font-size: 1rem;
-            color: var(--primary);
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+.theme-toggle{
 
-        .timeline-date {
-            background: var(--primary-light);
-            color: var(--primary);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: background-color 0.3s ease;
-        }
+position:fixed;
 
-        .timeline-body ul {
-            list-style: none;
-            margin-top: 15px;
-        }
+top:20px;
+right:20px;
 
-        .timeline-body li {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 10px;
-            font-size: 1rem;
-            color: var(--text-gray);
-        }
+z-index:999;
 
-        .timeline-body li::before {
-            content: '•';
-            color: var(--primary);
-            font-weight: bold;
-            font-size: 1.5rem;
-            position: absolute;
-            left: 0;
-            top: -4px;
-        }
+width:52px;
+height:52px;
 
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-        }
+border:none;
 
-        .tag {
-            padding: 5px 14px;
-            background: var(--bg-page);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-gray);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
+border-radius:50%;
 
-        /* ===== Contact Section ===== */
-        .contact-section {
-            background-color: var(--bg-card);
-            border-top: 1px solid var(--border-color);
-            padding: 80px 20px 40px;
-            text-align: center;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
+background:var(--card);
 
-        .contact-grid {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin-bottom: 40px;
-        }
+color:var(--text);
 
-        .contact-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            padding: 20px 30px;
-            background: var(--bg-page);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            min-width: 250px;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
+box-shadow:var(--shadow-md);
 
-        .contact-item i {
-            font-size: 1.8rem;
-            color: var(--primary);
-        }
+cursor:pointer;
 
-        .contact-item span {
-            color: var(--text-dark);
-            font-weight: 600;
-        }
+transition:.3s;
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 40px;
-        }
+}
 
-        .social-links a {
-            width: 50px;
-            height: 50px;
-            background: var(--primary-light);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 1.3rem;
-            text-decoration: none;
-            transition: 0.3s;
-        }
+.theme-toggle:hover{
 
-        .social-links a:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-md);
-        }
+transform:translateY(-4px);
 
-        .footer {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border-color);
-            padding-top: 20px;
-            transition: border-color 0.3s ease;
-        }
+color:var(--primary);
 
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+}
 
-        /* Responsive */
-        @media (max-width: 850px) {
-            .bio-grid { grid-template-columns: 1fr; text-align: center; }
-            .quick-info { grid-template-columns: 1fr; text-align: left; }
-            .info-item { justify-content: center; }
-            .skills-grid { grid-template-columns: 1fr; }
-            .cert-grid { grid-template-columns: 1fr; }
-            .timeline-header { flex-direction: column; }
-            .theme-toggle { top: 15px; right: 15px; } 
-        }
-    </style>
+/* ===== HERO ===== */
+
+.hero{
+
+position:relative;
+
+min-height:92vh;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+text-align:center;
+
+background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1920&auto=format&fit=crop');
+
+background-size:cover;
+background-position:center;
+
+padding:40px 20px;
+
+}
+
+.hero::before{
+
+content:'';
+
+position:absolute;
+
+inset:0;
+
+background:var(--hero-overlay);
+
+}
+
+.hero-content{
+
+position:relative;
+
+z-index:2;
+
+max-width:850px;
+
+animation:fadeUp 1s ease;
+
+}
+
+.hero h1{
+
+font-size:4.4rem;
+
+color:white;
+
+margin-bottom:20px;
+
+}
+
+.hero p{
+
+font-size:1.2rem;
+
+color:#dbeafe;
+
+margin-bottom:38px;
+
+}
+
+.hero-buttons{
+
+display:flex;
+
+justify-content:center;
+
+gap:18px;
+
+flex-wrap:wrap;
+
+}
+
+.btn{
+
+display:inline-flex;
+
+align-items:center;
+justify-content:center;
+
+gap:10px;
+
+padding:15px 26px;
+
+border-radius:14px;
+
+font-weight:600;
+
+text-decoration:none;
+
+transition:.3s ease;
+
+}
+
+.btn-primary{
+
+background:var(--primary);
+
+color:white;
+
+}
+
+.btn-primary:hover{
+
+transform:translateY(-4px);
+
+}
+
+.btn-outline{
+
+border:1px solid rgba(255,255,255,.25);
+
+color:white;
+
+background:rgba(255,255,255,.05);
+
+backdrop-filter:blur(8px);
+
+}
+
+.btn-outline:hover{
+
+background:white;
+
+color:#111827;
+
+}
+
+/* ===== SECTION ===== */
+
+.section{
+
+padding:90px 0;
+
+}
+
+.section-header{
+
+text-align:center;
+
+margin-bottom:60px;
+
+}
+
+.section-header h2{
+
+font-size:2.5rem;
+
+margin-bottom:12px;
+
+}
+
+.section-header p{
+
+max-width:700px;
+
+margin:auto;
+
+color:var(--text-light);
+
+}
+
+/* ===== ABOUT ===== */
+
+.about-grid{
+
+display:grid;
+
+grid-template-columns:320px 1fr;
+
+gap:60px;
+
+align-items:center;
+
+}
+
+.profile-card{
+
+background:var(--card);
+
+border:1px solid var(--border);
+
+border-radius:var(--radius);
+
+padding:35px;
+
+text-align:center;
+
+box-shadow:var(--shadow-sm);
+
+}
+
+.profile-card img{
+
+width:220px;
+height:220px;
+
+object-fit:cover;
+
+border-radius:50%;
+
+border:5px solid var(--primary-light);
+
+margin-bottom:20px;
+
+}
+
+.profile-card h3{
+
+margin-bottom:8px;
+
+}
+
+.profile-card p{
+
+color:var(--text-light);
+
+}
+
+.about-content{
+
+background:var(--card);
+
+border:1px solid var(--border);
+
+border-radius:var(--radius);
+
+padding:45px;
+
+box-shadow:var(--shadow-sm);
+
+}
+
+.about-content h3{
+
+font-size:2rem;
+
+margin-bottom:25px;
+
+}
+
+.highlight{
+
+color:var(--primary);
+
+font-weight:600;
+
+}
+
+.info-grid{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:24px;
+
+margin-top:35px;
+
+}
+
+.info-box{
+
+display:flex;
+
+gap:14px;
+
+}
+
+.info-box i{
+
+color:var(--primary);
+
+font-size:1.2rem;
+
+margin-top:4px;
+
+}
+
+/* ===== SKILLS ===== */
+
+.skills-grid{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:25px;
+
+}
+
+.skill-card{
+
+background:var(--card);
+
+border:1px solid var(--border);
+
+border-radius:var(--radius);
+
+padding:35px;
+
+transition:.3s;
+
+box-shadow:var(--shadow-sm);
+
+}
+
+.skill-card:hover{
+
+transform:translateY(-6px);
+
+border-color:var(--primary);
+
+box-shadow:var(--shadow-md);
+
+}
+
+.skill-card i{
+
+font-size:2.5rem;
+
+color:var(--primary);
+
+margin-bottom:20px;
+
+}
+
+.skill-card h3{
+
+margin-bottom:20px;
+
+}
+
+.skill-card ul{
+
+list-style:none;
+
+}
+
+.skill-card li{
+
+margin-bottom:12px;
+
+}
+
+/* ===== PROJECTS ===== */
+
+.project-card{
+
+background:var(--card);
+
+border:1px solid var(--border);
+
+border-radius:var(--radius);
+
+padding:38px;
+
+margin-bottom:35px;
+
+box-shadow:var(--shadow-sm);
+
+transition:.3s;
+
+opacity:0;
+
+animation:fadeUp 1s ease forwards;
+
+}
+
+.project-card:hover{
+
+transform:translateY(-6px);
+
+box-shadow:var(--shadow-md);
+
+border-color:var(--primary);
+
+}
+
+.project-top{
+
+display:flex;
+
+justify-content:space-between;
+
+gap:20px;
+
+flex-wrap:wrap;
+
+margin-bottom:22px;
+
+}
+
+.project-badge{
+
+background:var(--primary-light);
+
+color:var(--primary);
+
+padding:8px 16px;
+
+border-radius:30px;
+
+font-size:.85rem;
+
+font-weight:600;
+
+}
+
+.project-card ul{
+
+padding-left:20px;
+
+margin-top:18px;
+
+}
+
+.project-card li{
+
+margin-bottom:12px;
+
+}
+
+.tech-stack{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:12px;
+
+margin-top:25px;
+
+}
+
+.tech{
+
+padding:7px 14px;
+
+border-radius:30px;
+
+background:var(--bg);
+
+border:1px solid var(--border);
+
+font-size:.85rem;
+
+font-weight:600;
+
+}
+
+/* ===== RESEARCH ===== */
+
+.research-grid{
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+gap:22px;
+
+}
+
+.research-card{
+
+background:var(--card);
+
+border:1px solid var(--border);
+
+border-radius:var(--radius);
+
+padding:28px;
+
+text-align:center;
+
+transition:.3s;
+
+}
+
+.research-card:hover{
+
+transform:translateY(-5px);
+
+border-color:var(--primary);
+
+}
+
+.research-card i{
+
+font-size:2rem;
+
+color:var(--primary);
+
+margin-bottom:18px;
+
+}
+
+/* ===== CERTIFICATIONS ===== */
+
+.cert-grid{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:18px;
+
+}
+
+.cert-item{
+
+background:var(--card);
+
+border:1px solid var(--border);
+
+border-radius:16px;
+
+padding:18px 22px;
+
+display:flex;
+
+align-items:center;
+
+gap:14px;
+
+font-weight:600;
+
+transition:.3s;
+
+}
+
+.cert-item:hover{
+
+border-color:var(--primary);
+
+}
+
+.cert-item i{
+
+color:var(--primary);
+
+}
+
+/* ===== CONTACT ===== */
+
+.contact{
+
+background:var(--card);
+
+border-top:1px solid var(--border);
+
+}
+
+.contact-grid{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:25px;
+
+margin-top:40px;
+
+}
+
+.contact-card{
+
+background:var(--bg);
+
+border:1px solid var(--border);
+
+border-radius:var(--radius);
+
+padding:30px;
+
+text-align:center;
+
+}
+
+.contact-card i{
+
+font-size:2rem;
+
+color:var(--primary);
+
+margin-bottom:15px;
+
+}
+
+.socials{
+
+display:flex;
+
+justify-content:center;
+
+gap:18px;
+
+margin-top:40px;
+
+}
+
+.socials a{
+
+width:52px;
+height:52px;
+
+border-radius:50%;
+
+background:var(--primary-light);
+
+color:var(--primary);
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+text-decoration:none;
+
+transition:.3s;
+
+}
+
+.socials a:hover{
+
+background:var(--primary);
+
+color:white;
+
+transform:translateY(-4px);
+
+}
+
+.footer{
+
+text-align:center;
+
+margin-top:50px;
+
+color:var(--text-light);
+
+}
+
+/* ===== Animation ===== */
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(25px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/* ===== Responsive ===== */
+
+@media(max-width:992px){
+
+.about-grid{
+grid-template-columns:1fr;
+}
+
+.skills-grid{
+grid-template-columns:1fr;
+}
+
+.research-grid{
+grid-template-columns:1fr 1fr;
+}
+
+.contact-grid{
+grid-template-columns:1fr;
+}
+
+.cert-grid{
+grid-template-columns:1fr;
+}
+
+}
+
+@media(max-width:768px){
+
+.hero{
+
+padding-top:40px;
+padding-bottom:40px;
+
+}
+
+.hero h1{
+font-size:2.9rem;
+}
+
+.hero p{
+font-size:1.05rem;
+}
+
+.hero-buttons{
+
+flex-direction:column;
+
+align-items:center;
+
+}
+
+.btn{
+
+width:100%;
+max-width:300px;
+
+}
+
+.info-grid{
+grid-template-columns:1fr;
+}
+
+.research-grid{
+grid-template-columns:1fr;
+}
+
+.project-top{
+flex-direction:column;
+}
+
+}
+
+</style>
+
 </head>
+
 <body>
 
-    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
-        <i class="fas fa-moon"></i>
-    </button>
+<button class="theme-toggle" id="theme-toggle">
+<i class="fas fa-moon"></i>
+</button>
 
-    <header class="hero">
-        <div class="hero-content">
-            <h1>M. M. Zion</h1>
-            <p>IoT & Embedded Systems Lead</p>
-        </div>
-    </header>
+<!-- HERO -->
 
-    <section class="bio-section">
-        <div class="container bio-grid">
-            <div class="bio-image-wrapper">
-                <img src="https://i.ibb.co.com/g8r16H7/1000070470-removebg-preview.png" alt="M. M. Zion" class="bio-image">
-            </div>
-            
-            <div class="bio-text">
-                <h2>Summary</h2>
-                <p>Dedicated B.Sc. Electrical & Electronic Engineering (EEE) student and Online Presence Manager at IEEE IAS DIU Student Branch Chapter, with strong hands-on expertise in embedded systems, IoT integration, and smart system design.</p>
-                <p>Experienced in building secure, cloud-connected automation solutions and managing technical digital operations. Certified in cybersecurity, leadership, and AI, with a proven ability to lead projects from concept to execution.</p>
-                
-                <div class="quick-info">
-                    <div class="info-item">
-                        <i class="fas fa-graduation-cap"></i>
-                        <div>
-                            <strong>Daffodil International University (DIU)</strong>
-                            <span>B.Sc. in Electrical and Electronic Engineering (2024 - 2027)</span>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-language"></i>
-                        <div>
-                            <strong>Languages</strong>
-                            <span>Bengali (Native) <br> English (Intermediate)</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<header class="hero">
 
-    <section class="section-padding">
-        <div class="container">
-            <div class="section-header">
-                <h2>Core Competencies</h2>
-            </div>
-            
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <i class="fas fa-microchip main-icon"></i>
-                    <h3>Embedded Systems & IoT</h3>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> Circuit Design & Analysis</li>
-                        <li><i class="fas fa-check-circle"></i> System Automation</li>
-                        <li><i class="fas fa-check-circle"></i> ESP32 & Arduino UNO</li>
-                        <li><i class="fas fa-check-circle"></i> Sensor & Actuator Integration</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-code main-icon"></i>
-                    <h3>Software & Connectivity</h3>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> Python & Linux Environments</li>
-                        <li><i class="fas fa-check-circle"></i> Firebase Cloud Integration</li>
-                        <li><i class="fas fa-check-circle"></i> Web-Based Dashboards</li>
-                        <li><i class="fas fa-check-circle"></i> Wi-Fi Database Communication</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-briefcase main-icon"></i>
-                    <h3>Operations & Leadership</h3>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> Project Management</li>
-                        <li><i class="fas fa-check-circle"></i> Digital Operations</li>
-                        <li><i class="fas fa-check-circle"></i> Team Leadership</li>
-                        <li><i class="fas fa-check-circle"></i> Customer Relationship Mgmt.</li>
-                    </ul>
-                </div>
-            </div>
+<div class="hero-content">
 
-            <div class="cert-container">
-                <h3><i class="fas fa-award"></i> Certifications</h3>
-                <div class="cert-grid">
-                    <div class="cert-item"><i class="fas fa-star"></i> Aspire Institute: Leadership Program</div>
-                    <div class="cert-item"><i class="fas fa-shield-alt"></i> Cisco: Intro to Cybersecurity</div>
-                    <div class="cert-item"><i class="fas fa-network-wired"></i> Cisco: Intro to IoT</div>
-                    <div class="cert-item"><i class="fas fa-robot"></i> AI CERTS: AI Prompt Engineer</div>
-                    <div class="cert-item"><i class="fab fa-microsoft"></i> Microsoft: 365 Copilot Training</div>
-                </div>
-            </div>
-        </div>
-    </section>
+<h1>M. M. Zion</h1>
 
-    <section class="section-padding" style="background-color: var(--bg-card); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
-        <div class="container">
-            <div class="section-header">
-                <h2>Work Experience</h2>
-            </div>
+<p>
+EEE Undergraduate focused on Embedded Systems, IoT Automation, and AI-integrated smart technologies. Building scalable cloud-connected systems using ESP32, Firebase, and intelligent automation.
+</p>
 
-            <div class="timeline-card">
-                <div class="timeline-header">
-                    <div class="timeline-title">
-                        <h3>Webmaster</h3>
-                        <span><i class="fas fa-building"></i> IEEE IAS DIU Student Branch</span>
-                    </div>
-                    <div class="timeline-date"><i class="far fa-calendar-alt"></i> March 2026 - Present</div>
-                </div>
-                <div class="timeline-body">
-                    <ul>
-                        <li>Maintained the official branch website, managing hosting, security, and regular content updates.</li>
-                        <li>Integrated online registration forms and tracked website analytics to support major events.</li>
-                    </ul>
-                </div>
-            </div>
+<div class="hero-buttons">
 
-            <div class="timeline-card">
-                <div class="timeline-header">
-                    <div class="timeline-title">
-                        <h3>Online Presence Manager</h3>
-                        <span><i class="fas fa-building"></i> IEEE IAS DIU Student Branch</span>
-                    </div>
-                    <div class="timeline-date"><i class="far fa-calendar-alt"></i> May 2025 - March 2026</div>
-                </div>
-                <div class="timeline-body">
-                    <ul>
-                        <li>Managed product sourcing, pricing, and customer communication effectively.</li>
-                        <li>Handled order processing, delivery coordination, and comprehensive sales tracking.</li>
-                        <li>Created promotional content, managed page growth, and maintained strong customer relationships.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+<a href="javascript:void(0);" onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})" class="btn btn-primary">
+<i class="fas fa-code"></i>
+View Projects
+</a>
 
-    <section class="section-padding">
-        <div class="container">
-            <div class="section-header">
-                <h2>Featured Projects</h2>
-            </div>
+<a href="https://drive.google.com/file/d/1G4jJTpp_7hUjSHHc992XL87eEf1Wilrn/view?usp=drivesdk" target="_blank" class="btn btn-outline">
+<i class="fas fa-download"></i>
+Download CV
+</a>
 
-            <div class="timeline-card">
-                <div class="timeline-header">
-                    <div class="timeline-title">
-                        <h3>ClassroomX: IoT-Based Smart Classroom Automation System</h3>
-                        <span><i class="fas fa-project-diagram"></i> Project Show 2025</span>
-                    </div>
-                </div>
-                <div class="timeline-body">
-                    <ul>
-                        <li>Designed a low-cost smart classroom system architecture utilizing ESP32 and Arduino UNO microcontrollers.</li>
-                        <li>Developed a web-based dashboard integrated with Firebase for real-time monitoring and remote control of the classroom environment.</li>
-                        <li>Integrated an NFC (PN532) module for secure access logging and user authentication.</li>
-                        <li>Successfully automated lighting, fans, curtain control, and a smart bin using precisely calibrated sensors and actuators.</li>
-                        <li>Implemented reliable Wi-Fi-based communication with a cloud database for continuous data synchronization.</li>
-                    </ul>
-                    
-                    <div class="tags">
-                        <span class="tag">ESP32 & Arduino UNO</span>
-                        <span class="tag">Firebase</span>
-                        <span class="tag">NFC (PN532)</span>
-                        <span class="tag">Sensors & Actuators</span>
-                        <span class="tag">Web Dashboard</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+</div>
 
-    <section class="contact-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Get In Touch</h2>
-            </div>
-            
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <i class="fas fa-phone-alt"></i>
-                    <span>+8801932-084441</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <span>mmzionbd@gmail.com</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Tongi, Gazipur, Bangladesh</span>
-                </div>
-            </div>
+</div>
 
-            <div class="social-links">
-                <a href="https://linkedin.com/in/mmzion/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://github.com/mmzion/" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-            </div>
+</header>
 
-            <div class="footer">
-                &copy; 2026 M. M. Zion. All rights reserved.
-            </div>
-        </div>
-    </section>
+<!-- ABOUT -->
 
-    <script>
-        const toggleButton = document.getElementById('theme-toggle');
-        const icon = toggleButton.querySelector('i');
+<section class="section">
 
-        // Check Local Storage ONLY for saved theme preference. Do NOT check system OS settings.
-        const savedTheme = localStorage.getItem('theme');
+<div class="container">
 
-        // Apply theme on initial load ONLY if 'dark' was specifically saved
-        if (savedTheme === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            icon.classList.replace('fa-moon', 'fa-sun');
-        }
+<div class="about-grid">
 
-        // Toggle Theme Button Click Event
-        toggleButton.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            
-            if (currentTheme === 'dark') {
-                // Switch to Light Mode
-                document.documentElement.removeAttribute('data-theme');
-                localStorage.setItem('theme', 'light');
-                icon.classList.replace('fa-sun', 'fa-moon');
-            } else {
-                // Switch to Dark Mode
-                document.documentElement.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-                icon.classList.replace('fa-moon', 'fa-sun');
-            }
-        });
-    </script>
+<div class="profile-card">
+
+<img src="https://i.ibb.co.com/g8r16H7/1000070470-removebg-preview.png" alt="M. M. Zion">
+
+<h3>M. M. Zion</h3>
+
+<p>
+Embedded Systems & IoT Developer
+</p>
+
+</div>
+
+<div class="about-content">
+
+<h3>About Me</h3>
+
+<p>
+I am a dedicated <span class="highlight">Electrical & Electronic Engineering (EEE)</span> student at Daffodil International University with strong interests in Embedded Systems, IoT Automation, AI-driven monitoring systems, and smart infrastructure technologies.
+</p>
+
+<br>
+
+<p>
+My work focuses on developing reliable, scalable, and energy-efficient automation systems using ESP32/ESP8266 microcontrollers, Firebase cloud integration, sensor interfacing, and intelligent embedded architectures. I enjoy transforming engineering concepts into practical real-world solutions through hardware prototyping and cloud-connected automation systems.
+</p>
+
+<div class="info-grid">
+
+<div class="info-box">
+
+<i class="fas fa-university"></i>
+
+<div>
+<strong>Daffodil International University</strong>
+<p>B.Sc. in EEE (2024 - 2027)</p>
+</div>
+
+</div>
+
+<div class="info-box">
+
+<i class="fas fa-microchip"></i>
+
+<div>
+<strong>Research Focus</strong>
+<p>Embedded Systems & IoT Automation</p>
+</div>
+
+</div>
+
+<div class="info-box">
+
+<i class="fas fa-language"></i>
+
+<div>
+<strong>Languages</strong>
+<p>Bengali, English</p>
+</div>
+
+</div>
+
+<div class="info-box">
+
+<i class="fas fa-location-dot"></i>
+
+<div>
+<strong>Location</strong>
+<p>Tongi, Gazipur, Bangladesh</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- SKILLS -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="section-header">
+
+<h2>Core Competencies</h2>
+
+<p>
+Technical capabilities and engineering domains I actively work with.
+</p>
+
+</div>
+
+<div class="skills-grid">
+
+<div class="skill-card">
+
+<i class="fas fa-microchip"></i>
+
+<h3>Embedded Systems</h3>
+
+<ul>
+
+<li>ESP32 & ESP8266 Development</li>
+<li>Arduino UNO Programming</li>
+<li>Sensor & Actuator Integration</li>
+<li>Relay Automation Systems</li>
+<li>Circuit Design & Analysis</li>
+<li>Hardware Validation</li>
+<li>Circuit Prototyping</li>
+
+</ul>
+
+</div>
+
+<div class="skill-card">
+
+<i class="fas fa-cloud"></i>
+
+<h3>IoT & Cloud Systems</h3>
+
+<ul>
+
+<li>Firebase Realtime Database</li>
+<li>MQTT Communication</li>
+<li>HTTP Protocol</li>
+<li>Cloud-Based Monitoring</li>
+<li>Web Dashboard Development</li>
+<li>Wi-Fi Communication</li>
+
+</ul>
+
+</div>
+
+<div class="skill-card">
+
+<i class="fas fa-code"></i>
+
+<h3>Software & Tools</h3>
+
+<ul>
+
+<li>C/C++</li>
+<li>Python</li>
+<li>Basic MATLAB</li>
+<li>Arduino IDE</li>
+<li>Git/GitHub</li>
+<li>Linux</li>
+<li>EasyEDA</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- PROJECTS -->
+
+<section class="section" id="projects">
+
+<div class="container">
+
+<div class="section-header">
+
+<h2>Featured Projects</h2>
+
+<p>
+Engineering systems focused on automation, embedded intelligence, and cloud connectivity.
+</p>
+
+</div>
+
+<!-- PROJECT 1 -->
+
+<div class="project-card">
+
+<div class="project-content">
+
+<div class="project-top">
+
+<div>
+
+<h3>
+ClassroomX — Smart Classroom Automation Platform
+</h3>
+
+<p>
+IoT-Based Intelligent Classroom Management System
+</p>
+
+</div>
+
+<div class="project-badge">
+Project Show 2025
+</div>
+
+</div>
+
+<p>
+Designed and developed a low-cost smart classroom automation platform integrating ESP32, Arduino UNO, Firebase cloud synchronization, NFC authentication, and real-time environmental control systems.
+</p>
+
+<ul>
+
+<li>
+Built real-time cloud-connected monitoring and automation infrastructure using Firebase Realtime Database.
+</li>
+
+<li>
+Integrated NFC-based secure access system using PN532 module for user authentication and attendance logging.
+</li>
+
+<li>
+Automated classroom lighting, fan systems, curtain control, and smart waste management using calibrated sensors and actuators.
+</li>
+
+<li>
+Developed responsive web dashboard for remote monitoring and device control.
+</li>
+
+<li>
+Implemented stable Wi-Fi communication architecture for reliable real-time synchronization.
+</li>
+
+</ul>
+
+<div class="tech-stack">
+
+<span class="tech">ESP32</span>
+<span class="tech">ESP8266</span>
+<span class="tech">Arduino UNO</span>
+<span class="tech">Firebase</span>
+<span class="tech">MQTT</span>
+<span class="tech">HTTP Protocol</span>
+<span class="tech">NFC PN532</span>
+<span class="tech">IoT Automation</span>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- PROJECT 2 -->
+
+<div class="project-card">
+
+<div class="project-content">
+
+<div class="project-top">
+
+<div>
+
+<h3>
+AI-Powered Smart Home Assistant & Relay Automation System
+</h3>
+
+<p>
+Cloud-Connected Smart Home Automation Platform
+</p>
+
+</div>
+
+<div class="project-badge">
+Ongoing Project
+</div>
+
+</div>
+
+<p>
+Developing an ESP32-based smart home automation system integrating AI-assisted appliance control, relay automation, Firebase cloud connectivity, and intelligent monitoring architecture.
+</p>
+
+<ul>
+
+<li>
+Implementing cloud-based appliance control using Firebase Realtime Database.
+</li>
+
+<li>
+Building scalable relay automation architecture for smart home environments.
+</li>
+
+<li>
+Integrating AI-assisted command and intelligent monitoring capabilities.
+</li>
+
+<li>
+Focusing on energy-efficient embedded system design and reliable automation control.
+</li>
+
+<li>
+Developing responsive monitoring dashboard for real-time smart device management.
+</li>
+
+</ul>
+
+<div class="tech-stack">
+
+<span class="tech">ESP32</span>
+<span class="tech">Firebase</span>
+<span class="tech">Relay Automation</span>
+<span class="tech">AI Integration</span>
+<span class="tech">Embedded Systems</span>
+<span class="tech">Smart Home</span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- RESEARCH -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="section-header">
+
+<h2>Research Interests</h2>
+
+<p>
+Areas I am actively exploring for future projects, higher studies, and research opportunities.
+</p>
+
+</div>
+
+<div class="research-grid">
+
+<div class="research-card">
+<i class="fas fa-microchip"></i>
+<h3>Embedded Systems</h3>
+</div>
+
+<div class="research-card">
+<i class="fas fa-brain"></i>
+<h3>Edge AI & TinyML</h3>
+</div>
+
+<div class="research-card">
+<i class="fas fa-wifi"></i>
+<h3>IoT Smart Infrastructure</h3>
+</div>
+
+<div class="research-card">
+<i class="fas fa-bolt"></i>
+<h3>Energy-Efficient Automation</h3>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CERTIFICATIONS -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="section-header">
+
+<h2>Certifications</h2>
+
+<p>
+Professional certifications and technical learning achievements.
+</p>
+
+</div>
+
+<div class="cert-grid">
+
+<div class="cert-item">
+<i class="fas fa-award"></i>
+MathWorks — MATLAB Onramp
+</div>
+
+<div class="cert-item">
+<i class="fas fa-network-wired"></i>
+Cisco — Introduction to IoT
+</div>
+
+<div class="cert-item">
+<i class="fas fa-shield-halved"></i>
+Cisco — Introduction to Cybersecurity
+</div>
+
+<div class="cert-item">
+<i class="fas fa-robot"></i>
+AI CERTs — AI Prompt Engineer
+</div>
+
+<div class="cert-item">
+<i class="fab fa-microsoft"></i>
+Microsoft 365 Copilot Training
+</div>
+
+<div class="cert-item">
+<i class="fas fa-users"></i>
+Aspire Institute Leadership Program
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section class="section contact">
+
+<div class="container">
+
+<div class="section-header">
+
+<h2>Get In Touch</h2>
+
+<p>
+Open to collaborations, research opportunities, internships, and engineering projects.
+</p>
+
+</div>
+
+<div class="contact-grid">
+
+<div class="contact-card">
+
+<i class="fas fa-envelope"></i>
+
+<h3>Email</h3>
+
+<p>m241-33-035@diu.edu.bd</p>
+
+</div>
+
+<div class="contact-card">
+
+<i class="fas fa-phone"></i>
+
+<h3>Phone</h3>
+
+<p>+8801932-084441</p>
+
+</div>
+
+<div class="contact-card">
+
+<i class="fas fa-location-dot"></i>
+
+<h3>Location</h3>
+
+<p>Tongi, Gazipur, Bangladesh</p>
+
+</div>
+
+</div>
+
+<div class="socials">
+
+<a href="https://linkedin.com/in/mmzion/" target="_blank">
+<i class="fab fa-linkedin-in"></i>
+</a>
+
+<a href="https://github.com/mmzion/" target="_blank">
+<i class="fab fa-github"></i>
+</a>
+
+</div>
+
+<div class="footer">
+
+<p>
+© 2026 M. M. Zion
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<script>
+
+const toggleBtn = document.getElementById('theme-toggle');
+
+const icon = toggleBtn.querySelector('i');
+
+const savedTheme = localStorage.getItem('theme');
+
+if(savedTheme === 'dark'){
+
+document.documentElement.setAttribute('data-theme','dark');
+
+icon.classList.replace('fa-moon','fa-sun');
+
+}
+
+toggleBtn.addEventListener('click',()=>{
+
+const currentTheme = document.documentElement.getAttribute('data-theme');
+
+if(currentTheme === 'dark'){
+
+document.documentElement.removeAttribute('data-theme');
+
+localStorage.setItem('theme','light');
+
+icon.classList.replace('fa-sun','fa-moon');
+
+}else{
+
+document.documentElement.setAttribute('data-theme','dark');
+
+localStorage.setItem('theme','dark');
+
+icon.classList.replace('fa-moon','fa-sun');
+
+}
+
+});
+
+</script>
 
 </body>
 </html>
