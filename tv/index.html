@@ -44,7 +44,6 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
-        /* 📺 ইউটিউব স্টাইল স্টিকি প্লেয়ার কন্টেইনার */
         .theater-screen-sticky-wrapper {
             position: -webkit-sticky;
             position: sticky;
@@ -66,7 +65,6 @@
         video { width: 100%; height: 100%; background: #000; object-fit: contain !important; }
         .plyr { width: 100%; height: 100%; }
 
-        /* 🖐️ ওয়ান-ক্লিক কন্ট্রোল এবং প্লে-পজ টাচ ওভারলে */
         .player-click-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: calc(100% - 50px);
@@ -75,7 +73,6 @@
             cursor: pointer;
         }
 
-        /* 📋 ড্যাশবোর্ড এরিয়া */
         .ott-dashboard { padding: 15px; }
         .stream-details { background: var(--panel-bg); padding: 14px; border-radius: 14px; border: 1px solid rgba(124, 58, 237, 0.15); display: flex; align-items: center; gap: 12px; position: relative; }
         .active-logo-img { width: 34px; height: 34px; object-fit: contain; border-radius: 8px; background: rgba(255,255,255,0.08); padding: 3px; border: 1px solid rgba(124, 58, 237, 0.3); }
@@ -83,7 +80,6 @@
         .badge-live { background: linear-gradient(135deg, #ef4444, #dc2626); color: #fff; font-size: 10px; padding: 2px 7px; border-radius: 5px; text-transform: uppercase; font-weight: bold; box-shadow: 0 0 10px rgba(239, 68, 68, 0.4); }
         .horizontal-panel { margin-top: 15px; background: var(--panel-bg); padding: 15px; border-radius: 16px; border: 1px solid rgba(124, 58, 237, 0.1); }
         
-        /* 🔄 কাস্টম রিলোড স্ট্রিম বাটন স্টাইল */
         .btn-reload-stream {
             margin-left: auto;
             background: rgba(124, 58, 237, 0.1);
@@ -107,7 +103,6 @@
         }
         .btn-reload-stream:active { transform: scale(0.98); }
 
-        /* 📑 বেগুনী থিম ট্যাব বাটন */
         .ott-tabs-wrapper { margin-top: 15px; background: rgba(22, 14, 45, 0.8); padding: 5px; border-radius: 12px; display: inline-flex; gap: 6px; border: 1px solid rgba(124, 58, 237, 0.15); width: 100%; overflow-x: auto; white-space: nowrap; }
         .ott-tabs-wrapper::-webkit-scrollbar { height: 0px; }
         .tab-trigger { background: transparent; color: #7c7299; border: none; padding: 9px 16px; font-size: 11px; font-weight: 700; text-transform: uppercase; border-radius: 9px; transition: all 0.25s ease; display: inline-flex; align-items: center; }
@@ -116,7 +111,6 @@
         .iptv-grid-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
         .panel-grid-hidden { display: none !important; }
 
-        /* 👑 প্রফেশনাল ইমেজ লগো কার্ড স্টাইল */
         .channel-card { background: rgba(255,255,255,0.02); padding: 14px; border-radius: 14px; cursor: pointer; text-align: center; aspect-ratio: 1.15/1; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid var(--card-border); transition: all 0.2s ease; }
         .channel-card:hover { border-color: rgba(124, 58, 237, 0.4); background: rgba(124, 58, 237, 0.03); transform: translateY(-2px); }
         .channel-card.active { border: 2px solid var(--purple-primary); background: rgba(124, 58, 237, 0.12); box-shadow: 0 0 20px rgba(124, 58, 237, 0.2); }
@@ -127,7 +121,6 @@
         .logo-img { width: 48px; height: 48px; object-fit: contain; margin-bottom: 10px; border-radius: 10px; padding: 4px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.05); transition: all 0.2s ease; }
         .channel-card.active .logo-img { background: rgba(255,255,255,0.1); border-color: var(--purple-primary); }
         
-        /* 🔥 টি স্পোর্টস স্পেশাল গ্লোয়িং হাইলাইট মেকানিজম */
         .channel-card.tsports-highlight {
             border: 2px solid #f59e0b !important;
             background: rgba(245, 158, 11, 0.08) !important;
@@ -145,17 +138,12 @@
         .card-name { font-weight: 700; font-size: 11px; color: #cbd5e1; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.2; }
 
         .plyr--video { --plyr-color-main: var(--purple-primary); }
-
-        .plyr__control--overlaid {
-            z-index: 10 !important;
-            pointer-events: auto !important;
-        }
+        .plyr__control--overlaid { z-index: 10 !important; pointer-events: auto !important; }
 
         @media (max-width: 992px) { .iptv-grid-row { grid-template-columns: repeat(4, 1fr); } }
         @media (max-width: 768px) { .iptv-grid-row { grid-template-columns: repeat(3, 1fr); } }
         @media (max-width: 480px) { .iptv-grid-row { grid-template-columns: repeat(2, 1fr); } }
 
-        /* 💻 পিসি এবং বড় স্ক্রিনের জন্য থিয়েটার মোড (৬০% প্লেয়ার, ৪০% চ্যানেল লিস্ট) */
         @media (min-width: 992px) {
             .ott-main-layout {
                 display: grid;
@@ -170,25 +158,15 @@
                 border-radius: 16px;
                 overflow: hidden;
             }
-            .ott-dashboard {
-                padding: 0 !important;
-            }
+            .ott-dashboard { padding: 0 !important; }
             .horizontal-panel {
                 max-height: calc(100vh - 210px);
                 overflow-y: auto;
                 padding-right: 10px;
             }
-            .horizontal-panel::-webkit-scrollbar {
-                width: 6px;
-            }
-            .horizontal-panel::-webkit-scrollbar-thumb {
-                background: var(--purple-primary);
-                border-radius: 10px;
-            }
-            .iptv-grid-row {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 10px;
-            }
+            .horizontal-panel::-webkit-scrollbar { width: 6px; }
+            .horizontal-panel::-webkit-scrollbar-thumb { background: var(--purple-primary); border-radius: 10px; }
+            .iptv-grid-row { grid-template-columns: repeat(3, 1fr); gap: 10px; }
         }
     </style>
 </head>
@@ -196,7 +174,6 @@
 
     <nav class="ott-nav"><div class="text-white fw-bold"><i class="bi bi-play-circle text-purple-primary" style="color: var(--purple-primary);"></i> ZION SPORTS</div></nav>
 
-    <!-- পিসির জন্য গ্রিড র্যাপার শুরু -->
     <div class="ott-main-layout">
         
         <!-- বাম পাশের কলাম: ভিডিও প্লেয়ার এবং লাইভ স্ট্যাটাস -->
@@ -225,8 +202,7 @@
             <div class="ott-tabs-wrapper mt-0">
                 <button class="tab-trigger active" onclick="togglePanelTab('fifa', this)"><i class="bi bi-trophy-fill me-1"></i> FIFA Premium</button>
                 <button class="tab-trigger" onclick="togglePanelTab('sports', this)"><i class="bi bi-broadcast me-1"></i> Live Sports</button>
-                <button class="tab-trigger" onclick="togglePanelTab('entertainment', this)"><i class="bi bi-mask me-1"></i> Entertainment</button>
-                <button class="tab-trigger" onclick="togglePanelTab('news-movies', this)"><i class="bi bi-film me-1"></i> News & Movies</button>
+                <button class="tab-trigger" onclick="togglePanelTab('bangla', this)"><i class="bi bi-flag-fill me-1"></i> Bangla TV</button>
             </div>
 
             <div class="horizontal-panel">
@@ -240,37 +216,30 @@
                         <div class="text-logo-icon">BN</div>
                         <div class="card-name">Bein Direct</div>
                     </div>
-<div class="channel-card" onclick="switchStandardChannel('https://d1g8wgjurz8via.cloudfront.net/bpk-tv/ColorsHD/default/ColorsHD.m3u8', 'Z বাংলাসোনার', '', this)">
-    <div class="text-logo-icon">ZS</div>
-    <div class="card-name">Z বাংলাসোনার</div>
-</div>
-
-
-
-<div class="channel-card" onclick="switchStandardChannel('https://hqlive.yarncdn.live/live/hqtv_blv_phanma/playlist.m3u8', 'Go Live', '', this)">
-    <div class="text-logo-icon">GL</div>
-    <div class="card-name">Go Live</div>
-</div>
-<div class="channel-card" onclick="switchStandardChannel('https://tv.beyondtaxconsultants.com/api/proxy?url=http://151.80.18.177:86/M6_HD/tracks-v1a1/mono.m3u8', 'M6 Sports', '', this)">
-    <div class="text-logo-icon">M6</div>
-    <div class="card-name">M6 Sports</div>
-</div>
-
-
-<!-- Bein Direct এর ঠিক পরে এখানে বসাও -->
-<div class="channel-card" onclick="switchStandardChannel('https://live.thebosstv.com:30443/dwlive/Somoy-TV/chunks.m3u8', 'Somoy TV', '', this)">
-    <div class="text-logo-icon">ST</div>
-    <div class="card-name">Somoy TV</div>
-</div>
-<div class="channel-card" onclick="switchStandardChannel('https://1nyaler.streamhostingcdn.top/stream/106/index.m3u8', 'D Sports', '', this)">
-    <div class="text-logo-icon">DS</div>
-    <div class="card-name">D Sports</div>
-</div>
-<div class="channel-card" onclick="switchStandardChannel('https://1nyaler.streamhostingcdn.top/stream/26/index.m3u8', 'FOX TV', '', this)">
-    <div class="text-logo-icon">FX</div>
-    <div class="card-name">FOX TV</div>
-</div>
-
+                    <div class="channel-card" onclick="switchStandardChannel('https://d1g8wgjurz8via.cloudfront.net/bpk-tv/ColorsHD/default/ColorsHD.m3u8', 'Z বাংলাসোনার', '', this)">
+                        <div class="text-logo-icon">ZS</div>
+                        <div class="card-name">Z বাংলাসোনার</div>
+                    </div>
+                    <div class="channel-card" onclick="switchStandardChannel('https://hqlive.yarncdn.live/live/hqtv_blv_phanma/playlist.m3u8', 'Go Live', '', this)">
+                        <div class="text-logo-icon">GL</div>
+                        <div class="card-name">Go Live</div>
+                    </div>
+                    <div class="channel-card" onclick="switchStandardChannel('https://tv.beyondtaxconsultants.com/api/proxy?url=http://151.80.18.177:86/M6_HD/tracks-v1a1/mono.m3u8', 'M6 Sports', '', this)">
+                        <div class="text-logo-icon">M6</div>
+                        <div class="card-name">M6 Sports</div>
+                    </div>
+                    <div class="channel-card" onclick="switchStandardChannel('https://live.thebosstv.com:30443/dwlive/Somoy-TV/chunks.m3u8', 'Somoy TV', '', this)">
+                        <div class="text-logo-icon">ST</div>
+                        <div class="card-name">Somoy TV</div>
+                    </div>
+                    <div class="channel-card" onclick="switchStandardChannel('https://1nyaler.streamhostingcdn.top/stream/106/index.m3u8', 'D Sports', '', this)">
+                        <div class="text-logo-icon">DS</div>
+                        <div class="card-name">D Sports</div>
+                    </div>
+                    <div class="channel-card" onclick="switchStandardChannel('https://1nyaler.streamhostingcdn.top/stream/26/index.m3u8', 'FOX TV', '', this)">
+                        <div class="text-logo-icon">FX</div>
+                        <div class="card-name">FOX TV</div>
+                    </div>
                     <div class="channel-card" onclick="switchStandardChannel('https://dfr80qz435crc.cloudfront.net/MNOP/Amagi/Caze/Caze_TV_BR/1080p-vtt/index.m3u8', 'Caze TV', 'https://images.seeklogo.com/logo-png/61/1/cazetv-logo-png_seeklogo-619708.png', this)">
                         <img src="https://images.seeklogo.com/logo-png/61/1/cazetv-logo-png_seeklogo-619708.png" class="logo-img" alt="Caze">
                         <div class="card-name">Caze TV</div>
@@ -357,57 +326,9 @@
                     <div class="channel-card redirect-card" onclick="handleRedirectChannel('http://198.195.239.50:8095/euroSports/index.m3u8')"><div class="text-logo-icon">ES</div><div class="card-name">Euro Sports</div></div>
                 </div>
 
-                <!-- ③. 🎭 Entertainment সেকশন -->
-                <div id="entertainmentTabPanel" class="iptv-grid-row panel-grid-hidden">
-                    <div class="channel-card redirect-card" onclick="handleRedirectChannel('http://198.195.239.50:8095/zeeBangla/index.m3u8')">
-                        <div class="text-logo-icon">ZB</div><div class="card-name">Zee Bangla</div>
-                    </div>
-                    <div class="channel-card redirect-card" onclick="handleRedirectChannel('http://198.195.239.50:8095/starJalsha/index.m3u8')">
-                        <div class="text-logo-icon">SJ</div><div class="card-name">Star Jalsha</div>
-                    </div>
-                    <div class="channel-card redirect-card" onclick="handleRedirectChannel('http://198.195.239.50:8095/colorsBangla/index.m3u8')">
-                        <div class="text-logo-icon">CB</div><div class="card-name">Colors Bangla</div>
-                    </div>
-                    <div class="channel-card redirect-card" onclick="handleRedirectChannel('http://198.195.239.50:8095/sonyAath/index.m3u8')">
-                        <div class="text-logo-icon">SA</div><div class="card-name">Sony Aath</div>
-                    </div>
-                    <div class="channel-card redirect-card" onclick="handleRedirectChannel('http://198.195.239.50:8095/starPlus/index.m3u8')">
-                        <div class="text-logo-icon">SP</div><div class="card-name">Star Plus</div>
-                    </div>
-                    <div class="channel-card redirect-card" onclick="handleRedirectChannel('http://198.195.239.50:8095/sonySab/index.m3u8')">
-                        <div class="text-logo-icon">SB</div><div class="card-name">Sony Sab</div>
-                    </div>
-                    <div class="channel-card redirect-card" onclick="handleRedirectChannel('http://198.195.239.50:8095/zeeTv/index.m3u8')">
-                        <div class="text-logo-icon">ZT</div><div class="card-name">Zee TV</div>
-                    </div>
-                </div>
-
-                <!-- ④. 📰 News & Movies সেকশন -->
-                <div id="newsMoviesTabPanel" class="iptv-grid-row panel-grid-hidden">
-                    <div class="channel-card redirect-card" onclick="handleRedirectChannel('http://198.195.239.50:8095/jalshaMovies/index.m3u8')">
-                        <div class="text-logo-icon">JM</div><div class="card-name">Jalsha Movies</div>
-                    </div>
-                    <div class="channel-card redirect-card" onclick="handleRedirectChannel('http://198.195.239.50:8095/zeeBanglaCinema/index.m3u8')">
-                        <div class="text-logo-icon">ZC</div><div class="card-name">Zee Cinema</div>
-                    </div>
-                    <div class="channel-card redirect-card" onclick="handleRedirectChannel('http://198.195.239.50:8095/sonyMax/index.m3u8')">
-                        <div class="text-logo-icon">SM</div><div class="card-name">Sony Max</div>
-                    </div>
-                    <div class="channel-card redirect-card" onclick="handleRedirectChannel('http://198.195.239.50:8095/starGold/index.m3u8')">
-                        <div class="text-logo-icon">SG</div><div class="card-name">Star Gold</div>
-                    </div>
-                    <div class="channel-card redirect-card" onclick="handleRedirectChannel('http://198.195.239.50:8095/somoyTv/index.m3u8')">
-                        <div class="text-logo-icon">ST</div><div class="card-name">Somoy TV</div>
-                    </div>
-                    <div class="channel-card redirect-card" onclick="handleRedirectChannel('http://198.195.239.50:8095/jamunaTv/index.m3u8')">
-                        <div class="text-logo-icon">JT</div><div class="card-name">Jamuna TV</div>
-                    </div>
-                    <div class="channel-card redirect-card" onclick="handleRedirectChannel('http://198.195.239.50:8095/independentTv/index.m3u8')">
-                        <div class="text-logo-icon">IT</div><div class="card-name">Independent</div>
-                    </div>
-                    <div class="channel-card redirect-card" onclick="handleRedirectChannel('http://198.195.239.50:8095/ekattorTv/index.m3u8')">
-                        <div class="text-logo-icon">ET</div><div class="card-name">Ekattor TV</div>
-                    </div>
+                <!-- ③. 🇧🇩 Bangla TV সেকশন (ডাইনামিকালি লোড হবে) -->
+                <div id="banglaTabPanel" class="iptv-grid-row panel-grid-hidden">
+                    <!-- JavaScript এর মাধ্যমে চ্যানেলগুলো রেন্ডার হবে -->
                 </div>
 
             </div>
@@ -415,17 +336,67 @@
             <div class="text-center mt-5 text-muted" style="font-size: 10px; opacity: 0.2;">© 2026 Zion Sports • Powered by GitHub Pages</div>
         </div>
 
-    </div> <!-- পিসির জন্য গ্রিড র্যাপার শেষ -->
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
 
     <script>
+        // 📋 বাংলা চ্যানেলের অবজেক্ট অ্যারে ডাটাবেজ (ডুপ্লিকেট মুক্ত ও ক্লীন ফিল্টার্ড)
+        const banglaChannels = [
+            { "name": "IN | TV9 Bangla", "logo": "https://images.tv9bangla.com/wp-content/themes/tv9bangla/images/tv9-bangla-logo.svg", "url": "https://dyjmyiv3bp2ez.cloudfront.net/pub-iotv9banaen8yq/liveabr/playlist.m3u8" },
+            { "name": "IN | R Plus News", "logo": "https://rplus.in/wp-content/uploads/2025/06/RPLUS_NEWS.png", "url": "https://thelegitpro.in/pntv/rplusnews24x7/index.m3u8" },
+            { "name": "News 24", "logo": "https://raw.githubusercontent.com/subirkumarpaul/Logo/main/News%2024.png", "url": "https://owrcovcrpy.gpcdn.net/bpk-tv/1708/output/index.m3u8" },
+            { "name": "SOMOY NEWS", "logo": "https://static.wikia.nocookie.net/logopedia/images/8/8e/Somoy_Television.svg", "url": "https://owrcovcrpy.gpcdn.net/bpk-tv/1702/output/index.m3u8" },
+            { "name": "Jamuna TV", "logo": "https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Jamuna%20TV.jpeg", "url": "https://owrcovcrpy.gpcdn.net/bpk-tv/1701/output/index.m3u8" },
+            { "name": "Channel 24", "logo": "https://yt3.googleusercontent.com/8Q8MCd6ypr2Hzbp60VE_stJPl063kQYfeTxdIQkAXRfhdzxByLl0sJYHsk43uTM4W_cOzwcbPQ=s160-c-k-c0x00ffffff-no-rj", "url": "https://owrcovcrpy.gpcdn.net/bpk-tv/1703/output/index.m3u8" },
+            { "name": "ATN News", "logo": "https://static.wikia.nocookie.net/etv-gspn-bangla/images/4/4d/ATN_News_HD.png", "url": "https://owrcovcrpy.gpcdn.net/bpk-tv/1706/output/index.m3u8" },
+            { "name": "Independent Television", "logo": "https://static.wikia.nocookie.net/etv-gspn-bangla/images/b/bb/Independent_logo_2011.png", "url": "https://owrcovcrpy.gpcdn.net/bpk-tv/1704/output/index.m3u8" },
+            { "name": "IN | Kolkata Tv", "logo": "https://a.jsrdn.com/hls/23215/kolkata-tv/logo_20250819_185012_70.png", "url": "https://cdn.ottlive.co.in/kolkatatv/index.m3u8" },
+            { "name": "IN | Tribe TV", "logo": "https://a.jsrdn.com/hls/23215/tribe-tv/logo_20250429_225821_70.png", "url": "https://server.livelegitpro.in:9899/tribetv/tribetv/index.m3u8" },
+            { "name": "Ekattor TV", "logo": "https://static.wikia.nocookie.net/logopedia/images/5/5d/Ekattor_TV_logo.png", "url": "https://owrcovcrpy.gpcdn.net/bpk-tv/1705/output/1705-audio_113352_eng=113200-video=1692000.m3u8" },
+            { "name": "IN | Bangla Jago TV", "logo": "https://banglajagotv.com/wp-content/themes/BANGLAJAGOTV/images/logo.png", "url": "http://banglajagotv.livebox.co.in:80/banglajagohls/24x7.m3u8" },
+            { "name": "IN | Zee 24 Ghanta", "logo": "https://static.wikia.nocookie.net/logopedia/images/b/bc/Zee_24_Ghanta_2025_Logo_2025.png", "url": "https://d2dsoyvkr33m05.cloudfront.net/index_1.m3u8" },
+            { "name": "IN | Calcutta News", "logo": "https://assets.calcuttatelevisionnetwork.in/cn.png", "url": "https://akdnetwork.co.in/live/cnnew/index.m3u8" },
+            { "name": "IN | News18 Bangla", "logo": "https://static.wikia.nocookie.net/logopedia/images/8/85/News18_Bangla1.svg", "url": "https://amg01448-samsungin-news18bangla-samsungin-ad-qy.amagi.tv/ts-eu-w1-n2/playlist/amg01448-samsungin-news18bangla-samsungin/playlist.m3u8" },
+            { "name": "IN | Republic Bangla", "logo": "https://static.wikia.nocookie.net/logopedia/images/9/93/R.Bangla_logo_with_tagline.jpg", "url": "https://vg-republictvyupp.akamaized.net/ptnr-yuppt/v1/manifest/611d79b11b77e2f571934fd80ca1413453772ac7/vglive-sk-613605/93d674ab-f7a0-404e-88b2-b4f163373dbe/0.m3u8" },
+            { "name": "IN | High News", "logo": "https://static.wikia.nocookie.net/logopedia/images/c/c8/High-news.jpg", "url": "http://highmedia.livebox.co.in:80/HIGHNEWShls/LIVE.m3u8" },
+            { "name": "IN | ABP Ananda", "logo": "https://static.wikia.nocookie.net/logopedia/images/a/a2/Abp-ananda.png", "url": "https://amg01448-samsungin-abpananda-samsungin-ad-pw.amagi.tv/playlist/amg01448-samsungin-abpananda-samsungin/playlist.m3u8" },
+            { "name": "TBN 24 USA", "logo": "https://raw.githubusercontent.com/subirkumarpaul/Logo/main/TBN24.png", "url": "http://cdn01.palki.tv/live/TBN24-M/index.m3u8" },
+            { "name": "DBC News", "logo": "https://raw.githubusercontent.com/subirkumarpaul/Logo/main/DBC%20News.png", "url": "https://owrcovcrpy.gpcdn.net/bpk-tv/1728/output/1728.m3u8" },
+            { "name": "Channel 1 News 4K", "logo": "https://raw.githubusercontent.com/subirkumarpaul/Logo/refs/heads/main/Channel%201.png", "url": "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/channel1bd.stream/tracks-v1a1/mono.m3u8" },
+            { "name": "Ananda TV", "logo": "https://s3.aynaott.com/storage/897698f593fc07974fc46881a440733d", "url": "https://tvsen6.aynaott.com/anandatv/index.m3u8?e=1779283759&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=504b9350b4703116ca4ab20e4013288e" },
+            { "name": "Bangla TV", "logo": "https://s3.aynaott.com/storage/e42ecfa90e3d6b15bdb7fea5ef673864", "url": "https://tvsen6.aynaott.com/banglatv/index.m3u8?e=1779283758&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=f3e9e2737e35147900c0f4add619ead6" },
+            { "name": "Channel 9", "logo": "https://s3.aynaott.com/storage/a959f06b4fc9e1421f867b6c1601fe43", "url": "https://tvsen6.aynaott.com/channel9/index.m3u8?e=1779283756&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=6d1662351f39dd5277df069a01f46fee" },
+            { "name": "Duronto TV", "logo": "https://s3.aynaott.com/storage/51f1530c076c027e431bf18a49613f0b", "url": "https://tvsen6.aynaott.com/durontotv-live/index.m3u8?e=1779283757&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=3da514e08a15c80daed60a18b3f423fa" },
+            { "name": "Boishakhi TV", "logo": "https://s3.aynaott.com/storage/58658d4594ca1ff3c5031c9d8e3d9fc0", "url": "https://tvsen6.aynaott.com/boishakhitv/index.m3u8?e=1779283755&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=f3f4ec98ffbd9567c21e8b2ee98e32d5" },
+            { "name": "RTV", "logo": "https://s3.aynaott.com/storage/094587a26f2c5e4f2962104728ec8c5d", "url": "https://tvsen5.aynaott.com/RtvHD/index.m3u8?e=1779283751&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=678f1f8ec03b1af7b76d013d33f45198" },
+            { "name": "BTV CTG", "logo": "https://s3.aynaott.com/storage/00da8a07fb26b2fb79359ee535e4c7bc", "url": "https://tvsen6.aynaott.com/btvctg/index.m3u8?e=1779283747&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=9bca925fbdfe526b29d41ab7802348ec" },
+            { "name": "ATN Bangla", "logo": "https://s3.aynaott.com/storage/eff41809fca04f7c1da5481e135d7913", "url": "https://tvsen5.aynaott.com/atnbangla/index.m3u8?e=1779283752&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=e20058ae495a80a83ec09cb9d82b9253" },
+            { "name": "Bangla Vision", "logo": "https://s3.aynaott.com/storage/788ab3e49b2aa6af247722762ed6e72a", "url": "https://tvsen5.aynaott.com/banglavision/index.m3u8?e=1779283750&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=c6bb7760d6eb9b999205a81ca4f4f51c" },
+            { "name": "Gazi TV", "logo": "https://s3.aynaott.com/storage/417a833f6d83021c99bfc3d4176610f4", "url": "https://tvsen5.aynaott.com/Ravc7gPCZpxk/index.m3u8?e=1779283754&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=0cdc69aae0d57f2ce93a41a608a3d821" },
+            { "name": "Channel I", "logo": "https://s3.aynaott.com/storage/8e998f20a9cc52cb8eb1f52a5bf38204", "url": "https://tvsen6.aynaott.com/channeli/index.m3u8?e=1779283749&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=1d2782c406bc6c9f853716c3dc41a439" },
+            { "name": "NTV", "logo": "https://s3.aynaott.com/storage/1a619c9b917eb35898020cd323e415a7", "url": "https://tvsen5.aynaott.com/ntvbd/index.m3u8?e=1779283750&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=dac30ebda5dba60e895e85ddee645992" },
+            { "name": "Global TV", "logo": "https://s3.aynaott.com/storage/ffd7ba9b76ad555933f94bcb7ff26b44", "url": "https://tvsen6.aynaott.com/globaltvhd/index.m3u8?e=1779283760&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=9877fe1456ffd7b4e155ff0dc042c176" },
+            { "name": "Mohona TV", "logo": "https://s3.aynaott.com/storage/73082846fdc15d9f0e7268b104c55d92", "url": "https://tvsen6.aynaott.com/mohonatv/index.m3u8?e=1779283762&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=017ac949515fd9b0181090287f362d2b" },
+            { "name": "NEXUS TV", "logo": "https://s3.aynaott.com/storage/90635c3edf6e3c8dd92210b7248f1fa0", "url": "https://tvsen6.aynaott.com/nexustv/index.m3u8?e=1779283761&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=bbcba35ac711c3545a56b3580503ee00" },
+            { "name": "SA TV", "logo": "https://s3.aynaott.com/storage/f710d2ff532cb7e7b75566232c5b72d3", "url": "https://tvsen6.aynaott.com/satv/index.m3u8?e=1779283757&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=336f19de5e4aacae753d7524d86d1a89" },
+            { "name": "ETV", "logo": "https://s3.aynaott.com/storage/8a1af81802b0728c064c2adabcdc72c8", "url": "https://tvsen6.aynaott.com/etv/index.m3u8?e=1779283752&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=2c4b5c7a7044076e38b667d37971baec" },
+            { "name": "Bijoy TV", "logo": "https://s3.aynaott.com/storage/f23d6f82c1a16458fe0e4c6f11b8fd87", "url": "https://tvsen6.aynaott.com/bijoytv/index.m3u8?e=1779283761&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=5c8b85f4f92c654640f3abdc1ac061c6" },
+            { "name": "My TV", "logo": "https://s3.aynaott.com/storage/c5b2c623863fbe4033d59d52ff7371ac", "url": "https://tvsen6.aynaott.com/mytv/index.m3u8?e=1779283760&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=0a2ae0189a44e789d3fecffe5a474ec3" },
+            { "name": "MU | SANGEET BANGLA", "logo": "https://static.wikia.nocookie.net/logopedia/images/d/da/Sangeet_Bangla_logo_2006.png", "url": "https://cdn-4.pishow.tv/live/1143/master.m3u8" },
+            { "name": "DD Bangla", "logo": "https://static.wikia.nocookie.net/logopedia/images/c/ca/Dd_2019.webp", "url": "https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/7ff57cc9046b4c188b51a0d506f36e7f/index_3.m3u8" },
+            { "name": "Khushboo Bangla", "logo": "https://static.wikia.nocookie.net/logopedia/images/e/e1/Khushboo_Bangla_logo_2017.png", "url": "https://cdn-4.pishow.tv/live/1473/master.m3u8" },
+            { "name": "Colors Bangla HD", "logo": "https://static.wikia.nocookie.net/logopedia/images/3/3e/Colors_Bangla_HD.jpg", "url": "https://iptvcable.netlify.app/Altogether-007/Kolkata/ColorsBanglaHD.m3u8" },
+            { "name": "Bangla+ HD", "logo": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEir8DIISD_3Ay4E2H__HTS4VFP7VXskYcIgkufU45epPzAFDKObL2D_p6mOal9B0RJpyaiA3feJuyaL8yvd0x-2nykRjc1pZPwT_aAGwmwFb4bEJf8oVDgty5NF30gzWlwHvh2P2c49pP2P8383ili_yboK1uSyqELcZygHTpSwru1VeK0mMwceugT5QLw/s1600/NadimRazaTVLogoDesign%282%29_copy_900x900_1.png", "url": "https://live-stream.utkalbongo.com/hls/livebanglatvstream.m3u8" },
+            { "name": "SONY AATH HD", "logo": "https://static.wikia.nocookie.net/logopedia/images/0/00/SONY_AATH.png", "url": "https://live20.bozztv.com/giatvplayout7/giatv-209611/index.m3u8" },
+            { "name": "Rajdhani TV", "logo": "https://rajdhanitv.online/assets/images/logo/1757970614logo%20footer.png", "url": "https://stream.shariarsuvo.com/hls5/rajdhanicable.m3u8" }
+        ];
+
         const video = document.getElementById('player');
         let hls = null;
         let currentActiveUrl = ''; 
 
-        // 👑 Pip (Picture-in-picture) অপশনটি কন্ট্রোলবারে যুক্ত করা হলো
         const plyr = new Plyr(video, { 
             autoplay: true, 
             controls: ['play-large', 'play', 'progress', 'current-time', 'pip', 'fullscreen'] 
@@ -444,11 +415,8 @@
 
         const overlay = document.getElementById('player-overlay');
 
-        // 🖐️ টাচ/ক্লিক লজিক: প্রথম টাচে কন্ট্রোলবার আসবে, কন্ট্রোলবার থাকা অবস্থায় ক্লিক করলে প্লে-পজ হবে
         overlay.addEventListener('click', (e) => {
             e.stopPropagation();
-            
-            // ব্রাউজারের অডিও লক সচল করার মাস্টার বাইপাস (টাচ করলেই মিউট ফলস হবে এবং সাউন্ড ১.০ হবে)
             if(video.muted) {
                 video.muted = false;
                 video.volume = 1.0;
@@ -461,18 +429,36 @@
                                           controls.classList.contains('plyr__controls--visible');
                 
                 if (isControlsVisible) {
-                    if (video.paused) {
-                        video.play();
-                    } else {
-                        video.pause();
-                    }
+                    if (video.paused) video.play();
+                    else video.pause();
                 } else {
                     plyr.toggleControls(true);
                 }
             }
         });
 
-        // 🔄 স্ট্যান্ডার্ড ইন্টারনাল প্লেয়ার ইঞ্জিন (ব্রাউজার সিকিউরিটি বাইপাস ইঞ্জিনসহ)
+        // 🔄 ডাইনামিক রেন্ডারিং মেকানিজম (বাংলা চ্যানেলের জন্য)
+        function renderBanglaSection() {
+            const panel = document.getElementById("banglaTabPanel");
+            if (!panel) return;
+            panel.innerHTML = ""; 
+
+            banglaChannels.forEach((ch, idx) => {
+                const card = document.createElement("div");
+                card.className = "channel-card";
+                
+                card.onclick = function() {
+                    switchStandardChannel(ch.url, ch.name, ch.logo, this);
+                };
+
+                card.innerHTML = `
+                    <img src="${ch.logo}" class="logo-img" alt="${ch.name}" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/4/4b/FIFA_WorldCup_logo.svg'">
+                    <div class="card-name">${ch.name}</div>
+                `;
+                panel.appendChild(card);
+            });
+        }
+
         function switchStandardChannel(url, title, logoUrl, el) {
             currentActiveUrl = url; 
             document.querySelectorAll('.channel-card').forEach(c => c.classList.remove('active'));
@@ -494,12 +480,10 @@
             hls.attachMedia(video);
             
             hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                // 🔊 ব্রাউজারের অটোপ্লে ব্লক পলিসি এড়াতে প্রথমে ডেটা মিউট করে রান করানো হচ্ছে
                 video.muted = true; 
                 video.volume = 1.0;
                 
                 video.play().then(() => {
-                    // অটোপ্লে সচল হলে ইউজারের প্রথম ক্লিকেই যেন ফুল অডিও চলে আসে তার জন্য গ্লোবাল ইভেন্ট লিসেনার ফিক্স
                     const unscrapeAudioLock = () => {
                         video.muted = false;
                         video.volume = 1.0;
@@ -512,7 +496,6 @@
             });
         }
 
-        // 🔄 লাইভ রিলোড বোতামের কোর লজিক
         function reloadCurrentStream() {
             if (currentActiveUrl) {
                 if (hls) hls.destroy();
@@ -527,11 +510,8 @@
             }
         }
 
-        // 🔀 রিডিরেক্ট চ্যানেল হ্যান্ডলার
         function handleRedirectChannel(targetUrl) {
-            if (!video.paused) {
-                video.pause(); 
-            }
+            if (!video.paused) video.pause(); 
             window.open(targetUrl, '_blank');
         }
 
@@ -541,21 +521,19 @@
 
             document.getElementById('fifaTabPanel').classList.add('panel-grid-hidden');
             document.getElementById('sportsTabPanel').classList.add('panel-grid-hidden');
-            document.getElementById('entertainmentTabPanel').classList.add('panel-grid-hidden');
-            document.getElementById('newsMoviesTabPanel').classList.add('panel-grid-hidden');
+            document.getElementById('banglaTabPanel').classList.add('panel-grid-hidden');
 
             if (tabName === 'fifa') {
                 document.getElementById('fifaTabPanel').classList.remove('panel-grid-hidden');
             } else if (tabName === 'sports') {
                 document.getElementById('sportsTabPanel').classList.remove('panel-grid-hidden');
-            } else if (tabName === 'entertainment') {
-                document.getElementById('entertainmentTabPanel').classList.remove('panel-grid-hidden');
-            } else if (tabName === 'news-movies') {
-                document.getElementById('newsMoviesTabPanel').classList.remove('panel-grid-hidden');
+            } else if (tabName === 'bangla') {
+                document.getElementById('banglaTabPanel').classList.remove('panel-grid-hidden');
             }
         }
 
         window.addEventListener('DOMContentLoaded', () => {
+            renderBanglaSection();
             const defaultCard = document.querySelectorAll('#fifaTabPanel .channel-card')[1]; 
             switchStandardChannel('https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8', 'Bein Direct', '', defaultCard);
         });
