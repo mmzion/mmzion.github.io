@@ -176,6 +176,7 @@
 
     <div class="ott-main-layout">
         
+        <!-- বাম পাশের কলাম: ভিডিও প্লেয়ার এবং লাইভ স্ট্যাটাস -->
         <div class="left-column-wrapper">
             <div class="theater-screen-sticky-wrapper">
                 <div class="theater-screen">
@@ -195,6 +196,7 @@
             </div>
         </div>
 
+        <!-- ডান পাশের কলাম: ক্যাটাগরি ট্যাব এবং চ্যানেল গ্রিড -->
         <div class="container-fluid ott-dashboard">
             
             <div class="ott-tabs-wrapper mt-0">
@@ -205,14 +207,20 @@
 
             <div class="horizontal-panel">
                 
+                <!-- ①. 🏆 FIFA Premium সেকশন (ডাইনামিকালি রেন্ডার হবে) -->
                 <div id="fifaTabPanel" class="iptv-grid-row">
-                    </div>
+                    <!-- JavaScript এর মাধ্যমে চ্যানেলগুলো রেন্ডার হবে -->
+                </div>
 
+                <!-- ②. ⚽ Live Sports সেকশন (ডাইনামিকালি রেন্ডার হবে) -->
                 <div id="sportsTabPanel" class="iptv-grid-row panel-grid-hidden">
-                    </div>
+                    <!-- JavaScript এর মাধ্যমে চ্যানেলগুলো রেন্ডার হবে -->
+                </div>
 
+                <!-- ③. 🇧🇩 Bangla TV সেকশন (ডাইনামিকালি রেন্ডার হবে) -->
                 <div id="banglaTabPanel" class="iptv-grid-row panel-grid-hidden">
-                    </div>
+                    <!-- JavaScript এর মাধ্যমে চ্যানেলগুলো রেন্ডার হবে -->
+                </div>
 
             </div>
             
@@ -221,12 +229,13 @@
 
     </div>
 
+    <!-- Shaka Player CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/shaka-player.ui.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
 
     <script>
-        // 🏆 ১. কাস্টমাইজড এবং ক্লীন ফিফা প্রিমিয়াম চ্যানেল ডাটাবেজ
+        // 🏆 ১. কাস্টমাইজড ফিফা প্রিমিয়াম চ্যানেল ডাটাবেজ
         const fifaChannels = [
             { "name": "T Sports (External)", "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/T_Sports_logo.svg/500px-T_Sports_logo.svg.png", "url": "http://198.195.239.50:8095/tsports/index.m3u8", "type": "redirect" },
             { "name": "Bein Sports 1", "logo": "https://i.ibb.co.com/S7tZS6cg/Bein-Sports-1-Direct.png", "url": "https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8", "type": "hls" },
@@ -431,7 +440,6 @@
             { "name": "My TV", "logo": "https://s3.aynaott.com/storage/c5b2c623863fbe4033d59d52ff7371ac", "url": "https://tvsen6.aynaott.com/mytv/index.m3u8?e=1779283760&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=0a2ae0189a44e789d3fecffe5a474ec3" },
             { "name": "MU | SANGEET BANGLA", "logo": "https://static.wikia.nocookie.net/logopedia/images/d/da/Sangeet_Bangla_logo_2006.png", "url": "https://cdn-4.pishow.tv/live/1143/master.m3u8" },
             { "name": "DD Bangla", "logo": "https://static.wikia.nocookie.net/logopedia/images/c/ca/Dd_2019.webp", "url": "https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/7ff57cc9046b4c188b51a0d506f36e7f/index_3.m3u8" },
-            { "name": "Khushboo Bangla", "logo": "https://static.wikia.nocookie.net/logopedia/images/e/e1/Khushboo_Bangla_logo_2017.png", "url": "https://cdn-4.pishow.tv/live/1473/master.m3u8" },
             { "name": "Colors Bangla HD", "logo": "https://static.wikia.nocookie.net/logopedia/images/3/3e/Colors_Bangla_HD.jpg", "url": "https://iptvcable.netlify.app/Altogether-007/Kolkata/ColorsBanglaHD.m3u8" },
             { "name": "Bangla+ HD", "logo": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEir8DIISD_3Ay4E2H__HTS4VFP7VXskYcIgkufU45epPzAFDKObL2D_p6mOal9B0RJpyaiA3feJuyaL8yvd0x-2nykRjc1pZPwT_aAGwmwFb4bEJf8oVDgty5NF30gzWlwHvh2P2c49pP2P8383ili_yboK1uSyqELcZygHTpSwru1VeK0mMwceugT5QLw/s1600/NadimRazaTVLogoDesign%282%29_copy_900x900_1.png", "url": "https://live-stream.utkalbongo.com/hls/livebanglatvstream.m3u8" },
             { "name": "SONY AATH HD", "logo": "https://static.wikia.nocookie.net/logopedia/images/0/00/SONY_AATH.png", "url": "https://live20.bozztv.com/giatvplayout7/giatv-209611/index.m3u8" },
@@ -449,7 +457,6 @@
             controls: ['play-large', 'play', 'progress', 'current-time', 'pip', 'fullscreen'] 
         });
 
-        // ফুলস্ক্রিন ও ওরিয়েন্টেশন হ্যান্ডলার
         plyr.on('enterfullscreen', () => {
             if (screen.orientation && screen.orientation.lock) {
                 screen.orientation.lock('landscape').catch(err => console.log("Orientation auto-skip:", err));
@@ -580,7 +587,6 @@
             if (streamType === 'dash' || url.includes('.mpd')) {
                 shakaPlayer = new shaka.Player(video);
                 
-                // যদি ClearKey লাইসেন্স টোকেন থাকে
                 if (kid && key) {
                     shakaPlayer.configure({
                         drm: {
@@ -595,7 +601,6 @@
                     video.muted = true; video.volume = 1.0;
                     video.play().then(handleMuteBypass);
                 }).catch(e => console.error("Shaka DRM Engine Error:", e));
-
             } 
             // ২. যদি সাধারণ HLS (.m3u8) স্ট্রিম হয়
             else {
@@ -609,7 +614,6 @@
             }
         }
 
-        // 🔊 ব্রাউজার অটোপ্লে পলিসি বাইপাস মেকানিজম
         function handleMuteBypass() {
             const unscrapeAudioLock = () => {
                 video.muted = false;
@@ -624,7 +628,6 @@
         function reloadCurrentStream() {
             if (currentActiveUrl) {
                 const activeEl = document.querySelector('.channel-card.active');
-                // বর্তমান সেশন অনুসারী প্যারামিটার পুনরায় ইনজেক্ট করা হবে
                 const currentCh = fifaChannels.find(c => c.url === currentActiveUrl) || {};
                 switchStandardChannel(currentActiveUrl, document.getElementById('activeTitle').innerText, document.getElementById('activeLogo').src, activeEl, currentChannelType, currentCh.kid, currentCh.key);
             }
@@ -653,15 +656,17 @@
         }
 
         window.addEventListener('DOMContentLoaded', () => {
-            shaka.polyfil.installAll(); // শাকা প্লেয়ার ড্রিম মেমোরি ইনিশিয়ালাইজেশন
+            shaka.polyfill.installAll(); // পলিফিল কারেকশন ফিক্সড
             renderFifaSection();
             renderSportsSection();
             renderBanglaSection();
             
-            // ডিফল্টভাবে ১ম রানিং বেইন স্পোর্টস চ্যানেলটি অটোস্টার্ট হবে
+            // ১ম রানিং বেআইএন স্পোর্টস চ্যানেল অটোস্টার্ট
             setTimeout(() => {
                 const defaultCard = document.querySelectorAll('#fifaTabPanel .channel-card')[1]; 
-                switchStandardChannel('https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8', 'Bein Sports 1', 'https://i.ibb.co.com/S7tZS6cg/Bein-Sports-1-Direct.png', defaultCard, 'hls');
+                if (defaultCard) {
+                    switchStandardChannel('https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8', 'Bein Sports 1', 'https://i.ibb.co.com/S7tZS6cg/Bein-Sports-1-Direct.png', defaultCard, 'hls');
+                }
             }, 300);
         });
     </script>
