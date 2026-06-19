@@ -100,7 +100,7 @@
         .tab-trigger { background: transparent; color: #7c7299; border: none; padding: 8px 14px; font-size: 10px; font-weight: 700; text-transform: uppercase; border-radius: 7px; }
         .tab-trigger.active { background: var(--purple-primary); color: #fff; box-shadow: 0 0 10px var(--purple-glow); }
 
-        /* 📱 লগো ও কার্ড সাইজ ছোট করে কমপ্যাক্ট গ্রিড লেআউট ফিক্স */
+        /* 📱 লগো ও কার্ড সাইজ ছোট করে কমপ্যাক্ট গ্রিড লেআউট */
         .iptv-grid-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
         .panel-grid-hidden { display: none !important; }
 
@@ -110,14 +110,9 @@
         
         .redirect-card { border-color: rgba(245, 158, 11, 0.2); }
         
-        /* লোগো সাইজ ৪৮ পিক্সেল থেকে কমিয়ে ৩২ পিক্সেল করা হলো */
+        /* লোগো সাইজ কমপ্যাক্ট করা হলো */
         .logo-img { width: 32px; height: 32px; object-fit: contain; margin-bottom: 6px; border-radius: 6px; padding: 2px; background: rgba(255,255,255,0.04); }
         
-        .channel-card.tsports-highlight {
-            border: 1.5px solid #f59e0b !important;
-            background: rgba(245, 158, 11, 0.06) !important;
-        }
-
         .text-logo-icon { width: 32px; height: 32px; background: rgba(255,255,255,0.04); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: var(--purple-primary); margin-bottom: 6px; border: 1px solid rgba(124, 58, 237, 0.2); }
         .channel-card.active .text-logo-icon { background: var(--purple-primary); color: #fff; }
         .redirect-card .text-logo-icon { color: #f59e0b; border-color: rgba(245, 158, 11, 0.2); }
@@ -158,7 +153,7 @@
 
     <nav class="ott-nav"><div class="text-white fw-bold"><i class="bi bi-play-circle text-purple-primary" style="color: var(--purple-primary);"></i> ZION SPORTS</div></nav>
 
-    <!-- ভিডিও প্লেয়ার কন্টেইনার সবকিছুর ওপরে থাকবে এবং স্টিকি থাকবে -->
+    <!-- ভিডিও প্লেয়ার কন্টেইনার স্টিকি মোড লকড -->
     <div class="theater-screen-sticky-wrapper">
         <div class="theater-screen">
             <div id="plyr-wrapper">
@@ -218,17 +213,16 @@
     <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
 
     <script>
-        // 🏆 ১. ফিল্টার্ড নন-ডিআরএম ফিফা প্রিমিয়াম চ্যানেল ডাটাবেজ (Z বাংলাসহ)
+        // 🏆 ১. ফিল্টার্ড নন-ডিআরএম ফিফা প্রিমিয়াম চ্যানেল ডাটাবেজ (Z বাংলাসহ ও T Sports মুক্ত)
         const fifaChannels = [
-            { "name": "T Sports (External)", "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/T_Sports_logo.svg/500px-T_Sports_logo.svg.png", "url": "http://198.195.239.50:8095/tsports/index.m3u8", "type": "redirect" },
-            { "name": "Bein Sports 1", "logo": "https://i.ibb.co.com/S7tZS6cg/Bein-Sports-1-Direct.png", "url": "https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8", "type": "hls" },
-            { "name": "Z বাংলাসোনার", "logo": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/ColorsHD/default/ColorsHD.m3u8", "url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/ColorsHD/default/ColorsHD.m3u8", "type": "hls" },
-            { "name": "D Sports HLS", "logo": "https://upload.wikimedia.org/wikipedia/commons/5/5a/DSports.png", "url": "https://1nyaler.streamhostingcdn.top/stream/106/index.m3u8", "type": "hls" },
-            { "name": "Football WC 4K", "logo": "https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg", "url": "http://starhub.pro/live/farhat-3379/67897-913379/744527.ts", "type": "hls" },
-            { "name": "CAZE TV", "logo": "https://images.seeklogo.com/logo-png/61/1/cazetv-logo-png_seeklogo-619708.png", "url": "https://dfr80qz435crc.cloudfront.net/MNOP/Amagi/Caze/Caze_TV_BR/Caze_TV.m3u8", "type": "hls" },
-            { "name": "Somoy TV (FIFA)", "logo": "https://upload.wikimedia.org/wikipedia/bn/thumb/f/f6/%E0%A6%B8%E0%A6%AE%E0%A6%AF%E0%A6%BC_%E0%A6%9F%E0%A6%BF%E0%A6%AD%E0%A6%BF%E0%A6%B0_%E0%A6%B2%E0%A7%8B%E0%A6%97%E0%A7%8B.svg/960px-%E0%A6%B8%E0%A6%AE%E0%A6%AF%E0%A6%BC_%E0%A6%9F%E0%A6%BF%E0%A6%AD%E0%A6%BF%E0%A6%B0_%E0%A6%B2%E0%A7%8B%E0%A6%97%E0%A7%8B.svg.png", "url": "https://live.thebosstv.com:30443/dwlive/Somoy-TV/chunks.m3u8", "type": "hls" },
-            { "name": "FOX English", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://1nyaler.streamhostingcdn.top/stream/26/index.m3u8", "type": "hls" },
-            { "name": "DAZN FIFA", "logo": "https://i.postimg.cc/Kc3mP7Qt/cbimage.png", "url": "https://1nyaler.streamhostingcdn.top/stream/94/index.m3u8", "type": "hls" }
+            { "name": "Bein Sports 1", "logo": "https://i.ibb.co.com/S7tZS6cg/Bein-Sports-1-Direct.png", "url": "https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8" },
+            { "name": "Z বাংলাসোনার", "logo": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/ColorsHD/default/ColorsHD.m3u8", "url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/ColorsHD/default/ColorsHD.m3u8" },
+            { "name": "D Sports HLS", "logo": "https://upload.wikimedia.org/wikipedia/commons/5/5a/DSports.png", "url": "https://1nyaler.streamhostingcdn.top/stream/106/index.m3u8" },
+            { "name": "Football WC 4K", "logo": "https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg", "url": "http://starhub.pro/live/farhat-3379/67897-913379/744527.ts" },
+            { "name": "CAZE TV", "logo": "https://images.seeklogo.com/logo-png/61/1/cazetv-logo-png_seeklogo-619708.png", "url": "https://dfr80qz435crc.cloudfront.net/MNOP/Amagi/Caze/Caze_TV_BR/Caze_TV.m3u8" },
+            { "name": "Somoy TV (FIFA)", "logo": "https://upload.wikimedia.org/wikipedia/bn/thumb/f/f6/%E0%A6%B8%E0%A6%AE%E0%A6%AF%E0%A6%BC_%E0%A6%9F%E0%A6%BF%E0%A6%AD%E0%A6%BF%E0%A6%B0_%E0%A6%B2%E0%A7%8B%E0%A6%97%E0%A7%8B.svg/960px-%E0%A6%B8%E0%A6%AE%E0%A6%AF%E0%A6%BC_%E0%A6%9F%E0%A6%BF%E0%A6%AD%E0%A6%BF%E0%A6%B0_%E0%A6%B2%E0%A7%8B%E0%A6%97%E0%A7%8B.svg.png", "url": "https://live.thebosstv.com:30443/dwlive/Somoy-TV/chunks.m3u8" },
+            { "name": "FOX English", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://1nyaler.streamhostingcdn.top/stream/26/index.m3u8" },
+            { "name": "DAZN FIFA", "logo": "https://i.postimg.cc/Kc3mP7Qt/cbimage.png", "url": "https://1nyaler.streamhostingcdn.top/stream/94/index.m3u8" }
         ];
 
         // ⚽ ২. লাইভ স্পোর্টস চ্যানেল ডাটাবেজ
@@ -372,7 +366,7 @@
             { "name": "Star Sports 1 HD (Alt)", "logo": "https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Star%20Sports%201%40.jpeg", "url": "http://41.205.93.154/STARSPORTS1/index.m3u8" }
         ];
 
-        // 🇧🇩 ৩. বাংলা চ্যানেল ডাটাবেজ
+        // 🇧🇩 ৩. তোমার দেওয়া সম্পূর্ণ নতুন এবং সঠিক বাংলা চ্যানেল ডাটাবেজ
         const banglaChannels = [
             { "name": "IN | TV9 Bangla", "logo": "https://images.tv9bangla.com/wp-content/themes/tv9bangla/images/tv9-bangla-logo.svg", "url": "https://dyjmyiv3bp2ez.cloudfront.net/pub-iotv9banaen8yq/liveabr/playlist.m3u8" },
             { "name": "IN | R Plus News", "logo": "https://rplus.in/wp-content/uploads/2025/06/RPLUS_NEWS.png", "url": "https://thelegitpro.in/pntv/rplusnews24x7/index.m3u8" },
@@ -421,14 +415,14 @@
             { "name": "Colors Bangla HD", "logo": "https://static.wikia.nocookie.net/logopedia/images/3/3e/Colors_Bangla_HD.jpg", "url": "https://iptvcable.netlify.app/Altogether-007/Kolkata/ColorsBanglaHD.m3u8" },
             { "name": "Bangla+ HD", "logo": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEir8DIISD_3Ay4E2H__HTS4VFP7VXskYcIgkufU45epPzAFDKObL2D_p6mOal9B0RJpyaiA3feJuyaL8yvd0x-2nykRjc1pZPwT_aAGwmwFb4bEJf8oVDgty5NF30gzWlwHvh2P2c49pP2P8383ili_yboK1uSyqELcZygHTpSwru1VeK0mMwceugT5QLw/s1600/NadimRazaTVLogoDesign%282%29_copy_900x900_1.png", "url": "https://live-stream.utkalbongo.com/hls/livebanglatvstream.m3u8" },
             { "name": "SONY AATH HD", "logo": "https://static.wikia.nocookie.net/logopedia/images/0/00/SONY_AATH.png", "url": "https://live20.bozztv.com/giatvplayout7/giatv-209611/index.m3u8" },
-            { "name": "Rajdhani TV", "logo": "https://rajdhanitv.online/assets/images/logo/1757970614logo%20footer.png", "url": "https://stream.shariarsuvo.com/hls5/rajdhanicable.m3u8" }
+            { "name": "Rajdhani TV", "logo": "https://rajdhanitv.online/assets/images/logo/1757970614logo%20footer.png", "url": "https://stream.shariarsuvo.com/hls5/rajdhanicable.m3u8" },
+            { "name": "Jago News 24", "logo": "https://www.jagobd.com/wp-content/uploads/2024/08/pran-RFL.png", "url": "https://app.ncare.live/live-orgin/jagonews24.stream/playlist.m3u8" }
         ];
 
         const video = document.getElementById('player');
         let hls = null;
         let currentActiveUrl = ''; 
 
-        // ভলিউম স্লাইডার ও সাউন্ড বাটন সচল করা হলো
         const plyr = new Plyr(video, { 
             autoplay: true, 
             controls: ['play-large', 'play', 'progress', 'current-time', 'volume', 'pip', 'fullscreen'] 
@@ -468,7 +462,6 @@
             }
         });
 
-        // 🔄 ডাইনামিক রেন্ডারিং ক্লোজার র্যাপার ফিক্স (ভুল চ্যানেল সমস্যা ১০০% সমাধান)
         function renderFifaSection() {
             const panel = document.getElementById("fifaTabPanel");
             if (!panel) return;
@@ -477,15 +470,10 @@
             fifaChannels.forEach((ch) => {
                 const card = document.createElement("div");
                 card.className = "channel-card";
-                if(ch.type === "redirect") card.classList.add("tsports-highlight", "redirect-card");
 
                 card.onclick = (function(channelData) {
                     return function() {
-                        if(channelData.type === "redirect") {
-                            handleRedirectChannel(channelData.url);
-                        } else {
-                            switchStandardChannel(channelData.url, channelData.name, channelData.logo, this);
-                        }
+                        switchStandardChannel(channelData.url, channelData.name, channelData.logo, this);
                     };
                 })(ch);
 
@@ -543,7 +531,6 @@
             });
         }
 
-        // 🔄 পিওর HLS ইঞ্জিন প্লেয়ার
         function switchStandardChannel(url, title, logoUrl, el) {
             currentActiveUrl = url; 
             
@@ -564,7 +551,6 @@
             hls.loadSource(url);
             hls.attachMedia(video);
             hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                // ব্রাউজারের মিউটেড অটোপ্লে পলিসি ব্রেক করার ফিক্স
                 video.muted = false; 
                 video.volume = 1.0;
                 
@@ -619,9 +605,8 @@
             renderSportsSection();
             renderBanglaSection();
             
-            // ডিফল্ট প্রথম সেশনে বেইন স্পোর্টস ১ চালু হবে
             setTimeout(() => {
-                const defaultCard = document.querySelectorAll('#fifaTabPanel .channel-card')[1]; 
+                const defaultCard = document.querySelectorAll('#fifaTabPanel .channel-card')[0]; 
                 if (defaultCard) {
                     switchStandardChannel('https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8', 'Bein Sports 1', 'https://i.ibb.co.com/S7tZS6cg/Bein-Sports-1-Direct.png', defaultCard);
                 }
