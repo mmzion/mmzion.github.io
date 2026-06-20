@@ -44,7 +44,7 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
-        /* 📺 মোবাইল ভার্সনে প্লেয়ার ওপরে ইউটিউবের মতো পারফেক্টলি আটকে রাখার মাস্টার ফিক্স */
+        /* 📺 মোবাইল ভার্সনে প্লেয়ার ওপরে ইউটিউবের মতো পারফেক্টলি আটকে রাখার রেসপন্সিভ স্টিকি ফিক্স */
         .theater-screen-sticky-wrapper {
             position: -webkit-sticky;
             position: sticky;
@@ -100,52 +100,47 @@
         .tab-trigger { background: transparent; color: #7c7299; border: none; padding: 8px 14px; font-size: 10px; font-weight: 700; text-transform: uppercase; border-radius: 7px; }
         .tab-trigger.active { background: var(--purple-primary); color: #fff; box-shadow: 0 0 10px var(--purple-glow); }
 
-        /* 📱 লগো ও কার্ড সাইজ ছোট করে কমপ্যাক্ট গ্রিড লেআউট */
-        .iptv-grid-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+        /* 📱 মোবাইল ইউজারদের জন্য ফিক্সড ৩ কলাম গ্রিড লেআউট */
+        .iptv-grid-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
         .panel-grid-hidden { display: none !important; }
 
         .channel-card { background: rgba(255,255,255,0.02); padding: 8px 6px; border-radius: 10px; cursor: pointer; text-align: center; aspect-ratio: 1.25/1; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid var(--card-border); transition: all 0.2s ease; }
         .channel-card:hover { border-color: rgba(124, 58, 237, 0.3); background: rgba(124, 58, 237, 0.02); }
         .channel-card.active { border: 1.5px solid var(--purple-primary); background: rgba(124, 58, 237, 0.1); }
         
-        .redirect-card { border-color: rgba(245, 158, 11, 0.2); }
-        
-        /* লোগো সাইজ কমপ্যাক্ট করা হলো */
         .logo-img { width: 32px; height: 32px; object-fit: contain; margin-bottom: 6px; border-radius: 6px; padding: 2px; background: rgba(255,255,255,0.04); }
-        
-        .text-logo-icon { width: 32px; height: 32px; background: rgba(255,255,255,0.04); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: var(--purple-primary); margin-bottom: 6px; border: 1px solid rgba(124, 58, 237, 0.2); }
-        .channel-card.active .text-logo-icon { background: var(--purple-primary); color: #fff; }
-        .redirect-card .text-logo-icon { color: #f59e0b; border-color: rgba(245, 158, 11, 0.2); }
-        
         .card-name { font-weight: 600; font-size: 9.5px; color: #cbd5e1; text-transform: uppercase; letter-spacing: 0.3px; line-height: 1.2; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; width: 100%; }
 
         .plyr--video { --plyr-color-main: var(--purple-primary); }
         .plyr__control--overlaid { z-index: 10 !important; pointer-events: auto !important; }
 
-        @media (max-width: 992px) { .iptv-grid-row { grid-template-columns: repeat(4, 1fr); } }
-        @media (max-width: 768px) { .iptv-grid-row { grid-template-columns: repeat(3, 1fr); } }
-        @media (max-width: 480px) { .iptv-grid-row { grid-template-columns: repeat(2, 1fr); } }
-
+        /* 💻 পিসি এবং বড় ল্যাপটপ স্ক্রিনের ফুল লেআউট ক্র্যাশ ফিক্স (থিয়েটার মোড) */
         @media (min-width: 992px) {
             .ott-main-layout {
                 display: grid;
-                grid-template-columns: 60% 40%;
+                grid-template-columns: 62% 38%;
                 gap: 20px;
                 padding: 20px;
                 align-items: start;
             }
+            /* পিসিতে স্টিকি পজিশন প্যারেন্ট এলিমেন্টের সাথে অ্যালাইন করা হলো */
             .theater-screen-sticky-wrapper {
                 position: sticky;
-                top: 20px;
+                top: 75px;
                 border-radius: 12px;
                 overflow: hidden;
+                z-index: 10;
             }
             .ott-dashboard { padding: 0 !important; }
             .horizontal-panel {
-                max-height: calc(100vh - 180px);
+                max-height: calc(100vh - 200px);
                 overflow-y: auto;
+                padding-right: 5px;
             }
-            .iptv-grid-row { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+            .horizontal-panel::-webkit-scrollbar { width: 5px; }
+            .horizontal-panel::-webkit-scrollbar-thumb { background: var(--purple-primary); border-radius: 10px; }
+            /* পিসিতে ৪ কলাম গ্রিড লেআউট করা হলো যাতে ইউজার ইন্টারফেস রিচ লাগে */
+            .iptv-grid-row { grid-template-columns: repeat(4, 1fr); gap: 8px; }
         }
     </style>
 </head>
@@ -153,21 +148,19 @@
 
     <nav class="ott-nav"><div class="text-white fw-bold"><i class="bi bi-play-circle text-purple-primary" style="color: var(--purple-primary);"></i> ZION SPORTS</div></nav>
 
-    <!-- ভিডিও প্লেয়ার কন্টেইনার স্টিকি মোড লকড -->
-    <div class="theater-screen-sticky-wrapper">
-        <div class="theater-screen">
-            <div id="plyr-wrapper">
-                <video id="player" playsinline controls autoplay></video>
-                <div class="player-click-overlay" id="player-overlay"></div>
-            </div>
-        </div>
-    </div>
-
     <div class="ott-main-layout">
         
-        <!-- বাম পাশের কলাম: লাইভ মেটা স্ট্যাটাস বিবরণ -->
         <div class="left-column-wrapper">
-            <div class="stream-details">
+            <div class="theater-screen-sticky-wrapper">
+                <div class="theater-screen">
+                    <div id="plyr-wrapper">
+                        <video id="player" playsinline controls autoplay></video>
+                        <div class="player-click-overlay" id="player-overlay"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stream-details mt-3">
                 <span class="badge-live">Live</span>
                 <img id="activeLogo" src="https://i.ibb.co.com/S7tZS6cg/Bein-Sports-1-Direct.png" class="active-logo-img" alt="logo" onerror="this.style.display='none'">
                 <h1 class="h6 m-0" id="activeTitle">Bein Sports 1</h1>
@@ -176,7 +169,6 @@
             </div>
         </div>
 
-        <!-- ডান পাশের কলাম: ক্যাটাগরি ট্যাব এবং চ্যানেল গ্রিড -->
         <div class="container-fluid ott-dashboard">
             
             <div class="ott-tabs-wrapper mt-0">
@@ -187,20 +179,14 @@
 
             <div class="horizontal-panel">
                 
-                <!-- ①. 🏆 FIFA Premium সেকশন (ডাইনামিকালি রেন্ডার হবে) -->
                 <div id="fifaTabPanel" class="iptv-grid-row">
-                    <!-- JavaScript এর মাধ্যমে চ্যানেলগুলো রেন্ডার হবে -->
-                </div>
+                    </div>
 
-                <!-- ②. ⚽ Live Sports সেকশন (ডাইনামিকালি রেন্ডার হবে) -->
                 <div id="sportsTabPanel" class="iptv-grid-row panel-grid-hidden">
-                    <!-- JavaScript এর মাধ্যমে চ্যানেলগুলো রেন্ডার হবে -->
-                </div>
+                    </div>
 
-                <!-- ③. 🇧🇩 Bangla TV সেকশন (ডাইনামিকালি রেন্ডার হবে) -->
                 <div id="banglaTabPanel" class="iptv-grid-row panel-grid-hidden">
-                    <!-- JavaScript এর মাধ্যমে চ্যানেলগুলো রেন্ডার হবে -->
-                </div>
+                    </div>
 
             </div>
             
@@ -213,7 +199,7 @@
     <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
 
     <script>
-        // 🏆 ১. ফিল্টার্ড নন-ডিআরএম ফিফা প্রিমিয়াম চ্যানেল ডাটাবেজ (Z বাংলাসহ ও T Sports মুক্ত)
+        // 🏆 ১. ফিল্টার্ড নন-ডিআরএম ফিফা প্রিমিয়াম চ্যানেল ডাটাবেজ (Z বাংলাসহ ও T Sports মুক্ত)
         const fifaChannels = [
             { "name": "Bein Sports 1", "logo": "https://i.ibb.co.com/S7tZS6cg/Bein-Sports-1-Direct.png", "url": "https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8" },
             { "name": "Z বাংলাসোনার", "logo": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/ColorsHD/default/ColorsHD.m3u8", "url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/ColorsHD/default/ColorsHD.m3u8" },
@@ -276,342 +262,4 @@
             { "name": "Crazy Ex", "logo": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1778085745609.png", "url": "https://nomawnoijl.gpcdn.net/akash/crazy_ex/playlist.m3u8" },
             { "name": "Redbull TV", "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-I_gjgaJYlqDQGjAj96xh8S-5GZe_CZQK3w&usqp=CAU", "url": "https://rbmn-live.akamaized.net/hls/live/590964/BoRB-AT/master_3360.m3u8" },
             { "name": "30A Golf Kingdom", "logo": "https://golfkingdom.net/wp-content/uploads/2022/04/golf-kingdom-st.jpg", "url": "https://30a-tv.com/feeds/vidaa/golf.m3u8" },
-            { "name": "ACI Sport TV", "logo": "https://i.imgur.com/U8cHMOt.png", "url": "https://webstream.multistream.it/memfs/e2cb3629-c1a2-495b-b43a-9eb386f04ed8.m3u8" },
-            { "name": "ACCDN", "logo": "https://i.imgur.com/V6Kaqha.png", "url": "https://raycom-accdn-firetv.amagi.tv/playlist.m3u8" },
-            { "name": "Al Iraqia Sport", "logo": "https://i.imgur.com/DrrlxTO.png", "url": "https://imn-live.esite-lab.com/hls/iraqia-sports-1.m3u8" },
-            { "name": "Alkass One", "logo": "https://i.imgur.com/10mmlha.png", "url": "https://liveeu-gcp.alkassdigital.net/alkass1-p/main.m3u8" },
-            { "name": "Alkass Four", "logo": "https://i.imgur.com/iDL65Wu.png", "url": "https://liveeu-gcp.alkassdigital.net/alkass4-p/main.m3u8" },
-            { "name": "Alkass SHOOF 2", "logo": "https://shoof.alkass.net/assets/images/shoof2.png", "url": "https://liveeu-gcp.alkassdigital.net/shooflive2/main.m3u8" },
-            { "name": "Alkass Six", "logo": "https://i.imgur.com/CrPSPSC.png", "url": "https://liveeu-gcp.alkassdigital.net/alkass6-p/main.m3u8" },
-            { "name": "Alkass SHOOF", "logo": "https://shoof.alkass.net/assets/images/shoof.png", "url": "https://liveeu-gcp.alkassdigital.net/shooflive/main.m3u8" },
-            { "name": "Alkass Three", "logo": "https://i.imgur.com/d57BdFh.png", "url": "https://liveeu-gcp.alkassdigital.net/alkass3-p/main.m3u8" },
-            { "name": "Alkass Two", "logo": "https://i.imgur.com/8w61kFX.png", "url": "https://liveeu-gcp.alkassdigital.net/alkass2-p/main.m3u8" },
-            { "name": "ATG Live", "logo": "https://i.imgur.com/bPWFXkL.png", "url": "https://kanal75xto-llhls.akamaized.net/live/Data/atg-kanal-15-02a-rr/HLS-Legacy-HL/atg-kanal-15-02a-rr.m3u8" },
-            { "name": "Bahrain Sports 2", "logo": "https://i.imgur.com/ZkuZmIo.png", "url": "https://5c7b683162943.streamlock.net/live/ngrp:bahrainsportstwo_all/playlist.m3u8" },
-            { "name": "OTHER | BEK TV Sports West", "logo": "https://appcmsprod.viewlift.com/eae092c0-d256-11ed-9371-6da166a39e0f/images/bek-tv-plus-web-logo-noc-1280X728.png", "url": "https://cdn3.wowza.com/5/ZWQ1K2NYTmpFbGsr/BEK-WOWZA-1/smil:BEKPRIMEW.smil/playlist.m3u8" },
-            { "name": "beIN SPORTS XTRA", "logo": "https://i.ibb.co/HT49GPmB/XTRA-2.png", "url": "https://bein-xtra-bein.amagi.tv/playlist.m3u8" },
-            { "name": "beIN Sports XTRA en Espanol", "logo": "https://i.imgur.com/V562tpO.png", "url": "https://dc1644a9jazgj.cloudfront.net/beIN_Sports_Xtra_Espanol.m3u8" },
-            { "name": "CDN Deportes", "logo": "https://i.imgur.com/yU5LqTL.png", "url": "http://200.125.170.122:8000/play/a03j/index.m3u8" },
-            { "name": "CCTV-Golf & Tennis", "logo": "https://i.imgur.com/iqJJTmH.png", "url": "http://38.75.136.137:98/gslb/dsdqpub/gefwq.m3u8?auth=testpub" },
-            { "name": "ColimdoT TV", "logo": "https://i.imgur.com/ZeUgLCa.png", "url": "https://cnn.livestreaminggroup.info:3132/live/colimdotvlive.m3u8" },
-            { "name": "OTHER | Cowboy TV", "logo": "https://static.wikia.nocookie.net/logopedia/images/e/e6/Cowboy_Channel_logo.png", "url": "https://amg17292-amg17292c1-distrotv-us-4170.playouts.now.amagi.tv/playlist/amg17292-tetonridgellc-tetonridgefast-distrotvus/playlist.m3u8" },
-            { "name": "Cricket Gold (1080p)", "logo": "https://resources.cricket-australia.pulselive.com/cricket-australia/photo/2025/07/25/836eddae-4329-4542-ad17-dcd37e9d951a/Cricket-Gold-1920x1080_noBG.png", "url": "https://streams2.sofast.tv/ptnr-yupptv/title-cricketgold/v1/master/611d79b11b77e2f571934fd80ca1413453772ac7/b2048bb8-1686-4432-aa50-647245383e0c/manifest.m3u8" },
-            { "name": "---Live(DD Sports)---", "logo": "https://upload.wikimedia.org/wikipedia/commons/6/64/DD_Sports_new_logo.jpg", "url": "https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/b17adfe543354fdd8d189b110617cddd/index.m3u8" },
-            { "name": "DAZN Combat", "logo": "https://i.postimg.cc/VsW3Jsrz/logo-DAZN-Combat.png", "url": "https://dazn-combat-rakuten.amagi.tv/hls/amagi_hls_data_rakutenAA-dazn-combat-rakuten/CDN/master.m3u8" },
-            { "name": "Deportes TVC", "logo": "https://i.imgur.com/Y1t8xkL.png", "url": "http://162.19.255.233:8080/play/UNbAl57p9hXZClOu56FCTYXmD-MOS3u5IUkeXPpBt80/m3u8" },
-            { "name": "DraftKings Network", "logo": "https://i.imgur.com/SFYhgrt.png", "url": "https://na.linear.zype.com/e0bd0e23-a958-4e43-8164-4f2fef8876a8/fd3614bd-90bf-4530-a277-65ae3a1720c8-zype/live.m3u8" },
-            { "name": "Equidia", "logo": "https://i.imgur.com/QPpbRcZ.png", "url": "https://raw.githubusercontent.com/Paradise-91/ParaTV/main/streams/equidia/live2.m3u8" },
-            { "name": "ESPN8 The Ocho", "logo": "https://images.fubo.tv/channel-config-ui/station-logos/on-dark/espn_8_the_ocho_bw.png", "url": "https://d3b6q2ou5kp8ke.cloudfront.net/ESPNTheOcho.m3u8" },
-            { "name": "FB TV", "logo": "https://i.imgur.com/qBVqtYd.png", "url": "http://1hskrdto.rocketcdn.com/fenerbahcetv.smil/playlist.m3u8" },
-            { "name": "FIFA+", "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/FIFA%2B_(2025).svg/960px-FIFA%2B_(2025).svg.png", "url": "https://a62dad94.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWV1X0ZJRkFQbHVzRW5nbGlzaF9ITFM/playlist.m3u8" },
-            { "name": "FITE 24/7", "logo": "https://i.imgur.com/ESV6qgH.png", "url": "https://d3d85c7qkywguj.cloudfront.net/scheduler/scheduleMaster/263.m3u8" },
-            { "name": "FloHockey 24/7", "logo": "https://images.fubo.tv/channel-config-ui/station-logos/on-dark/flohockey-white.png", "url": "https://amg02278-amg02278c2-flosports-worldwide-9916.playouts.now.amagi.tv/playlist.m3u8" },
-            { "name": "FloRacing 24/7", "logo": "https://images.fubo.tv/channel-config-ui/station-logos/on-dark/floracing-white.png", "url": "https://amg02278-amg02278c1-flosports-worldwide-7592.playouts.now.amagi.tv/playlist.m3u8" },
-            { "name": "FTF Sports", "logo": "https://i.imgur.com/yvUjOI3.png", "url": "https://1657061170.rsc.cdn77.org/HLS/FTF-LINEAR.m3u8" },
-            { "name": "Fuel TV", "logo": "https://i.imgur.com/I8mviBy.png", "url": "https://amg01074-fueltv-fueltvau-samsungau-g09kq.amagi.tv/playlist/amg01074-fueltv-fueltvau-samsungau/playlist.m3u8" },
-            { "name": "fubo Sports Network", "logo": "https://i.imgur.com/qFNRJLb.png", "url": "https://dnf08l6u6uxnz.cloudfront.net/master.m3u8" },
-            { "name": "FTV", "logo": "https://i.imgur.com/YOr1Oac.png", "url": "https://master.tucableip.com/ftvhd/index.m3u8" },
-            { "name": "Futbol", "logo": "https://i.imgur.com/RngmCDn.png", "url": "https://live.teleradiocom.tj/8/3m.m3u8" },
-            { "name": "Game+", "logo": "https://i.imgur.com/Lj69WbR.png", "url": "https://a-cdn.klowdtv.com/live2/fntsy_720p/playlist.m3u8" },
-            { "name": "Gaora Sports", "logo": "https://i.imgur.com/UgKRfuw.png", "url": "http://cdns.jp-primehome.com:8000/zhongying/live/playlist.m3u8?cid=cs17" },
-            { "name": "GEM Fit", "logo": "https://i.imgur.com/7FQxaII.png", "url": "https://ca-rt.onetv.app/gemfit/index-0.m3u8?token=onetv202" },
-            { "name": "GLORY Kickboxing", "logo": "https://i.imgur.com/tS7Ub7i.png", "url": "https://6f972d29.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWV1X0dsb3J5S2lja2JveGluZ19ITFM/playlist.m3u8" },
-            { "name": "Gol Classics", "logo": "https://golstadium.com/_next/image?url=%2Fimg%2Fhome%2Fchannels%2Fthumb-gol-classics.jpg&w=1920&q=75", "url": "https://d71gqtnep83vb.cloudfront.net/gol_classics/gol_classics.m3u8" },
-            { "name": "Golf Network", "logo": "https://s6lmfXF.png", "url": "http://cdns.jp-primehome.com:8000/zhongying/live/playlist.m3u8?cid=cs03" },
-            { "name": "Horse TV", "logo": "https://i.imgur.com/nK4UUX4.png", "url": "https://a-cdn.klowdtv.com/live2/horsetv_720p/playlist.m3u8" },
-            { "name": "HTSpor TV", "logo": "https://www.htspor.com/images/manifest/social-share-logo.png", "url": "https://ciner.daioncdn.net/ht-spor/ht-spor.m3u8?app=web" },
-            { "name": "IRIB3", "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/IRIB_TV3_LOGO.svg/960px-IRIB_TV3_LOGO.svg.png", "url": "https://ncdn.telewebion.ir/tv3/live/playlist.m3u8" },
-            { "name": "J Sports 1", "logo": "https://i.imgur.com/vEpjLnj.png", "url": "http://cdns.jp-primehome.com:8000/zhongying/live/playlist.m3u8?cid=bs18" },
-            { "name": "Jordan Sport", "logo": "https://i.imgur.com/2EmrZPQ.png", "url": "http://93.184.10.248/JordanSport/index.m3u8" },
-            { "name": "KHL", "logo": "https://i.imgur.com/RgdHdOV.png", "url": "http://31.148.48.15/KHL_TV/index.m3u8" },
-            { "name": "KSA Sports 1", "logo": "https://i.imgur.com/ONKNOAp.png", "url": "https://aloula-redirect.vercel.app/9/playlist.m3u8" },
-            { "name": "KTV Sport", "logo": "https://i.imgur.com/R1hGX1d.png", "url": "https://kwtspta.cdn.mangomolo.com/sp/smil:sp.stream.smil/chunklist.m3u8" },
-            { "name": "LaLiga TV", "logo": "https://i.imgur.com/ilay5Jr.png", "url": "http://162.19.255.233:8080/play/UNbAl57p9hXZClOu56FCTZID4SFOqZLZ81NguVP-JxM/m3u8" },
-            { "name": "MAX Sports", "logo": "https://images.maxstream.tv/sites/default/files/entry/0_1u20u1ok/landscape_carousel_xxhdpi.webp", "url": "https://indihuy.streamized.net/atm/DASH/useesport/manifest.mpd" },
-            { "name": "MMA TV.com", "logo": "https://i.imgur.com/QhdxNsB.png", "url": "https://streams2.sofast.tv/vglive-sk-462904/playlist.m3u8" },
-            { "name": "MNB Sport", "logo": "https://i.imgur.com/z854PC3.png", "url": "https://live.mnb.mn/hls/mnb_sport.stream.m3u8" },
-            { "name": "RACING | Motor Vision", "logo": "https://static.wikia.nocookie.net/logopedia/images/7/70/Motorvision_2023.svg", "url": "https://mvg-mv-xumo.otteravision.com/mvg/mv/mv.m3u8" },
-            { "name": "Nautical Channel", "logo": "https://i.imgur.com/2ByDyzL.png", "url": "https://a-cdn.klowdtv.com/live2/nautical_720p/playlist.m3u8" },
-            { "name": "NBA TV Canada", "logo": "https://upload.wikimedia.org/wikipedia/en/a/a4/NBA_TV_Canada_2020.png", "url": "http://user.scalecdn.co:8080/live/54706135/09221986/3092.m3u8" },
-            { "name": "Nittele G Plus", "logo": "https://i.imgur.com/7237pCC.png", "url": "http://cdns.jp-primehome.com:8000/zhongying/live/playlist.m3u8?cid=cs02" },
-            { "name": "Overtime", "logo": "https://i.imgur.com/9S9k4IK.png", "url": "https://d1a8aq6t30gkqj.cloudfront.net/v1/amc_overtime_1/samsungheadend_us/latest/main/hls/playlist_hd.m3u8" },
-            { "name": "Pac 12 Insider", "logo": "https://i.imgur.com/736QREy.png", "url": "https://pac12-firetv.amagi.tv/playlist.m3u8" },
-            { "name": "PGA Tour", "logo": "https://i.imgur.com/J0TY9dG.png", "url": "https://d11k1mnrgfposz.cloudfront.net/playlist.m3u8" },
-            { "name": "Racer Select", "logo": "https://i.imgur.com/CurtYvn.png", "url": "https://amg00378-amg00378c4-freelivesports-emea-5637.playouts.now.amagi.tv/playlist.m3u8" },
-            { "name": "Rai Sport HD", "logo": "https://i.imgur.com/6PEevOM.png", "url": "https://srv1.adriatelekom.com/RaiSport/index.m3u8" },
-            { "name": "Rally TV", "logo": "https://i.postimg.cc/WtLq2C7c/logo-Rally-Tv1.png", "url": "https://rally-tv-live.akamaized.net/hls/live/2117704/RallyTV-Pri/master.m3u8" },
-            { "name": "Real Madrid TV", "logo": "https://i.imgur.com/5pMo7dL.png", "url": "https://rmtv.akamaized.net/hls/live/2043153/rmtv-es-web/master.m3u8" },
-            { "name": "San Marino RTV Sport", "logo": "https://i.imgur.com/PGm944g.png", "url": "https://d2hrvno5bw6tg2.cloudfront.net/smrtv-ch02/smil:ch-02.smil/master.m3u8" },
-            { "name": "Sky Racing 1", "logo": "https://i.imgur.com/Hf0EiaW.png", "url": "https://636ffd31f0e12.streamlock.net/RacingStream1/RacingStream1/playlist.m3u8" },
-            { "name": "Sportitalia", "logo": "https://i.imgur.com/0CJGGgd.png", "url": "https://edge-001.streamup.eu/sportitalia/sihd_abr/playlist.m3u8" },
-            { "name": "Sports Connect", "logo": "https://i.imgur.com/0sNWg54.png", "url": "https://streamdot.broadpeak.io/cff02a74da64d1459391ce1f72d58f1a/afxpstr/SportsConnect/index.m3u8" },
-            { "name": "Stadium", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/5/53/Stadium_%28sports_network%29_logo.svg/960px-Stadium_%28sports_network%29_logo.svg.png", "url": "https://wurl120sports.global.transmit.live/hls/679a907dce42a042c23ace37/v1/stadium_gracenote/samsung_us/latest/main/hls/playlist.m3u8" },
-            { "name": "Star Sports 1 HD", "logo": "https://i.imgur.com/E5jjKHI.png", "url": "http://103.253.18.58:8000/play/a00m" },
-            { "name": "SPOTV 2", "logo": "https://i.imgur.com/YD8fbTH.png", "url": "http://primestreams.tv:826/live/mookie22/49aV7nBsK4/119516.m3u8" },
-            { "name": "Strongman Champions League", "logo": "https://i.imgur.com/bVQBF6R.png", "url": "https://rightsboosterltd-scl-2-eu.rakuten.wurl.tv/playlist.m3u8" },
-            { "name": "Swerve Combat", "logo": "https://i.imgur.com/GT0Yi2T.png", "url": "https://linear-253.frequency.stream/mt/roku/253/hls/master/playlist.m3u8" },
-            { "name": "talkSPORT", "logo": "https://upload.wikimedia.org/wikipedia/en/9/9d/Talksport_logo.png", "url": "https://af7a8b4e.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/TEctZ2JfdGFsa1NQT1JUX0hMUw/playlist.m3u8" },
-            { "name": "Tennis Channel", "logo": "https://i.imgur.com/tsljAnY.png", "url": "https://cdn-ue1-prod.tsv2.amagi.tv/linear/amg01444-tennischannelth-tennischannelnl-samsungnl/playlist.m3u8" },
-            { "name": "Tigo Sports", "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Tigo_Sports_2025.png/960px-Tigo_Sports_2025.png", "url": "http://162.19.255.233:8080/play/UNbAl57p9hXZClOu56FCTf_5weWAERKDgrt9JpvlAiI/m3u8" },
-            { "name": "TJK TV", "logo": "https://i.imgur.com/3zHdkYG.png", "url": "https://tjktv-live.tjk.org/tjktv.m3u8" },
-            { "name": "TSN The Ocho", "logo": "https://tvpnlogopus.samsungcloud.tv/platform/image/sourcelogo/vc/00/02/34/CA1400003R3_20240709T002034SQUARE.png", "url": "https://d3pnbvng3bx2nj.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-rds8g35qfqrnv/TSN_The_Ocho.m3u8" },
-            { "name": "TyC Sports", "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/TyC_Sports_logo.svg/960px-TyC_Sports_logo.svg.png", "url": "https://amg26268-amg26268c14-freelivesports-emea-10267.playouts.now.amagi.tv/ts-us-e2-n2/playlist/amg26268-sportsstudio-tycsports-freelivesportsemea/playlist.m3u8" },
-            { "name": "Unbeaten Sports Channel", "logo": "https://i.imgur.com/LmkNt3v.png", "url": "https://d1t5afz6qed3xk.cloudfront.net/Unbeaten.m3u8" },
-            { "name": "Willow Sports", "logo": "https://provider-static.plex.tv/epg/cms/production/acf3d1d8-c53e-49ca-86e9-0d9410b106b4/Willow_Sports_dark_Background_1500_1000_color.png", "url": "https://d36r8jifhgsk5j.cloudfront.net/Willow_TV.m3u8" },
-            { "name": "World of Freesports", "logo": "https://i.imgur.com/lta5Mog.png", "url": "https://mainstreammedia-worldoffreesportsintl-rakuten.amagi.tv/playlist.m3u8" },
-            { "name": "World Poker Tour", "logo": "https://i.imgur.com/98kLMjj.png", "url": "https://d39g1vxj2ef6in.cloudfront.net/v1/master/3fec3e5cac39a52b2132f9c66c83dae043dc17d4/prod-rakuten-stitched/playlist.m3u8?ads.xumo_channelId=88883102" },
-            { "name": "Футбол", "logo": "https://i.imgur.com/pEuaZVx.png", "url": "http://31.148.48.15/Futbol_HD/index.m3u8" },
-            { "name": "--Live(Euro Sport 1)--", "logo": "https://static.wikia.nocookie.net/logopedia/images/9/93/Eurosport_1_%28II%29.svg", "url": "http://151.80.18.177:86/Eurosport_HD/index.m3u8" },
-            { "name": "FIGHT | TNA Wrestling Channel", "logo": "https://media.unreel.me/prod/sportsplus/logo/67c2dd14-d8c7-47fa-99e5-452f2715e404", "url": "https://amg00966-amg00966c1-freelivesports-emea-7712.playouts.now.amagi.tv/ts-eu-w1-n2/playlist/amg00966-anthem-tnawrestling-freelivesportsemea/playlist.m3u8" },
-            { "name": "Star Sports 1 HD (Alt)", "logo": "https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Star%20Sports%201%40.jpeg", "url": "http://41.205.93.154/STARSPORTS1/index.m3u8" }
-        ];
-
-        // 🇧🇩 ৩. তোমার দেওয়া সম্পূর্ণ নতুন এবং সঠিক বাংলা চ্যানেল ডাটাবেজ
-        const banglaChannels = [
-            { "name": "IN | TV9 Bangla", "logo": "https://images.tv9bangla.com/wp-content/themes/tv9bangla/images/tv9-bangla-logo.svg", "url": "https://dyjmyiv3bp2ez.cloudfront.net/pub-iotv9banaen8yq/liveabr/playlist.m3u8" },
-            { "name": "IN | R Plus News", "logo": "https://rplus.in/wp-content/uploads/2025/06/RPLUS_NEWS.png", "url": "https://thelegitpro.in/pntv/rplusnews24x7/index.m3u8" },
-            { "name": "News 24", "logo": "https://raw.githubusercontent.com/subirkumarpaul/Logo/main/News%2024.png", "url": "https://owrcovcrpy.gpcdn.net/bpk-tv/1708/output/index.m3u8" },
-            { "name": "SOMOY NEWS", "logo": "https://static.wikia.nocookie.net/logopedia/images/8/8e/Somoy_Television.svg", "url": "https://owrcovcrpy.gpcdn.net/bpk-tv/1702/output/index.m3u8" },
-            { "name": "Jamuna TV", "logo": "https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Jamuna%20TV.jpeg", "url": "https://owrcovcrpy.gpcdn.net/bpk-tv/1701/output/index.m3u8" },
-            { "name": "Channel 24", "logo": "https://yt3.googleusercontent.com/8Q8MCd6ypr2Hzbp60VE_stJPl063kQYfeTxdIQkAXRfhdzxByLl0sJYHsk43uTM4W_cOzwcbPQ=s160-c-k-c0x00ffffff-no-rj", "url": "https://owrcovcrpy.gpcdn.net/bpk-tv/1703/output/index.m3u8" },
-            { "name": "ATN News", "logo": "https://static.wikia.nocookie.net/etv-gspn-bangla/images/4/4d/ATN_News_HD.png", "url": "https://owrcovcrpy.gpcdn.net/bpk-tv/1706/output/index.m3u8" },
-            { "name": "Independent Television", "logo": "https://static.wikia.nocookie.net/etv-gspn-bangla/images/b/bb/Independent_logo_2011.png", "url": "https://owrcovcrpy.gpcdn.net/bpk-tv/1704/output/index.m3u8" },
-            { "name": "IN | Kolkata Tv", "logo": "https://a.jsrdn.com/hls/23215/kolkata-tv/logo_20250819_185012_70.png", "url": "https://cdn.ottlive.co.in/kolkatatv/index.m3u8" },
-            { "name": "IN | Tribe TV", "logo": "https://a.jsrdn.com/hls/23215/tribe-tv/logo_20250429_225821_70.png", "url": "https://server.livelegitpro.in:9899/tribetv/tribetv/index.m3u8" },
-            { "name": "Ekattor TV", "logo": "https://static.wikia.nocookie.net/logopedia/images/5/5d/Ekattor_TV_logo.png", "url": "https://owrcovcrpy.gpcdn.net/bpk-tv/1705/output/1705-audio_113352_eng=113200-video=1692000.m3u8" },
-            { "name": "IN | Bangla Jago TV", "logo": "https://banglajagotv.com/wp-content/themes/BANGLAJAGOTV/images/logo.png", "url": "http://banglajagotv.livebox.co.in:80/banglajagohls/24x7.m3u8" },
-            { "name": "IN | Zee 24 Ghanta", "logo": "https://static.wikia.nocookie.net/logopedia/images/b/bc/Zee_24_Ghanta_2025_Logo_2025.png", "url": "https://d2dsoyvkr33m05.cloudfront.net/index_1.m3u8" },
-            { "name": "IN | Calcutta News", "logo": "https://assets.calcuttatelevisionnetwork.in/cn.png", "url": "https://akdnetwork.co.in/live/cnnew/index.m3u8" },
-            { "name": "IN | News18 Bangla", "logo": "https://static.wikia.nocookie.net/logopedia/images/8/85/News18_Bangla1.svg", "url": "https://amg01448-samsungin-news18bangla-samsungin-ad-qy.amagi.tv/ts-eu-w1-n2/playlist/amg01448-samsungin-news18bangla-samsungin/playlist.m3u8" },
-            { "name": "IN | Republic Bangla", "logo": "https://static.wikia.nocookie.net/logopedia/images/9/93/R.Bangla_logo_with_tagline.jpg", "url": "https://vg-republictvyupp.akamaized.net/ptnr-yuppt/v1/manifest/611d79b11b77e2f571934fd80ca1413453772ac7/vglive-sk-613605/93d674ab-f7a0-404e-88b2-b4f163373dbe/0.m3u8" },
-            { "name": "IN | High News", "logo": "https://static.wikia.nocookie.net/logopedia/images/c/c8/High-news.jpg", "url": "http://highmedia.livebox.co.in:80/HIGHNEWShls/LIVE.m3u8" },
-            { "name": "IN | ABP Ananda", "logo": "https://static.wikia.nocookie.net/logopedia/images/a/a2/Abp-ananda.png", "url": "https://amg01448-samsungin-abpananda-samsungin-ad-pw.amagi.tv/playlist/amg01448-samsungin-abpananda-samsungin/playlist.m3u8" },
-            { "name": "TBN 24 USA", "logo": "https://raw.githubusercontent.com/subirkumarpaul/Logo/main/TBN24.png", "url": "http://cdn01.palki.tv/live/TBN24-M/index.m3u8" },
-            { "name": "DBC News", "logo": "https://raw.githubusercontent.com/subirkumarpaul/Logo/main/DBC%20News.png", "url": "https://owrcovcrpy.gpcdn.net/bpk-tv/1728/output/1728.m3u8" },
-            { "name": "Channel 1 News 4K", "logo": "https://raw.githubusercontent.com/subirkumarpaul/Logo/refs/heads/main/Channel%201.png", "url": "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/channel1bd.stream/tracks-v1a1/mono.m3u8" },
-            { "name": "Ananda TV", "logo": "https://s3.aynaott.com/storage/897698f593fc07974fc46881a440733d", "url": "https://tvsen6.aynaott.com/anandatv/index.m3u8?e=1779283759&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=504b9350b4703116ca4ab20e4013288e" },
-            { "name": "Bangla TV", "logo": "https://s3.aynaott.com/storage/e42ecfa90e3d6b15bdb7fea5ef673864", "url": "https://tvsen6.aynaott.com/banglatv/index.m3u8?e=1779283758&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=f3e9e2737e35147900c0f4add619ead6" },
-            { "name": "Channel 9", "logo": "https://s3.aynaott.com/storage/a959f06b4fc9e1421f867b6c1601fe43", "url": "https://tvsen6.aynaott.com/channel9/index.m3u8?e=1779283756&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=6d1662351f39dd5277df069a01f46fee" },
-            { "name": "Duronto TV", "logo": "https://s3.aynaott.com/storage/51f1530c076c027e431bf18a49613f0b", "url": "https://tvsen6.aynaott.com/durontotv-live/index.m3u8?e=1779283757&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=3da514e08a15c80daed60a18b3f423fa" },
-            { "name": "Boishakhi TV", "logo": "https://s3.aynaott.com/storage/58658d4594ca1ff3c5031c9d8e3d9fc0", "url": "https://tvsen6.aynaott.com/boishakhitv/index.m3u8?e=1779283755&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=f3f4ec98ffbd9567c21e8b2ee98e32d5" },
-            { "name": "RTV", "logo": "https://s3.aynaott.com/storage/094587a26f2c5e4f2962104728ec8c5d", "url": "https://tvsen5.aynaott.com/RtvHD/index.m3u8?e=1779283751&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=678f1f8ec03b1af7b76d013d33f45198" },
-            { "name": "BTV CTG", "logo": "https://s3.aynaott.com/storage/00da8a07fb26b2fb79359ee535e4c7bc", "url": "https://tvsen6.aynaott.com/btvctg/index.m3u8?e=1779283747&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=9bca925fbdfe526b29d41ab7802348ec" },
-            { "name": "ATN Bangla", "logo": "https://s3.aynaott.com/storage/eff41809fca04f7c1da5481e135d7913", "url": "https://tvsen5.aynaott.com/atnbangla/index.m3u8?e=1779283752&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=e20058ae495a80a83ec09cb9d82b9253" },
-            { "name": "Bangla Vision", "logo": "https://s3.aynaott.com/storage/788ab3e49b2aa6af247722762ed6e72a", "url": "https://tvsen5.aynaott.com/banglavision/index.m3u8?e=1779283750&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=c6bb7760d6eb9b999205a81ca4f4f51c" },
-            { "name": "Gazi TV", "logo": "https://s3.aynaott.com/storage/417a833f6d83021c99bfc3d4176610f4", "url": "https://tvsen5.aynaott.com/Ravc7gPCZpxk/index.m3u8?e=1779283754&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=0cdc69aae0d57f2ce93a41a608a3d821" },
-            { "name": "Channel I", "logo": "https://s3.aynaott.com/storage/8e998f20a9cc52cb8eb1f52a5bf38204", "url": "https://tvsen6.aynaott.com/channeli/index.m3u8?e=1779283749&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=1d2782c406bc6c9f853716c3dc41a439" },
-            { "name": "Asian TV", "logo": "https://www.jagobd.com/wp-content/uploads/2015/12/asiantv.jpg", "url": "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/asian-test-sample-ok-d.stream/tracks-v1a1/mono.m3u8" },
-            { "name": "NTV", "logo": "https://s3.aynaott.com/storage/1a619c9b917eb35898020cd323e415a7", "url": "https://tvsen5.aynaott.com/ntvbd/index.m3u8?e=1779283750&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=dac30ebda5dba60e895e85ddee645992" },
-            { "name": "Global TV", "logo": "https://s3.aynaott.com/storage/ffd7ba9b76ad555933f94bcb7ff26b44", "url": "https://tvsen6.aynaott.com/globaltvhd/index.m3u8?e=1779283760&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=9877fe1456ffd7b4e155ff0dc042c176" },
-            { "name": "Mohona TV", "logo": "https://s3.aynaott.com/storage/73082846fdc15d9f0e7268b104c55d92", "url": "https://tvsen6.aynaott.com/mohonatv/index.m3u8?e=1779283762&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=017ac949515fd9b0181090287f362d2b" },
-            { "name": "Maasranga TV", "logo": "https://s3.aynaott.com/storage/1b5cb8c7901739cd7d201a38d2ab4737", "url": "https://tvsen5.aynaott.com/maasrangatv/index.m3u8?e=1779283733&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=d29aadd6d2d6f7a0a28fabc7830ae6e3" },
-            { "name": "NEXUS TV", "logo": "https://s3.aynaott.com/storage/90635c3edf6e3c8dd92210b7248f1fa0", "url": "https://tvsen6.aynaott.com/nexustv/index.m3u8?e=1779283761&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=bbcba35ac711c3545a56b3580503ee00" },
-            { "name": "SA TV", "logo": "https://s3.aynaott.com/storage/f710d2ff532cb7e7b75566232c5b72d3", "url": "https://tvsen6.aynaott.com/satv/index.m3u8?e=1779283757&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=336f19de5e4aacae753d7524d86d1a89" },
-            { "name": "ETV", "logo": "https://s3.aynaott.com/storage/8a1af81802b0728c064c2adabcdc72c8", "url": "https://tvsen6.aynaott.com/etv/index.m3u8?e=1779283752&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=2c4b5c7a7044076e38b667d37971baec" },
-            { "name": "Bijoy TV", "logo": "https://s3.aynaott.com/storage/f23d6f82c1a16458fe0e4c6f11b8fd87", "url": "https://tvsen6.aynaott.com/bijoytv/index.m3u8?e=1779283761&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=5c8b85f4f92c654640f3abdc1ac061c6" },
-            { "name": "My TV", "logo": "https://s3.aynaott.com/storage/c5b2c623863fbe4033d59d52ff7371ac", "url": "https://tvsen6.aynaott.com/mytv/index.m3u8?e=1779283760&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=0a2ae0189a44e789d3fecffe5a474ec3" },
-            { "name": "MU | SANGEET BANGLA", "logo": "https://static.wikia.nocookie.net/logopedia/images/d/da/Sangeet_Bangla_logo_2006.png", "url": "https://cdn-4.pishow.tv/live/1143/master.m3u8" },
-            { "name": "DD Bangla", "logo": "https://static.wikia.nocookie.net/logopedia/images/c/ca/Dd_2019.webp", "url": "https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/7ff57cc9046b4c188b51a0d506f36e7f/index_3.m3u8" },
-            { "name": "Colors Bangla HD", "logo": "https://static.wikia.nocookie.net/logopedia/images/3/3e/Colors_Bangla_HD.jpg", "url": "https://iptvcable.netlify.app/Altogether-007/Kolkata/ColorsBanglaHD.m3u8" },
-            { "name": "Bangla+ HD", "logo": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEir8DIISD_3Ay4E2H__HTS4VFP7VXskYcIgkufU45epPzAFDKObL2D_p6mOal9B0RJpyaiA3feJuyaL8yvd0x-2nykRjc1pZPwT_aAGwmwFb4bEJf8oVDgty5NF30gzWlwHvh2P2c49pP2P8383ili_yboK1uSyqELcZygHTpSwru1VeK0mMwceugT5QLw/s1600/NadimRazaTVLogoDesign%282%29_copy_900x900_1.png", "url": "https://live-stream.utkalbongo.com/hls/livebanglatvstream.m3u8" },
-            { "name": "SONY AATH HD", "logo": "https://static.wikia.nocookie.net/logopedia/images/0/00/SONY_AATH.png", "url": "https://live20.bozztv.com/giatvplayout7/giatv-209611/index.m3u8" },
-            { "name": "Rajdhani TV", "logo": "https://rajdhanitv.online/assets/images/logo/1757970614logo%20footer.png", "url": "https://stream.shariarsuvo.com/hls5/rajdhanicable.m3u8" },
-            { "name": "Jago News 24", "logo": "https://www.jagobd.com/wp-content/uploads/2024/08/pran-RFL.png", "url": "https://app.ncare.live/live-orgin/jagonews24.stream/playlist.m3u8" }
-        ];
-
-        const video = document.getElementById('player');
-        let hls = null;
-        let currentActiveUrl = ''; 
-
-        const plyr = new Plyr(video, { 
-            autoplay: true, 
-            controls: ['play-large', 'play', 'progress', 'current-time', 'volume', 'pip', 'fullscreen'] 
-        });
-
-        plyr.on('enterfullscreen', () => {
-            if (screen.orientation && screen.orientation.lock) {
-                screen.orientation.lock('landscape').catch(err => console.log("Orientation skip:", err));
-            }
-        });
-        plyr.on('exitfullscreen', () => {
-            if (screen.orientation && screen.orientation.unlock) {
-                screen.orientation.unlock();
-            }
-        });
-
-        const overlay = document.getElementById('player-overlay');
-        overlay.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if(video.muted) {
-                video.muted = false;
-                video.volume = 1.0;
-            }
-
-            const controls = document.querySelector('.plyr__controls');
-            if (controls) {
-                const isControlsVisible = controls.style.opacity === '1' || 
-                                          window.getComputedStyle(controls).visibility === 'visible' ||
-                                          controls.classList.contains('plyr__controls--visible');
-                
-                if (isControlsVisible) {
-                    if (video.paused) video.play();
-                    else video.pause();
-                } else {
-                    plyr.toggleControls(true);
-                }
-            }
-        });
-
-        function renderFifaSection() {
-            const panel = document.getElementById("fifaTabPanel");
-            if (!panel) return;
-            panel.innerHTML = "";
-
-            fifaChannels.forEach((ch) => {
-                const card = document.createElement("div");
-                card.className = "channel-card";
-
-                card.onclick = (function(channelData) {
-                    return function() {
-                        switchStandardChannel(channelData.url, channelData.name, channelData.logo, this);
-                    };
-                })(ch);
-
-                card.innerHTML = `
-                    <img src="${ch.logo}" class="logo-img" alt="${ch.name}" onerror="this.src='https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png'">
-                    <div class="card-name">${ch.name}</div>
-                `;
-                panel.appendChild(card);
-            });
-        }
-
-        function renderSportsSection() {
-            const panel = document.getElementById("sportsTabPanel");
-            if (!panel) return;
-            panel.innerHTML = ""; 
-
-            sportsChannels.forEach((ch) => {
-                const card = document.createElement("div");
-                card.className = "channel-card";
-                
-                card.onclick = (function(channelData) {
-                    return function() {
-                        switchStandardChannel(channelData.url, channelData.name, channelData.logo, this);
-                    };
-                })(ch);
-
-                card.innerHTML = `
-                    <img src="${ch.logo}" class="logo-img" alt="${ch.name}" onerror="this.src='https://tstatic.akash-go.com/cms-ui/images/custom-content/1770378074527.png'">
-                    <div class="card-name">${ch.name}</div>
-                `;
-                panel.appendChild(card);
-            });
-        }
-
-        function renderBanglaSection() {
-            const panel = document.getElementById("banglaTabPanel");
-            if (!panel) return;
-            panel.innerHTML = ""; 
-
-            banglaChannels.forEach((ch) => {
-                const card = document.createElement("div");
-                card.className = "channel-card";
-                
-                card.onclick = (function(channelData) {
-                    return function() {
-                        switchStandardChannel(channelData.url, channelData.name, channelData.logo, this);
-                    };
-                })(ch);
-
-                card.innerHTML = `
-                    <img src="${ch.logo}" class="logo-img" alt="${ch.name}" onerror="this.src='https://static.wikia.nocookie.net/logopedia/images/1/12/BTV_HD_Logo.svg'">
-                    <div class="card-name">${ch.name}</div>
-                `;
-                panel.appendChild(card);
-            });
-        }
-
-        function switchStandardChannel(url, title, logoUrl, el) {
-            currentActiveUrl = url; 
-            
-            document.querySelectorAll('.channel-card').forEach(c => c.classList.remove('active'));
-            if(el) el.classList.add('active');
-            
-            document.getElementById('activeTitle').innerText = title;
-            const activeLogo = document.getElementById('activeLogo');
-            if (logoUrl) {
-                activeLogo.src = logoUrl; activeLogo.style.display = 'inline-block';
-            } else {
-                activeLogo.style.display = 'none';
-            }
-            
-            if (hls) { hls.destroy(); hls = null; }
-
-            hls = new Hls();
-            hls.loadSource(url);
-            hls.attachMedia(video);
-            hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                video.muted = false; 
-                video.volume = 1.0;
-                
-                video.play().catch(() => {
-                    video.muted = true;
-                    video.play().then(handleMuteBypass);
-                });
-            });
-        }
-
-        function handleMuteBypass() {
-            const unscrapeAudioLock = () => {
-                video.muted = false;
-                video.volume = 1.0;
-                document.removeEventListener('click', unscrapeAudioLock);
-                document.removeEventListener('touchend', unscrapeAudioLock);
-            };
-            document.addEventListener('click', unscrapeAudioLock);
-            document.addEventListener('touchend', unscrapeAudioLock);
-        }
-
-        function reloadCurrentStream() {
-            if (currentActiveUrl) {
-                switchStandardChannel(currentActiveUrl, document.getElementById('activeTitle').innerText, document.getElementById('activeLogo').src, document.querySelector('.channel-card.active'));
-            }
-        }
-
-        function handleRedirectChannel(targetUrl) {
-            if (!video.paused) video.pause(); 
-            window.open(targetUrl, '_blank');
-        }
-
-        function togglePanelTab(tabName, buttonElement) {
-            document.querySelectorAll('.tab-trigger').forEach(t => t.classList.remove('active'));
-            buttonElement.classList.add('active');
-
-            document.getElementById('fifaTabPanel').classList.add('panel-grid-hidden');
-            document.getElementById('sportsTabPanel').classList.add('panel-grid-hidden');
-            document.getElementById('banglaTabPanel').classList.add('panel-grid-hidden');
-
-            if (tabName === 'fifa') {
-                document.getElementById('fifaTabPanel').classList.remove('panel-grid-hidden');
-            } else if (tabName === 'sports') {
-                document.getElementById('sportsTabPanel').classList.remove('panel-grid-hidden');
-            } else if (tabName === 'bangla') {
-                document.getElementById('banglaTabPanel').classList.remove('panel-grid-hidden');
-            }
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            renderFifaSection();
-            renderSportsSection();
-            renderBanglaSection();
-            
-            setTimeout(() => {
-                const defaultCard = document.querySelectorAll('#fifaTabPanel .channel-card')[0]; 
-                if (defaultCard) {
-                    switchStandardChannel('https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8', 'Bein Sports 1', 'https://i.ibb.co.com/S7tZS6cg/Bein-Sports-1-Direct.png', defaultCard);
-                }
-            }, 400);
-        });
-    </script>
-</body>
-</html>
+            { "name": "ACI
