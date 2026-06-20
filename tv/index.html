@@ -44,7 +44,7 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
-        /* 📺 মোবাইল ভিউতে প্লেয়ার ওপরে ইউটিউবের মতো পারফেক্টলি আটকে রাখার ফুলপ্রুফ ফিক্স */
+        /* 📺 মোবাইল ভার্সনে প্লেয়ার ওপরে ইউটিউবের মতো পারফেক্টলি আটকে রাখার মাস্টার সিএসএস ফিক্স */
         .theater-screen-sticky-wrapper {
             position: -webkit-sticky;
             position: sticky;
@@ -100,7 +100,7 @@
         .tab-trigger { background: transparent; color: #7c7299; border: none; padding: 8px 14px; font-size: 10px; font-weight: 700; text-transform: uppercase; border-radius: 7px; transition: all 0.2s; }
         .tab-trigger.active { background: var(--purple-primary); color: #fff; box-shadow: 0 0 10px var(--purple-glow); }
 
-        /* 📱 মোবাইলের জন্য ফিক্সড ৩টি করে চ্যানেল কার্ড প্রতি লাইনে */
+        /* 📱 মোবাইলের জন্য ফিক্সড ৩টি করে কমপ্যাক্ট চ্যানেল কার্ড প্রতি লাইনে */
         .iptv-grid-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
         .panel-grid-hidden { display: none !important; }
 
@@ -113,7 +113,7 @@
 
         .plyr--video { --plyr-color-main: var(--purple-primary); }
 
-        /* 💻 ডেক্সটপ এবং ল্যাপটপ থিয়েটার গ্রিড লেআউট মাস্টার ফিক্স */
+        /* 💻 ডেক্সটপ এবং ল্যাপটপ থিয়েটার গ্রিড লেআউট ফিক্স */
         @media (min-width: 992px) {
             .ott-main-layout {
                 display: grid;
@@ -128,7 +128,7 @@
                 z-index: 10;
             }
             .theater-screen-sticky-wrapper {
-                position: relative; /* ডেক্সটপে পিওর থিয়েটার মোড গ্রিড আনলক */
+                position: relative; /* ডেক্সটপে পিওর থিয়েটার গ্রিড আনলক */
                 border-radius: 12px;
                 overflow: hidden;
                 box-shadow: 0 10px 30px rgba(0,0,0,0.5);
@@ -210,7 +210,7 @@
     <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
 
     <script>
-        // 🏆 ১. ফিফা প্রিমিয়াম চ্যানেল ডাটাবেজ (Z বাংলাসহ ও T Sports মুক্ত)
+        // 🏆 ১. ফিফা প্রিমিয়াম চ্যানেল ডাটাবেজ
         const fifaChannels = [
             { "name": "Bein Sports 1", "logo": "https://i.ibb.co.com/S7tZS6cg/Bein-Sports-1-Direct.png", "url": "https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8" },
             { "name": "Z বাংলাসোনার", "logo": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/ColorsHD/default/ColorsHD.m3u8", "url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/ColorsHD/default/ColorsHD.m3u8" },
@@ -315,7 +315,7 @@
             { "name": "GLORY Kickboxing", "logo": "https://i.imgur.com/tS7Ub7i.png", "url": "https://6f972d29.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWV1X0dsb3J5S2lja2JveGluZ19ITFM/playlist.m3u8" },
             { "name": "Gol Classics", "logo": "https://golstadium.com/_next/image?url=%2Fimg%2Fhome%2Fchannels%2Fthumb-gol-classics.jpg&w=1920&q=75", "url": "https://d71gqtnep83vb.cloudfront.net/gol_classics/gol_classics.m3u8" },
             { "name": "Golf Network", "logo": "https://s6lmfXF.png", "url": "http://cdns.jp-primehome.com:8000/zhongying/live/playlist.m3u8?cid=cs03" },
-            { "name": "Horse TV", "logo": "https://i.imgur.com/nK4UUX4.png", "url": "https://a-cdn.klowdtv.com/live2/horsetv_720p/playlist.m3u8" },
+            { "name": "Horse TV", "logo": "https://i.imgur.com/nK4UUX4.png", "url": "https://a-cdn.klowdtv.com/live2/nautical_720p/playlist.m3u8" },
             { "name": "HTSpor TV", "logo": "https://www.htspor.com/images/manifest/social-share-logo.png", "url": "https://ciner.daioncdn.net/ht-spor/ht-spor.m3u8?app=web" },
             { "name": "IRIB3", "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/IRIB_TV3_LOGO.svg/960px-IRIB_TV3_LOGO.svg.png", "url": "https://ncdn.telewebion.ir/tv3/live/playlist.m3u8" },
             { "name": "J Sports 1", "logo": "https://i.imgur.com/vEpjLnj.png", "url": "http://cdns.jp-primehome.com:8000/zhongying/live/playlist.m3u8?cid=bs18" },
@@ -363,7 +363,7 @@
             { "name": "Star Sports 1 HD (Alt)", "logo": "https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Star%20Sports%201%40.jpeg", "url": "http://41.205.93.154/STARSPORTS1/index.m3u8" }
         ];
 
-        // 🇧🇩 ৩. ফিল্টার্ড নতুন ও সঠিক বাংলা চ্যানেল ডাটাবেজ
+        // 🇧🇩 ৩. নতুন ও সঠিক বাংলা চ্যানেল ডাটাবেজ
         const banglaChannels = [
             { "name": "IN | TV9 Bangla", "logo": "https://images.tv9bangla.com/wp-content/themes/tv9bangla/images/tv9-bangla-logo.svg", "url": "https://dyjmyiv3bp2ez.cloudfront.net/pub-iotv9banaen8yq/liveabr/playlist.m3u8" },
             { "name": "IN | R Plus News", "logo": "https://rplus.in/wp-content/uploads/2025/06/RPLUS_NEWS.png", "url": "https://thelegitpro.in/pntv/rplusnews24x7/index.m3u8" },
@@ -448,21 +448,22 @@
             }
         });
 
-        // 👑 জাভাস্ক্রিপ্ট ক্লোজার স্কোপ ট্র্যাকিং পারফেক্ট ফিক্স (ভুল চ্যানেল ওপেন হওয়া চিরতরে সমাধান)
+        // 🔄 জাভাস্ক্রিপ্ট ইনডেক্স-ক্লোজার ক্লোন হ্যান্ডলার (সব চ্যানেলের ভুল লিঙ্ক ম্যাপিং ফিক্স)
         function renderFifaSection() {
             const panel = document.getElementById("fifaTabPanel");
             if (!panel) return;
             panel.innerHTML = "";
 
-            fifaChannels.forEach((ch) => {
+            fifaChannels.forEach((ch, idx) => {
                 const card = document.createElement("div");
                 card.className = "channel-card";
 
-                card.onclick = (function(channelData) {
+                card.onclick = (function(index) {
                     return function() {
-                        switchStandardChannel(channelData.url, channelData.name, channelData.logo, this);
+                        const targetChannel = fifaChannels[index];
+                        switchStandardChannel(targetChannel.url, targetChannel.name, targetChannel.logo, this);
                     };
-                })(ch);
+                })(idx);
 
                 card.innerHTML = `
                     <img src="${ch.logo}" class="logo-img" alt="${ch.name}" onerror="this.src='https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png'">
@@ -477,15 +478,16 @@
             if (!panel) return;
             panel.innerHTML = ""; 
 
-            sportsChannels.forEach((ch) => {
+            sportsChannels.forEach((ch, idx) => {
                 const card = document.createElement("div");
                 card.className = "channel-card";
                 
-                card.onclick = (function(channelData) {
+                card.onclick = (function(index) {
                     return function() {
-                        switchStandardChannel(channelData.url, channelData.name, channelData.logo, this);
+                        const targetChannel = sportsChannels[index];
+                        switchStandardChannel(targetChannel.url, targetChannel.name, targetChannel.logo, this);
                     };
-                })(ch);
+                })(idx);
 
                 card.innerHTML = `
                     <img src="${ch.logo}" class="logo-img" alt="${ch.name}" onerror="this.src='https://tstatic.akash-go.com/cms-ui/images/custom-content/1770378074527.png'">
@@ -500,15 +502,16 @@
             if (!panel) return;
             panel.innerHTML = ""; 
 
-            banglaChannels.forEach((ch) => {
+            banglaChannels.forEach((ch, idx) => {
                 const card = document.createElement("div");
                 card.className = "channel-card";
                 
-                card.onclick = (function(channelData) {
+                card.onclick = (function(index) {
                     return function() {
-                        switchStandardChannel(channelData.url, channelData.name, channelData.logo, this);
+                        const targetChannel = banglaChannels[index];
+                        switchStandardChannel(targetChannel.url, targetChannel.name, targetChannel.logo, this);
                     };
-                })(ch);
+                })(idx);
 
                 card.innerHTML = `
                     <img src="${ch.logo}" class="logo-img" alt="${ch.name}" onerror="this.src='https://static.wikia.nocookie.net/logopedia/images/1/12/BTV_HD_Logo.svg'">
@@ -521,6 +524,7 @@
         function switchStandardChannel(url, title, logoUrl, el) {
             currentActiveUrl = url; 
             
+            // একই গ্রিড প্যানেল ও বাইরের গ্রিডের অ্যাক্টিভ বর্ডার রিলিজ
             document.querySelectorAll('.channel-card').forEach(c => c.classList.remove('active'));
             if(el) el.classList.add('active');
             
