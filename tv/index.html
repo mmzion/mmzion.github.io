@@ -44,12 +44,12 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
-        /* 📺 মোবাইল ভিউতে প্লেয়ার ওপরে ইউটিউবের মতো আটকে রাখার মূল মেকানিজম */
+        /* 📺 মোবাইল ভিউতে প্লেয়ার ওপরে ইউটিউবের মতো পারফেক্টলি আটকে রাখার ফুলপ্রুফ ফিক্স */
         .theater-screen-sticky-wrapper {
             position: -webkit-sticky;
             position: sticky;
             top: 0;
-            z-index: 2000;
+            z-index: 2050;
             background: #000;
             width: 100%;
             box-shadow: 0 10px 30px rgba(0,0,0,0.9);
@@ -62,14 +62,14 @@
             overflow: hidden; 
         }
         
-        #plyr-wrapper { width: 100%; height: 100%; position: absolute; top:0; left:0; }
+        #plyr-wrapper { width: 100%; height: 100%; position: absolute; top:0; left:0; z-index: 1; }
         video { width: 100%; height: 100%; background: #000; object-fit: contain !important; }
         .plyr { width: 100%; height: 100%; }
 
         .player-click-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: calc(100% - 50px);
-            z-index: 1;
+            z-index: 2;
             pointer-events: auto;
             cursor: pointer;
         }
@@ -100,26 +100,21 @@
         .tab-trigger { background: transparent; color: #7c7299; border: none; padding: 8px 14px; font-size: 10px; font-weight: 700; text-transform: uppercase; border-radius: 7px; transition: all 0.2s; }
         .tab-trigger.active { background: var(--purple-primary); color: #fff; box-shadow: 0 0 10px var(--purple-glow); }
 
-        /* 📱 মোবাইলের জন্য ৩টি কলাম ফিক্সড কমপ্যাক্ট লেআউট গ্রিড */
+        /* 📱 মোবাইলের জন্য ফিক্সড ৩টি করে চ্যানেল কার্ড প্রতি লাইনে */
         .iptv-grid-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
         .panel-grid-hidden { display: none !important; }
 
         .channel-card { background: rgba(255,255,255,0.02); padding: 8px 4px; border-radius: 10px; cursor: pointer; text-align: center; aspect-ratio: 1.2/1; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid var(--card-border); transition: all 0.2s ease; }
         .channel-card:hover { border-color: rgba(124, 58, 237, 0.3); background: rgba(124, 58, 237, 0.02); }
-        .channel-card.active { border: 1.5px solid var(--purple-primary); background: rgba(124, 58, 237, 0.1); }
+        .channel-card.active { border: 1.5px solid var(--purple-primary); background: rgba(124, 58, 237, 0.12); box-shadow: 0 0 15px rgba(124, 58, 237, 0.15); }
         
         .logo-img { width: 32px; height: 32px; object-fit: contain; margin-bottom: 6px; border-radius: 6px; padding: 2px; background: rgba(255,255,255,0.04); }
         .card-name { font-weight: 600; font-size: 9.5px; color: #cbd5e1; text-transform: uppercase; letter-spacing: 0.3px; line-height: 1.2; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; width: 100%; }
 
         .plyr--video { --plyr-color-main: var(--purple-primary); }
-        .plyr__control--overlaid { z-index: 10 !important; pointer-events: auto !important; }
 
-        /* 💻 ডেক্সটপ এবং ল্যাপটপ রেসপন্সিভ থিয়েটার গ্রিড লেআউট মাস্টার ফিক্স */
+        /* 💻 ডেক্সটপ এবং ল্যাপটপ থিয়েটার গ্রিড লেআউট মাস্টার ফিক্স */
         @media (min-width: 992px) {
-            .theater-screen-sticky-wrapper {
-                position: relative; /* ডেক্সটপে ফুল স্ক্রিন ব্লক রিলিজ */
-                box-shadow: none;
-            }
             .ott-main-layout {
                 display: grid;
                 grid-template-columns: 60% 40%;
@@ -133,6 +128,7 @@
                 z-index: 10;
             }
             .theater-screen-sticky-wrapper {
+                position: relative; /* ডেক্সটপে পিওর থিয়েটার মোড গ্রিড আনলক */
                 border-radius: 12px;
                 overflow: hidden;
                 box-shadow: 0 10px 30px rgba(0,0,0,0.5);
@@ -145,8 +141,8 @@
             }
             .horizontal-panel::-webkit-scrollbar { width: 5px; }
             .horizontal-panel::-webkit-scrollbar-thumb { background: var(--purple-primary); border-radius: 10px; }
-            /* ডেক্সটপে ৩ কলাম গ্রিড উইথ পারফেক্ট রেশিও */
-            .iptv-grid-row { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+            /* ডেক্সটপে ৩ কলাম গ্রিড লেআউট */
+            .iptv-grid-row { grid-template-columns: repeat(3, 1fr); gap: 8px; }
         }
     </style>
 </head>
@@ -154,8 +150,10 @@
 
     <nav class="ott-nav"><div class="text-white fw-bold"><i class="bi bi-play-circle text-purple-primary" style="color: var(--purple-primary);"></i> ZION SPORTS</div></nav>
 
+    <!-- ওটিটি মেইন কন্টেন্ট লেআউট স্ট্রাকচার -->
     <div class="ott-main-layout">
         
+        <!-- বাম পাশের পার্ট: ভিডিও প্লেয়ার এবং মেটা ডাটা (মোবাইলে এটি ওপরে থাকবে এবং স্ক্রল লক হবে) -->
         <div class="left-column-wrapper">
             <div class="theater-screen-sticky-wrapper">
                 <div class="theater-screen">
@@ -175,24 +173,31 @@
             </div>
         </div>
 
+        <!-- ডান পাশের পার্ট: ক্যাটাগরি ট্যাব মেনু এবং চ্যানেল গ্রিড প্যানেলসমূহ -->
         <div class="container-fluid ott-dashboard">
             
             <div class="ott-tabs-wrapper mt-0">
-                <button class="tab-trigger active" onclick="togglePanelTab('fifa', this)"><i class="bi bi-trophy-fill me-1"></i> FIFA Premium</button>
-                <button class="tab-trigger" onclick="togglePanelTab('sports', this)"><i class="bi bi-broadcast me-1"></i> Live Sports</button>
-                <button class="tab-trigger" onclick="togglePanelTab('bangla', this)"><i class="bi bi-flag-fill me-1"></i> Bangla TV</button>
+                <button id="tabFifa" class="tab-trigger active" onclick="togglePanelTab('fifa', this)"><i class="bi bi-trophy-fill me-1"></i> FIFA Premium</button>
+                <button id="tabSports" class="tab-trigger" onclick="togglePanelTab('sports', this)"><i class="bi bi-broadcast me-1"></i> Live Sports</button>
+                <button id="tabBangla" class="tab-trigger" onclick="togglePanelTab('bangla', this)"><i class="bi bi-flag-fill me-1"></i> Bangla TV</button>
             </div>
 
             <div class="horizontal-panel">
                 
+                <!-- ①. 🏆 FIFA Premium ক্যাটাগরি প্যানেল -->
                 <div id="fifaTabPanel" class="iptv-grid-row">
-                    </div>
+                    <!-- JavaScript এর মাধ্যমে চ্যানেল রেন্ডার হবে -->
+                </div>
 
+                <!-- ②. ⚽ Live Sports ক্যাটাগরি প্যানেল -->
                 <div id="sportsTabPanel" class="iptv-grid-row panel-grid-hidden">
-                    </div>
+                    <!-- JavaScript এর মাধ্যমে চ্যানেল রেন্ডার হবে -->
+                </div>
 
+                <!-- ③. 🇧🇩 Bangla TV ক্যাটাগরি প্যানেল -->
                 <div id="banglaTabPanel" class="iptv-grid-row panel-grid-hidden">
-                    </div>
+                    <!-- JavaScript এর মাধ্যমে চ্যানেল রেন্ডার হবে -->
+                </div>
 
             </div>
             
@@ -205,7 +210,7 @@
     <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
 
     <script>
-        // 🏆 ১. ফিল্টার্ড নন-ডিআরএম ফিফা প্রিমিয়াম চ্যানেল ডাটাবেজ (Z বাংলাসহ)
+        // 🏆 ১. ফিফা প্রিমিয়াম চ্যানেল ডাটাবেজ (Z বাংলাসহ ও T Sports মুক্ত)
         const fifaChannels = [
             { "name": "Bein Sports 1", "logo": "https://i.ibb.co.com/S7tZS6cg/Bein-Sports-1-Direct.png", "url": "https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8" },
             { "name": "Z বাংলাসোনার", "logo": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/ColorsHD/default/ColorsHD.m3u8", "url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/ColorsHD/default/ColorsHD.m3u8" },
@@ -224,7 +229,7 @@
             { "name": "Cricket Gold", "logo": "https://s3.aynaott.com/storage/7d20b575edc4e4b5276faa8c246e72a4", "url": "https://tvsen6.aynaott.com/CricketGold/index.m3u8?e=1779283786&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=7c79e4f07ef8bf05e35ecffd9e056652" },
             { "name": "A sports", "logo": "https://s3.aynaott.com/storage/64de30d2df9b2a888cb73f17614a9a8b", "url": "https://tvsen6.aynaott.com/asports/index.m3u8?e=1779283785&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=356b906bf972b824782bb58c1ce0bb22" },
             { "name": "PTV Sports", "logo": "https://s3.aynaott.com/storage/9d9d7cbfba5a8ceea648bbd963ad1014", "url": "https://tvsen5.aynaott.com/PtvSports/index.m3u8?e=1779283784&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=db1789e36c278bf538489fac263e0ffb" },
-            { "name": "Golf Channel", "logo": "https://s3.aynaott.com/storage/edb73991516696dfd53efbd32d80ca58", "url": "https://tvsen6.aynaott.com/golfchannel/index.m3u8?e=1779283789&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=56943a1262fd47843d1dbaaaf88363bc" },
+            { "name": "Golf Channel", "logo": "https://s3.aynaott.com/storage/edb73991516696dfd53efbd32d80ca58", "url": "https://tvsen6.aynaott.com/golfchannel/index.m3u8?e=1779283789&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=56943a122fd47843d1dbaaaf88363bc" },
             { "name": "Fox Sports 2", "logo": "https://s3.aynaott.com/storage/da4282cd107cc3d40efadae488b187e5", "url": "https://tvsen7.aynaott.com/foxsports2/index.m3u8?e=1779283790&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=cbb7f40b4af7be51a91e0629a5ac7238" },
             { "name": "TSN 2", "logo": "https://s3.aynaott.com/storage/17642cb60c2af7fc36ca1e08cc54fdae", "url": "https://tvsen7.aynaott.com/tsn2/index.m3u8?e=1779283793&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=636d9b8b83d4316193c2d1c9aad8951c" },
             { "name": "Talk Sport", "logo": "https://s3.aynaott.com/storage/5128cd32518d5a9ba7a37e21947fd8fd", "url": "https://tvsen6.aynaott.com/talkSPORT/index.m3u8?e=1779283794&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=24b590ae2b7927c00a9acc3a97bc5d86" },
@@ -415,21 +420,9 @@
         let hls = null;
         let currentActiveUrl = ''; 
 
-        // ভলিউম স্লাইডার ও সাউন্ড কন্ট্রোল বার অ্যাক্টিভেটেড
         const plyr = new Plyr(video, { 
             autoplay: true, 
             controls: ['play-large', 'play', 'progress', 'current-time', 'volume', 'pip', 'fullscreen'] 
-        });
-
-        plyr.on('enterfullscreen', () => {
-            if (screen.orientation && screen.orientation.lock) {
-                screen.orientation.lock('landscape').catch(err => console.log("Orientation skip:", err));
-            }
-        });
-        plyr.on('exitfullscreen', () => {
-            if (screen.orientation && screen.orientation.unlock) {
-                screen.orientation.unlock();
-            }
         });
 
         const overlay = document.getElementById('player-overlay');
@@ -455,7 +448,7 @@
             }
         });
 
-        // 🔄 ক্লোজার স্কোপ র্যাপার হ্যান্ডলার (ভুল চ্যানেল ডিটেকশন ফিক্স)
+        // 👑 জাভাস্ক্রিপ্ট ক্লোজার স্কোপ ট্র্যাকিং পারফেক্ট ফিক্স (ভুল চ্যানেল ওপেন হওয়া চিরতরে সমাধান)
         function renderFifaSection() {
             const panel = document.getElementById("fifaTabPanel");
             if (!panel) return;
