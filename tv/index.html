@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zion Sports — Ultimate OTT</title>
+    <base href="https://fifalive.click/">
 
     <meta property="og:type" content="website">
     <meta property="og:title" content="Zion Sports — Ultimate OTT">
@@ -44,7 +45,6 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
-        /* 📺 মোবাইল ভার্সনে প্লেয়ার ওপরে ইউটিউবের মতো পারফেক্টলি আটকে রাখার মাস্টার সিএসএস ফিক্স */
         .theater-screen-sticky-wrapper {
             position: -webkit-sticky;
             position: sticky;
@@ -100,7 +100,6 @@
         .tab-trigger { background: transparent; color: #7c7299; border: none; padding: 8px 14px; font-size: 10px; font-weight: 700; text-transform: uppercase; border-radius: 7px; transition: all 0.2s; }
         .tab-trigger.active { background: var(--purple-primary); color: #fff; box-shadow: 0 0 10px var(--purple-glow); }
 
-        /* 📱 মোবাইলের জন্য ফিক্সড ৩টি করে কমপ্যাক্ট চ্যানেল কার্ড প্রতি লাইনে */
         .iptv-grid-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
         .panel-grid-hidden { display: none !important; }
 
@@ -113,7 +112,6 @@
 
         .plyr--video { --plyr-color-main: var(--purple-primary); }
 
-        /* 💻 ডেক্সটপ এবং ল্যাপটপ থিয়েটার গ্রিড লেআউট ফিক্স */
         @media (min-width: 992px) {
             .ott-main-layout {
                 display: grid;
@@ -128,7 +126,7 @@
                 z-index: 10;
             }
             .theater-screen-sticky-wrapper {
-                position: relative; /* ডেক্সটপে পিওর থিয়েটার গ্রিড আনলক */
+                position: relative;
                 border-radius: 12px;
                 overflow: hidden;
                 box-shadow: 0 10px 30px rgba(0,0,0,0.5);
@@ -141,7 +139,6 @@
             }
             .horizontal-panel::-webkit-scrollbar { width: 5px; }
             .horizontal-panel::-webkit-scrollbar-thumb { background: var(--purple-primary); border-radius: 10px; }
-            /* ডেক্সটপে ৩ কলাম গ্রিড লেআউট */
             .iptv-grid-row { grid-template-columns: repeat(3, 1fr); gap: 8px; }
         }
     </style>
@@ -150,10 +147,8 @@
 
     <nav class="ott-nav"><div class="text-white fw-bold"><i class="bi bi-play-circle text-purple-primary" style="color: var(--purple-primary);"></i> ZION SPORTS</div></nav>
 
-    <!-- ওটিটি মেইন কন্টেন্ট লেআউট স্ট্রাকচার -->
     <div class="ott-main-layout">
         
-        <!-- বাম পাশের পার্ট: ভিডিও প্লেয়ার এবং মেটা ডাটা (মোবাইলে এটি ওপরে থাকবে এবং স্ক্রল লক হবে) -->
         <div class="left-column-wrapper">
             <div class="theater-screen-sticky-wrapper">
                 <div class="theater-screen">
@@ -166,14 +161,13 @@
             
             <div class="stream-details mt-3">
                 <span class="badge-live">Live</span>
-                <img id="activeLogo" src="https://i.ibb.co.com/S7tZS6cg/Bein-Sports-1-Direct.png" class="active-logo-img" alt="logo" onerror="this.style.display='none'">
-                <h1 class="h6 m-0" id="activeTitle">Bein Sports 1</h1>
+                <img id="activeLogo" src="" class="active-logo-img" alt="logo" onerror="this.style.display='none'">
+                <h1 class="h6 m-0" id="activeTitle">Loading...</h1>
                 
                 <button class="btn-reload-stream" onclick="reloadCurrentStream()"><i class="bi bi-arrow-clockwise"></i> Reload</button>
             </div>
         </div>
 
-        <!-- ডান পাশের পার্ট: ক্যাটাগরি ট্যাব মেনু এবং চ্যানেল গ্রিড প্যানেলসমূহ -->
         <div class="container-fluid ott-dashboard">
             
             <div class="ott-tabs-wrapper mt-0">
@@ -184,20 +178,14 @@
 
             <div class="horizontal-panel">
                 
-                <!-- ①. 🏆 FIFA Premium ক্যাটাগরি প্যানেল -->
                 <div id="fifaTabPanel" class="iptv-grid-row">
-                    <!-- JavaScript এর মাধ্যমে চ্যানেল রেন্ডার হবে -->
-                </div>
+                    </div>
 
-                <!-- ②. ⚽ Live Sports ক্যাটাগরি প্যানেল -->
                 <div id="sportsTabPanel" class="iptv-grid-row panel-grid-hidden">
-                    <!-- JavaScript এর মাধ্যমে চ্যানেল রেন্ডার হবে -->
-                </div>
+                    </div>
 
-                <!-- ③. 🇧🇩 Bangla TV ক্যাটাগরি প্যানেল -->
                 <div id="banglaTabPanel" class="iptv-grid-row panel-grid-hidden">
-                    <!-- JavaScript এর মাধ্যমে চ্যানেল রেন্ডার হবে -->
-                </div>
+                    </div>
 
             </div>
             
@@ -210,8 +198,12 @@
     <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
 
     <script>
-        // 🏆 ১. ফিফা প্রিমিয়াম চ্যানেল ডাটাবেজ
+        // 🏆 ১. ফিফা প্রিমিয়াম চ্যানেল ডাটাবেজ (নতুন ৪টি লিংক শুরুতে যোগ করা হয়েছে)
         const fifaChannels = [
+            { "name": "FIFA 2026 Live (Server 1)", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://prod-cdn01-live.toffeelive.com/live/FIFA-2026-4/0/master_2000.m3u8?hdntl=Expires=1782201879~_GO=Generated~URLPrefix=aHR0cHM6Ly9wcm9kLWNkbjAxLWxpdmUudG9mZmVlbGl2ZS5jb20~Signature=AduQTZ_7SoXu33Jl8WoX6_fbtjKetaNOH0HEGlimMzfQIbzmst2wUXr10OEziHQ4lh2dXZE9onnVDuguqusVRZAHbAUF" },
+            { "name": "FIFA 2026 Live (Server 2)", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://cdn.fifalive.click/play.m3u8" },
+            { "name": "FIFA 2026 Live (Server 3)", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://vizio.kuvuslov.cymru/hls/fox.m3u8" },
+            { "name": "FIFA 2026 Live (Server 4)", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://1nyaler.streamhostingcdn.top/stream/32/index.m3u8" },
             { "name": "Bein Sports 1", "logo": "https://i.ibb.co.com/S7tZS6cg/Bein-Sports-1-Direct.png", "url": "https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8" },
             { "name": "Z বাংলাসোনার", "logo": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/ColorsHD/default/ColorsHD.m3u8", "url": "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/ColorsHD/default/ColorsHD.m3u8" },
             { "name": "D Sports HLS", "logo": "https://upload.wikimedia.org/wikipedia/commons/5/5a/DSports.png", "url": "https://1nyaler.streamhostingcdn.top/stream/106/index.m3u8" },
@@ -448,7 +440,6 @@
             }
         });
 
-        // 🔄 জাভাস্ক্রিপ্ট ইনডেক্স-ক্লোজার ক্লোন হ্যান্ডলার (সব চ্যানেলের ভুল লিঙ্ক ম্যাপিং ফিক্স)
         function renderFifaSection() {
             const panel = document.getElementById("fifaTabPanel");
             if (!panel) return;
@@ -524,7 +515,6 @@
         function switchStandardChannel(url, title, logoUrl, el) {
             currentActiveUrl = url; 
             
-            // একই গ্রিড প্যানেল ও বাইরের গ্রিডের অ্যাক্টিভ বর্ডার রিলিজ
             document.querySelectorAll('.channel-card').forEach(c => c.classList.remove('active'));
             if(el) el.classList.add('active');
             
@@ -594,7 +584,13 @@
             setTimeout(() => {
                 const defaultCard = document.querySelectorAll('#fifaTabPanel .channel-card')[0]; 
                 if (defaultCard) {
-                    switchStandardChannel('https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8', 'Bein Sports 1', 'https://i.ibb.co.com/S7tZS6cg/Bein-Sports-1-Direct.png', defaultCard);
+                    // FIFA 2026 Live (Server 1) কে ডিফল্ট চ্যানেল হিসেবে সেট করা হলো
+                    switchStandardChannel(
+                        'https://prod-cdn01-live.toffeelive.com/live/FIFA-2026-4/0/master_2000.m3u8?hdntl=Expires=1782201879~_GO=Generated~URLPrefix=aHR0cHM6Ly9wcm9kLWNkbjAxLWxpdmUudG9mZmVlbGl2ZS5jb20~Signature=AduQTZ_7SoXu33Jl8WoX6_fbtjKetaNOH0HEGlimMzfQIbzmst2wUXr10OEziHQ4lh2dXZE9onnVDuguqusVRZAHbAUF', 
+                        'FIFA 2026 Live (Server 1)', 
+                        'https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png', 
+                        defaultCard
+                    );
                 }
             }, 400);
         });
