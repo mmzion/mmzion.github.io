@@ -193,16 +193,13 @@
             <div class="horizontal-panel">
                 
                 <div id="fifaTabPanel" class="iptv-grid-row">
-                    <!-- JavaScript এর মাধ্যমে চ্যানেল রেন্ডার হবে -->
-                </div>
+                    </div>
 
                 <div id="sportsTabPanel" class="iptv-grid-row panel-grid-hidden">
-                    <!-- JavaScript এর মাধ্যমে চ্যানেল রেন্ডার হবে -->
-                </div>
+                    </div>
 
                 <div id="banglaTabPanel" class="iptv-grid-row panel-grid-hidden">
-                    <!-- JavaScript এর মাধ্যমে চ্যানেল রেন্ডার হবে -->
-                </div>
+                    </div>
 
             </div>
             
@@ -211,15 +208,19 @@
 
     </div>
 
-    <!-- Multi-Protocol Playback Support Platforms -->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.10/shaka-player.ui.min.js"></script>
     <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
 
     <script>
-        // 🏆 ১. ফিফা প্রিমিয়াম চ্যানেল ডাটাবেজ
+        // 🏆 ১. ফিফা প্রিমিয়াম চ্যানেল ডাটাবেজ (নতুন ৪টি লিংক একদম শুরুতে সেট করা হয়েছে)
         const fifaChannels = [
+            { "name": "FIFA 2026 Live (Server 1)", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "group": "Sports", "url": "https://prod-cdn01-live.toffeelive.com/live/FIFA-2026-4/0/master_2000.m3u8?hdntl=Expires=1782201879~_GO=Generated~URLPrefix=aHR0cHM6Ly9wcm9kLWNkbjAxLWxpdmUudG9mZmVlbGl2ZS5jb20~Signature=AduQTZ_7SoXu33Jl8WoX6_fbtjKetaNOH0HEGlimMzfQIbzmst2wUXr10OEziHQ4lh2dXZE9onnVDuguqusVRZAHbAUF" },
+            { "name": "FIFA 2026 Live (Server 2)", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "group": "Sports", "url": "https://tahmidx.cinemoja2.workers.dev/" },
+            { "name": "FIFA 2026 Live (Server 3)", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "group": "Sports", "url": "https://vizio.kuvuslov.cymru/hls/fox.m3u8" },
+            { "name": "FIFA 2026 Live (Server 4)", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "group": "Sports", "url": "https://1nyaler.streamhostingcdn.top/stream/32/index.m3u8" },
+            
             { "name": "ELTA", "logo": "https://fwatch.tv/assets/channel-img/d2887f62be_image.png", "group": "FIFA High", "url": "https://www.rtmpcdn.com/live/cctv5.m3u8" },
             { "name": "CCTV CHINA - HD", "logo": "https://fwatch.tv/assets/channel-img/1f2f08c3c5_china-central-television-logo-png_seeklogo-468614.png", "group": "FIFA High", "url": "https://live.wxinxi.com/live/25816724_sb2maw7iluj1ghr92sk5siud28tpimx0.m3u8" },
             { "name": "BEIN Sports 5", "logo": "https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg", "group": "BeIN", "url": "http://starhub.pro/live/farhat-3379/67897-913379/744527.ts" }, 
@@ -229,14 +230,11 @@
             { "name": "BeIN Sports 1", "logo": "https://elmarada.org/wp-content/uploads/2022/03/download-247x200.png", "url": "http://41.205.70.146/BEINSPORT1/index.m3u8", "group": "BeIN" }, 
             { "name": "BeIN Sports 2", "logo": "https://elmarada.org/wp-content/uploads/2022/03/download-247x200.png", "url": "http://41.205.70.146/BEINSPORT2/index.m3u8", "group": "BeIN" }, 
             { "name": "BeIN Sports 5 (Alt)", "logo": "https://elmarada.org/wp-content/uploads/2022/03/download-247x200.png", "url": "http://41.205.70.146/BEINSPORT5/index.m3u8", "group": "BeIN" }, 
-            
-            // 🛠️ পুরোনো D Sports এর জায়গায় নতুন ৫টি চ্যানেল যুক্ত করা হলো
             { "name": "D SPORTS", "logo": "https://images.fotmob.com/image_resources/logo/teamlogo/8570.png", "url": "https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/3gg2jnixjn/out/v1/e1840e01f3f14563b66bbb944d5cc54c/cenc.mpd", "group": "D Sports", "type": "dash", "kid": "f8b207c10f3f76aeba32a360ec52b9e4", "key": "afad49d20eb39670e93e371c1d669921", "no_proxy": true }, 
             { "name": "D SPORTS FHD +", "logo": "https://images.fotmob.com/image_resources/logo/teamlogo/8570.png", "url": "https://otte.live.fly.ww.aiv-cdn.net/gru-nitro/live/clients/dash/enc/ud6bnhthpj/out/v1/2639a2f4480f4269953de466d5f46463/cenc.mpd", "group": "D Sports", "type": "dash", "kid": "83f81c4cc1443991543de4e22eea7586", "key": "ddfd7ca653d6f35543d8edb3c688e20f", "no_proxy": true }, 
             { "name": "D Sports (Alt)", "logo": "https://images.seeklogo.com/logo-png/62/1/dsports-logo-png_seeklogo-626310.png", "url": "http://otte.live.fly.ww.aiv-cdn.net/lhr-nitro/live/dash/enc/rgilyeubta/out/v1/09a67027b18f4fd78aaa3794a2aacfe8/cenc.mpd", "group": "D Sports", "type": "dash", "kid": "03f12d6a3dbfd3a6fa7dd7f6417e0c11", "key": "ea07b87acdf2e45be824cde4a1cf3504", "no_proxy": true }, 
             { "name": "D Sports HD", "logo": "https://i.imgur.com/12yqgbL.png", "group": "D Sports", "url": "https://otte.live.fly.ww.aiv-cdn.net/gru-nitro/live/clients/dash/enc/3gg2jnixjn/out/v1/e1840e01f3f14563b66bbb944d5cc54c/cenc.mpd", "type": "dash", "kid": "f8b207c10f3f76aeba32a360ec52b9e4", "key": "afad49d20eb39670e93e371c1d669921", "no_proxy": true },
             { "name": "DSports (MPEG-DASH Clone)", "logo": "https://fwatch.tv/assets/channel-img/d4dbb56093_image.png", "group": "D Sports", "url": "https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/3gg2jnixjn/out/v1/e1840e01f3f14563b66bbb944d5cc54c/cenc.mpd", "type": "dash", "kid": "f8b207c10f3f76aeba32a360ec52b9e4", "key": "afad49d20eb39670e93e371c1d669921" },
-
             { "name": "SporTV", "logo": "https://fwatch.tv/assets/channel-img/e1bf65934e_image.png", "group": "FIFA High", "url": "https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tvezxbddeg/out/v1/3aa321e477504937a439b602e078eb18/cenc.mpd", "type": "dash", "kid": "7eea72d6075245a99ee3255603d58853", "key": "6848ef60575579bf4d415db1032153ed" },
             { "name": "TSN Sports - AQ", "logo": "https://fwatch.tv/assets/channel-img/d629d6a9bc_image.png", "group": "FIFA High", "url": "https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/w0rehjjrwe/out/v1/69a2a7041395406b970598f61680e7cf/cenc.mpd", "type": "dash", "kid": "14eeabf30c14b7fbf3008c03099ce011", "key": "17d2ac8dbc5429bd70af3433aa12158d" },
             { "name": "FOX SPORTS UHD", "logo": "https://fwatch.tv/assets/channel-img/fc414fedcd_image.png", "group": "FIFA High", "url": "https://otte-qw.live.pv-cdn.net/pdx-nitro/live/clients/dash/enc/9jiie2ephv/out/v1/9e895e2c1c894a75ac6d21a4deddd5d3/cenc.mpd", "type": "dash", "kid": "95b52d16d344af539ce9c2c9ff95571a", "key": "5f035d9c4a178221f89d2439426b2e9a" },
@@ -484,9 +482,10 @@
             renderBanglaSection();
             
             setTimeout(() => {
-                const defaultCard = document.querySelectorAll('#fifaTabPanel .channel-card')[0]; 
+                // ২ নম্বর চ্যানেল 'FIFA 2026 Live (Server 2)' কে ডিফল্ট (Index 1) হিসেবে পেজ লোডে সেট করা হলো
+                const defaultCard = document.querySelectorAll('#fifaTabPanel .channel-card')[1]; 
                 if (defaultCard) {
-                    switchStandardChannel(fifaChannels[0], defaultCard);
+                    switchStandardChannel(fifaChannels[1], defaultCard);
                 }
             }, 400);
         });
