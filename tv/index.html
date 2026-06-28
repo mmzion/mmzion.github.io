@@ -3,104 +3,424 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zion Sports — Redirecting...</title>
+    <title>Zion Sports — Ultimate OTT</title>
+    <base href="https://fifalive.click/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Zion Sports — Ultimate OTT">
+    <meta property="og:description" content="Watch Live Premium Sports Streams smoothly on Zion Sports.">
+    <meta property="og:image" content="https://i.ibb.co.com/ymJhZWxG/1000075445-clean.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
     <style>
-        body {
-            background-color: #090514;
-            color: #f1f5f9;
-            font-family: sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        :root {
+            --purple-primary: #7c3aed;
+            --purple-glow: rgba(124, 58, 237, 0.4);
+            --purple-bg-dark: #090514;
+            --panel-bg: rgba(22, 14, 45, 0.6);
+            --card-border: rgba(124, 58, 237, 0.15);
+        }
+
+        body { 
+            background-color: var(--purple-bg-dark) !important; 
+            color: #f1f5f9 !important; 
+            font-family: sans-serif; 
+            min-height: 100vh; 
             margin: 0;
-            text-align: center;
-            padding: 20px;
+            padding: 0;
         }
-        .redirect-container {
-            max-width: 500px;
-            background: rgba(22, 14, 45, 0.6);
-            padding: 40px 30px;
-            border-radius: 16px;
-            border: 1px solid rgba(124, 58, 237, 0.2);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+
+        .ott-nav { 
+            background: rgba(9, 5, 20, 0.85) !important; 
+            backdrop-filter: blur(20px); 
+            height: 55px; 
+            display: flex; 
+            align-items: center; 
+            padding: 0 15px; 
+            border-bottom: 1px solid rgba(124, 58, 237, 0.2); 
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
-        h1 {
-            color: #7c3aed;
-            font-size: 24px;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+
+        .theater-screen-sticky-wrapper {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 2050;
+            background: #000;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.9);
         }
-        p {
-            font-size: 15px;
-            line-height: 1.6;
-            color: #cbd5e1;
+        
+        .theater-screen { 
+            position: relative; 
+            width: 100%; 
+            aspect-ratio: 16 / 9; 
+            overflow: hidden; 
         }
-        .timer {
-            font-weight: 700;
-            color: #FFD700;
-        }
-        .btn-redirect {
-            display: inline-block;
-            margin-top: 20px;
-            background: #7c3aed;
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 24px;
-            border-radius: 30px;
-            font-size: 14px;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
-            transition: all 0.2s;
+        
+        #plyr-wrapper { width: 100%; height: 100%; position: absolute; top:0; left:0; z-index: 1; }
+        video { width: 100%; height: 100%; background: #000; object-fit: contain !important; }
+        .plyr { width: 100%; height: 100%; }
+
+        .player-click-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: calc(100% - 50px);
+            z-index: 2;
+            pointer-events: auto;
             cursor: pointer;
-            border: none;
-            outline: none;
         }
-        .btn-redirect:hover {
-            background: #6d28d9;
-            transform: translateY(-2px);
+
+        .ott-dashboard { padding: 12px; }
+        .stream-details { background: var(--panel-bg); padding: 10px 14px; border-radius: 12px; border: 1px solid rgba(124, 58, 237, 0.15); display: flex; align-items: center; gap: 12px; position: relative; }
+        .active-logo-img { width: 30px; height: 34px; object-fit: contain; border-radius: 6px; background: rgba(255,255,255,0.08); padding: 2px; border: 1px solid rgba(124, 58, 237, 0.3); }
+        
+        .badge-live { background: linear-gradient(135deg, #ef4444, #dc2626); color: #fff; font-size: 9px; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; font-weight: bold; }
+        .horizontal-panel { margin-top: 12px; background: var(--panel-bg); padding: 12px; border-radius: 14px; border: 1px solid rgba(124, 58, 237, 0.1); }
+        
+        .btn-reload-stream {
+            margin-left: auto;
+            background: rgba(124, 58, 237, 0.1);
+            color: #c084fc;
+            border: 1px solid rgba(124, 58, 237, 0.4);
+            padding: 4px 10px;
+            font-size: 10px;
+            font-weight: 700;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
         }
-        .footer {
-            margin-top: 30px;
-            font-size: 11px;
-            color: #7c7299;
+
+        .ott-tabs-wrapper { margin-top: 12px; background: rgba(22, 14, 45, 0.8); padding: 4px; border-radius: 10px; display: inline-flex; gap: 4px; border: 1px solid rgba(124, 58, 237, 0.15); width: 100%; overflow-x: auto; white-space: nowrap; }
+        .tab-trigger { background: transparent; color: #7c7299; border: none; padding: 8px 14px; font-size: 10px; font-weight: 700; text-transform: uppercase; border-radius: 7px; transition: all 0.2s; }
+        .tab-trigger.active { background: var(--purple-primary); color: #fff; box-shadow: 0 0 10px var(--purple-glow); }
+
+        /* 📱 ইউটিউবের মতো নিচে নিচে (Vertical List) লেআউট */
+        .iptv-grid-row { display: flex; flex-direction: column; gap: 8px; }
+        .panel-grid-hidden { display: none !important; }
+
+        .channel-card { 
+            background: rgba(255,255,255,0.02); 
+            padding: 10px 14px; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            display: flex; 
+            flex-direction: row; 
+            align-items: center; 
+            justify-content: flex-start; 
+            gap: 14px;
+            border: 1px solid var(--card-border); 
+            transition: all 0.2s ease; 
+            width: 100%;
+        }
+        .channel-card:hover { border-color: rgba(124, 58, 237, 0.3); background: rgba(124, 58, 237, 0.02); }
+        .channel-card.active { border: 1.5px solid var(--purple-primary); background: rgba(124, 58, 237, 0.12); box-shadow: 0 0 15px rgba(124, 58, 237, 0.15); }
+        
+        .logo-img { width: 38px; height: 38px; object-fit: contain; border-radius: 6px; padding: 2px; background: rgba(255,255,255,0.04); }
+        .card-info-box { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; overflow: hidden; }
+        .card-name { font-weight: 600; font-size: 12px; color: #cbd5e1; text-transform: uppercase; letter-spacing: 0.3px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
+        .card-group { font-size: 9px; color: #7c7299; text-transform: uppercase; font-weight: 700; }
+
+        .plyr--video { --plyr-color-main: var(--purple-primary); }
+
+        @media (min-width: 992px) {
+            .ott-main-layout {
+                display: grid;
+                grid-template-columns: 60% 40%;
+                gap: 20px;
+                padding: 20px;
+                align-items: start;
+            }
+            .left-column-wrapper {
+                position: sticky;
+                top: 20px;
+                z-index: 10;
+            }
+            .theater-screen-sticky-wrapper {
+                position: relative;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            }
+            .ott-dashboard { padding: 0 !important; }
+            .horizontal-panel {
+                max-height: calc(100vh - 150px);
+                overflow-y: auto;
+                padding-right: 5px;
+            }
+            .horizontal-panel::-webkit-scrollbar { width: 5px; }
+            .horizontal-panel::-webkit-scrollbar-thumb { background: var(--purple-primary); border-radius: 10px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="redirect-container">
-        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#7c3aed" class="bi bi-arrow-right-circle" viewBox="0 0 16 16" style="margin-bottom: 15px;">
-            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/>
-        </svg>
-        <h1>Moving to New Server</h1>
-        <p>Zion Sports is offline here due to lack of support. We are redirecting you to our active platform in <span class="timer" id="countdown">5</span> seconds...</p>
+    <nav class="ott-nav"><div class="text-white fw-bold"><i class="bi bi-play-circle text-purple-primary" style="color: var(--purple-primary);"></i> ZION SPORTS</div></nav>
+
+    <div class="ott-main-layout">
         
-        <button onclick="doRedirect()" class="btn-redirect">Go to App Now</button>
-        
-        <div class="footer">© 2026 Zion Sports • All Rights Reserved</div>
+        <div class="left-column-wrapper">
+            <div class="theater-screen-sticky-wrapper">
+                <div class="theater-screen">
+                    <div id="plyr-wrapper">
+                        <video id="player" playsinline controls autoplay></video>
+                        <div class="player-click-overlay" id="player-overlay"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stream-details mt-3">
+                <span class="badge-live">Live</span>
+                <img id="activeLogo" src="" class="active-logo-img" alt="logo" onerror="this.style.display='none'">
+                <h1 class="h6 m-0" id="activeTitle">Loading Stream...</h1>
+                
+                <button class="btn-reload-stream" onclick="reloadCurrentStream()"><i class="bi bi-arrow-clockwise"></i> Reload</button>
+            </div>
+        </div>
+
+        <div class="container-fluid ott-dashboard">
+            
+            <div class="ott-tabs-wrapper mt-0">
+                <button id="tabSports" class="tab-trigger active" onclick="togglePanelTab('sports', this)"><i class="bi bi-broadcast me-1"></i> Live Sports</button>
+                <button id="tabPremium" class="tab-trigger" onclick="togglePanelTab('premium', this)"><i class="bi bi-trophy-fill me-1"></i> Premium Feeds</button>
+            </div>
+
+            <div class="horizontal-panel">
+                
+                <div id="sportsTabPanel" class="iptv-grid-row">
+                    </div>
+
+                <div id="premiumTabPanel" class="iptv-grid-row panel-grid-hidden">
+                    </div>
+
+            </div>
+            
+            <div class="text-center mt-5 text-muted" style="font-size: 10px; opacity: 0.2;">© 2026 Zion Sports • Powered by GitHub Pages</div>
+        </div>
+
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.10/shaka-player.ui.min.js"></script>
+    <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+
     <script>
-        let timeLeft = 5;
-        const countdownEl = document.getElementById('countdown');
-        const targetUrl = 'https://fifalive.click/play';
-        
-        // রিডিরেক্ট ফাংশন
-        function doRedirect() {
-            clearInterval(timer); // টাইমার ক্লিয়ার করা হলো যাতে লুপ না চলে
-            window.location.href = targetUrl;
+        // 📥 তোমার দেওয়া সম্পূর্ণ নতুন ডাটাবেজ ফিল্টারিং ও ক্যাটাগরাইজেশন
+        const allChannels = [
+            { "name": "TNT Sports FHD", "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI2NSvkyk8Fx2UMBXFdEXS36TNepD6Uy8pMQveJnYRbDnXedcg2tttKHz3&s=10", "url": "https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/65ldy4ejuu/out/v1/69bc6b64f1c14e36bb21e0075a71d8ca/cenc.mpd", "type": "dash", "group": "TNT", "kid": "570c19f1be3410e4e409be4dc7923f2b", "key": "9a4dea8af2a2a703dffa8a477e9edc50", "tab": "sports" }, 
+            { "name": "TNT SPORTS HD", "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI2NSvkyk8Fx2UMBXFdEXS36TNepD6Uy8pMQveJnYRbDnXedcg2tttKHz3&s=10", "url": "https://xstm.250909.cc/live/SPORTSFLUX-PRD-76753-1/4a7a4af09781/1033.m3u8", "group": "TNT", "tab": "sports" }, 
+            { "name": "WILLOW HD", "logo": "https://s21.q4cdn.com/819998841/files/doc_news/2024/May/Willow-logo-transparent-cb.png", "url": "https://tmaxapp.site/willoweng.m3u8", "group": "WILLOW", "tab": "sports" }, 
+            { "name": "SonyLiv - ENG", "logo": "https://upload.wikimedia.org/wikipedia/commons/5/5a/DSports.png", "url": "https://sonymtmnew-akamaized.pages.dev/hls/live/2105080/cricodi2606/ENG/master.m3u8", "group": "SonyLiv", "tab": "sports" }, 
+            { "name": "SonyLiv - HIN", "logo": "https://upload.wikimedia.org/wikipedia/commons/5/5a/DSports.png", "url": "https://sonymtmnew-akamaized.pages.dev/hls/live/2105079/cricodi2606/HIN/master.m3u8", "group": "SonyLiv", "tab": "sports" }, 
+            { "name": "SonyLiv - TAM", "logo": "https://upload.wikimedia.org/wikipedia/commons/5/5a/DSports.png", "url": "https://sonymtmnew-akamaized.pages.dev/hls/live/2018457/cricodi2606/TAM/master.m3u8", "group": "SonyLiv", "tab": "sports" }, 
+            { "name": "SonyLiv - TEL", "logo": "https://upload.wikimedia.org/wikipedia/commons/5/5a/DSports.png", "url": "https://sonymtmnew-akamaized.pages.dev/hls/live/2037142/cricodi2606/TEL/master.m3u8", "group": "SonyLiv", "tab": "sports" }, 
+            { "name": "SonyLiv - KAN", "logo": "https://upload.wikimedia.org/wikipedia/commons/5/5a/DSports.png", "url": "https://sonymtmnew-akamaized.pages.dev/hls/live/2037143/cricodi2606/KAN/master.m3u8", "group": "SonyLiv", "tab": "sports" }, 
+            { "name": "SportzX Live 1", "logo": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1770378074527.png", "url": "https://edgestreams.pro/hls/ztyarueaghj71.m3u8?", "group": "SportzX", "tab": "sports" }, 
+            { "name": "FOX ONE - AQ", "logo": "https://images.seeklogo.com/logo-png/28/1/fox-sports-logo-png_seeklogo-284763.png", "url": "https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/enc/hgpxfatexm/out/v1/b78800b9b2304879b15843f455836829/cenc.mpd", "type": "dash", "group": "FOX", "kid": "f6564ec2aee819046328a0e153be574d", "key": "ff46a8a1031eb27ef22576a077c98ab7", "tab": "sports" }, 
+            { "name": "CTV SPORTS FHD", "logo": "https://r2.thesportsdb.com/images/media/channel/logo/wwr35d1665918725.png", "url": "https://otte.cache.aiv-cdn.net/iad-nitro/live/clients/dash/enc/sh9xmjbhhr/out/v1/6b4982b95f7843659ead6393341dd532/cenc.mpd", "type": "dash", "group": "CTV", "kid": "ac59787c884c9b19e3a6219c974c2fd2", "key": "443fd36e2a294f3ce69fdb7488fdd65a", "tab": "sports" }, 
+            { "name": "ISCREEN BD FHD", "logo": "https://fwatch.tv/assets/logo.webp", "url": "https://livecdn.rockstreamer.com/main/Iscreen_fifa_main/main/in4_1080p/chunks.m3u8", "group": "ISCREEN", "tab": "sports" }, 
+            { "name": "TIPIK FR FHD", "logo": "https://upload.wikimedia.org/wikipedia/fr/b/bb/Logo_Tipik_2025.png", "url": "https://c9851ec-rbm-hilv-fsly.cdn.redbee.live/L26/6b640fa2/a765d074.isml/dash/.mpd", "type": "dash", "group": "TIPIK", "kid": "adca25b8779e4168a0cd710f59f61ccf", "key": "be5383ed3cd8079f4ffe78ad067f476a", "tab": "sports" }, 
+            { "name": "TSN SPORTS FHD", "logo": "https://www.bellmedia.ca/lede/wp-content/uploads/2024/09/18581592_10155403529061055_8240563011649656197_n.jpg", "url": "https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/w0rehjjrwe/out/v1/69a2a7041395406b970598f61680e7cf/cenc.mpd", "type": "dash", "group": "TSN", "kid": "14eeabf30c14b7fbf3008c03099ce011", "key": "17d2ac8dbc5429bd70af3433aa12158d", "tab": "sports" }, 
+            { "name": "FOX SPORTS 4K", "logo": "https://images.seeklogo.com/logo-png/28/1/fox-sports-logo-png_seeklogo-284763.png", "url": "https://otte.cache.aiv-cdn.net/lhr-nitro/live/clients/dash/enc/m5hvr8vyu9/out/v1/31d30c91fc65458789b84209d3fa22e4/cenc.mpd", "type": "dash", "group": "FOX", "kid": "1f68713028d439ec03be07f56c1d6213", "key": "20093db6455160fffed4c394def3193d", "tab": "sports" }, 
+            { "name": "WC TV FHD", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://qp-pldt-live-bpk-ucd-prod.akamaized.net/bpk-tv/fifa_ppv1/default/index.mpd", "type": "dash", "group": "WC", "kid": "2c338a117d434ce4bbe3569231af90f1", "key": "a9633d901ee8a3f4f58ac314b5c5f4fb", "tab": "premium" }, 
+            { "name": "CT SPORTS CZ", "logo": "https://upload.wikimedia.org/wikipedia/commons/5/5a/DSports.png", "url": "https://dash2.antik.sk/stream/nvidia_ct_sport/playlist_cenc.mpd", "type": "dash", "group": "CT", "kid": "11223344556677889900112233445566", "key": "4b80724d0ef86bcb2c21f7999d67739d", "tab": "premium" }, 
+            { "name": "beIN MAX FHD", "logo": "https://images.fotmob.com/image_resources/logo/teamlogo/6720.png", "url": "https://pub-e3eb43d02df647099f49525f20574746.r2.dev/BMax1-2/index.m3u8", "group": "beIN", "tab": "premium" }, 
+            { "name": "TSN SPORTS HD", "logo": "https://www.bellmedia.ca/lede/wp-content/uploads/2024/09/18581592_10155403529061055_8240563011649656197_n.jpg", "url": "https://lb.xyzcloud3.xyz/tsn1/index.m3u8?", "group": "TSN", "tab": "premium" }, 
+            { "name": "TELEMUNDO HD", "logo": "https://duckduckgo.com/i/2e3815a5b7ddd3c9.png", "url": "https://instreams.pro/US/NFLHD3/tracks-v1a1/mono.m3u8?", "group": "TELEMUNDO", "tab": "premium" }, 
+            { "name": "TELEMUNDO FHD", "logo": "https://duckduckgo.com/i/2e3815a5b7ddd3c9.png", "url": "https://lb.xyzcloud3.xyz/Telemundo/index.m3u8?", "group": "TELEMUNDO", "tab": "premium" }, 
+            { "name": "TSN SPORTS 4K", "logo": "https://www.bellmedia.ca/lede/wp-content/uploads/2024/09/18581592_10155403529061055_8240563011649656197_n.jpg", "url": "https://lb.xyzcloud3.xyz/tsn4k/index.m3u8?", "group": "TSN", "tab": "premium" }, 
+            { "name": "ARABIC LIVE FHD", "logo": "https://images.fotmob.com/image_resources/logo/teamlogo/6719.png", "url": "https://cdn2.xyzstreams.st/bein4kinternal/index.m3u8?", "group": "ARABIC", "tab": "premium" }, 
+            { "name": "IRIB 4K", "logo": "https://fwatch.tv/assets/logo.webp", "url": "https://ncdn.telewebion.ir/faratar/live/playlist.m3u8", "group": "IRIB", "tab": "premium" }, 
+            { "name": "SportzX Live 2", "logo": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1770378074527.png", "url": "https://instreams.pro/EU/HDWC1/tracks-v1a1/mono.m3u8?", "group": "SportzX", "tab": "premium" }, 
+            { "name": "HD SERVER ENG", "logo": "https://fwatch.tv/assets/logo.webp", "url": "https://edge2caster.pro/hls/b0h5fNwDKH.m3u8?", "group": "HD", "tab": "premium" }, 
+            { "name": "HD SERVER AR", "logo": "https://fwatch.tv/assets/logo.webp", "url": "https://mainstreams.pro/hls/sqdahach1ax.m3u8?", "group": "HD", "tab": "premium" }, 
+            { "name": "SD SERVER [ENG]", "logo": "https://fwatch.tv/assets/logo.webp", "url": "http://193.47.62.55/hls/fllll.m3u8?", "group": "SD", "tab": "premium" }, 
+            { "name": "ENG SD SERVER", "logo": "https://fwatch.tv/assets/logo.webp", "url": "http://193.47.62.42/hls/JCCCC.m3u8?", "group": "ENG", "tab": "premium" }, 
+            { "name": "SD SERVER [SWE]", "logo": "https://fwatch.tv/assets/logo.webp", "url": "http://193.47.62.55/hls/skkkkq.m3u8?", "group": "SD", "tab": "premium" }, 
+            { "name": "beiN SPORTS FR", "logo": "https://images.fotmob.com/image_resources/logo/teamlogo/6720.png", "url": "http://193.47.62.47/hls/skkkk.m3u8?", "group": "beIN", "tab": "premium" }, 
+            { "name": "ESPANOL SD", "logo": "https://images.fotmob.com/image_resources/logo/teamlogo/6719.png", "url": "http://193.47.62.47/hls/skkkkqq.m3u8", "group": "ESPANOL", "tab": "premium" }, 
+            { "name": "Bein Sports 2 Arabic", "logo": "https://images.fotmob.com/image_resources/logo/teamlogo/6720.png", "url": "https://1nyaler.streamhostingcdn.top/stream/21/index.m3u8", "group": "beIN", "tab": "premium" }, 
+            { "name": "FOX SPORTS - AQ", "logo": "https://images.seeklogo.com/logo-png/28/1/fox-sports-logo-png_seeklogo-284763.png", "url": "https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/enc/icqfwyvgjv/out/v1/79e41681b80248788032c6880a06e7d3/cenc.mpd", "type": "dash", "group": "FOX", "kid": "996d39be9ee1c8e65d94d7bb973bdf0f", "key": "5306cdc1e410bc6ddb2530608c42b11b", "tab": "premium" }, 
+            { "name": "TSN SPORTS FHD (Alt)", "logo": "https://www.bellmedia.ca/lede/wp-content/uploads/2024/09/18581592_10155403529061055_8240563011649656197_n.jpg", "url": "https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/cjglydxghe/out/v1/8977baf175da4b94873194613dd3fe55/cenc.mpd", "type": "dash", "group": "TSN", "kid": "85b277daf5aae05833fe43a68f587968", "key": "d52d7e9bc0bcd98787efd547ac91eca0", "tab": "premium" }, 
+            { "name": "QAZ SPORTS FHD", "logo": "https://cdn.livesoccertv.com/images/channels/thumbnails/kazsport-kazakhstan.jpg", "url": "https://fo03-bkm.beetv.kz/bpk-tv/000003038/tve/index.m3u8", "group": "QAZ", "tab": "premium" }, 
+            { "name": "beIN MAX FHD (Alt)", "logo": "https://images.fotmob.com/image_resources/logo/teamlogo/6720.png", "url": "https://cdn2.xyzstreams.st/bein2/index.m3u8?", "group": "beIN", "tab": "premium" }, 
+            { "name": "FAST SERVER", "logo": "https://fwatch.tv/assets/logo.webp", "url": "https://pulltx.jdnzrgm.com/live/hd-en-6MvZ6BDgTuQ97smAfg.m3u8?txSecret=d2713a5e0b0cbc848f90d6e26db0ec55&txTime=6A40A5A0", "group": "FAST", "tab": "premium" }, 
+            { "name": "NBC SPORTS HD", "logo": "https://fwatch.tv/assets/logo.webp", "url": "https://instreams.pro/US/NFLHD4/tracks-v1a1/mono.m3u8?", "group": "NBC", "tab": "premium" }, 
+            { "name": "FOX SPORTS 4K (Alt)", "logo": "https://images.seeklogo.com/logo-png/28/1/fox-sports-logo-png_seeklogo-284763.png", "url": "https://lb.xyzcloud3.xyz/FS1/index.m3u8?", "group": "FOX", "tab": "premium" }, 
+            { "name": "SportzX Live 3", "logo": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1770378074527.png", "url": "https://instreams.pro/EU/HDWC3/tracks-v1a1/mono.m3u8?", "group": "SportzX", "tab": "premium" }, 
+            { "name": "HD SERVER ENG (Alt)", "logo": "https://fwatch.tv/assets/logo.webp", "url": "https://edgestreams.pro/hls/24SDAZFcsqnj24.m3u8?", "group": "HD", "tab": "premium" }, 
+            { "name": "HD SERVER AR (Alt)", "logo": "https://fwatch.tv/assets/logo.webp", "url": "https://mainstreams.pro/hls/eJmauBDCIf.m3u8?", "group": "HD", "tab": "premium" }
+        ];
+
+        const video = document.getElementById('player');
+        let hls = null;
+        let dashPlayer = null;
+        let currentActiveUrl = ''; 
+        let savedCurrentChannelData = null;
+
+        const plyr = new Plyr(video, { 
+            autoplay: true, 
+            controls: ['play-large', 'play', 'progress', 'current-time', 'volume', 'pip', 'fullscreen'] 
+        });
+
+        const overlay = document.getElementById('player-overlay');
+        overlay.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if(video.muted) {
+                video.muted = false;
+                video.volume = 1.0;
+            }
+
+            const controls = document.querySelector('.plyr__controls');
+            if (controls) {
+                const isControlsVisible = controls.style.opacity === '1' || 
+                                          window.getComputedStyle(controls).visibility === 'visible' ||
+                                          controls.classList.contains('plyr__controls--visible');
+                
+                if (isControlsVisible) {
+                    if (video.paused) video.play();
+                    else video.pause();
+                } else {
+                    plyr.toggleControls(true);
+                }
+            }
+        });
+
+        function renderLists() {
+            const sportsPanel = document.getElementById("sportsTabPanel");
+            const premiumPanel = document.getElementById("premiumTabPanel");
+            
+            sportsPanel.innerHTML = "";
+            premiumPanel.innerHTML = "";
+
+            allChannels.forEach((ch, idx) => {
+                const card = document.createElement("div");
+                card.className = "channel-card";
+                card.setAttribute("data-url", ch.url);
+
+                card.onclick = function() {
+                    switchStandardChannel(ch, this);
+                };
+
+                card.innerHTML = `
+                    <img src="${ch.logo}" class="logo-img" alt="${ch.name}" onerror="this.src='https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png'">
+                    <div class="card-info-box">
+                        <div class="card-name">${ch.name}</div>
+                        <div class="card-group">${ch.group}</div>
+                    </div>
+                `;
+
+                if(ch.tab === "sports") {
+                    sportsPanel.appendChild(card);
+                } else {
+                    premiumPanel.appendChild(card);
+                }
+            });
         }
 
-        // ৫ সেকেন্ড কাউন্টডাউন টাইমার
-        const timer = setInterval(() => {
-            timeLeft--;
-            countdownEl.innerText = timeLeft;
-            if (timeLeft <= 0) {
-                doRedirect(); // ৫ সেকেন্ড শেষ হলে অটো রিডিরেক্ট
+        function switchStandardChannel(channelObj, el) {
+            savedCurrentChannelData = channelObj;
+            currentActiveUrl = channelObj.url; 
+            
+            document.querySelectorAll('.channel-card').forEach(c => c.classList.remove('active'));
+            if(el) el.classList.add('active');
+            
+            document.getElementById('activeTitle').innerText = channelObj.name;
+            const activeLogo = document.getElementById('activeLogo');
+            if (channelObj.logo) {
+                activeLogo.src = channelObj.logo; activeLogo.style.display = 'inline-block';
+            } else {
+                activeLogo.style.display = 'none';
             }
-        }, 1000);
+            
+            if (hls) { hls.destroy(); hls = null; }
+            if (dashPlayer) { dashPlayer.reset(); dashPlayer = null; }
+
+            // MPEG-DASH (.mpd) অথবা DRM প্রোটেকশন হ্যান্ডলিং মেকানিজম
+            if (channelObj.type === 'dash' || channelObj.url.includes('.mpd')) {
+                dashPlayer = dashjs.MediaPlayer().create();
+                
+                if (channelObj.kid && channelObj.key) {
+                    dashPlayer.setProtectionData({
+                        "org.w3.clearkey": {
+                            "clearkeys": { [channelObj.kid]: channelObj.key }
+                        }
+                    });
+                }
+                
+                dashPlayer.initialize(video, channelObj.url, true);
+                dashPlayer.on(dashjs.MediaPlayer.events.STREAM_INITIALIZED, function() {
+                    video.muted = false;
+                    video.volume = 1.0;
+                });
+            } else {
+                if (Hls.isSupported()) {
+                    hls = new Hls();
+                    hls.loadSource(channelObj.url);
+                    hls.attachMedia(video);
+                    hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                        video.muted = false; 
+                        video.volume = 1.0;
+                        video.play().catch(() => {
+                            video.muted = true;
+                            video.play().then(handleMuteBypass);
+                        });
+                    });
+                } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                    video.src = channelObj.url;
+                    video.play();
+                }
+            }
+        }
+
+        function handleMuteBypass() {
+            const unscrapeAudioLock = () => {
+                video.muted = false;
+                video.volume = 1.0;
+                document.removeEventListener('click', unscrapeAudioLock);
+                document.removeEventListener('touchend', unscrapeAudioLock);
+            };
+            document.addEventListener('click', unscrapeAudioLock);
+            document.addEventListener('touchend', unscrapeAudioLock);
+        }
+
+        function reloadCurrentStream() {
+            if (savedCurrentChannelData) {
+                const activeCard = document.querySelector(`.channel-card.active`);
+                switchStandardChannel(savedCurrentChannelData, activeCard);
+            }
+        }
+
+        function togglePanelTab(tabName, buttonElement) {
+            document.querySelectorAll('.tab-trigger').forEach(t => t.classList.remove('active'));
+            buttonElement.classList.add('active');
+
+            document.getElementById('sportsTabPanel').classList.add('panel-grid-hidden');
+            document.getElementById('premiumTabPanel').classList.add('panel-grid-hidden');
+
+            if (tabName === 'sports') {
+                document.getElementById('sportsTabPanel').classList.remove('panel-grid-hidden');
+            } else if (tabName === 'premium') {
+                document.getElementById('premiumTabPanel').classList.remove('panel-grid-hidden');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderLists();
+            
+            setTimeout(() => {
+                const defaultCard = document.querySelectorAll('#sportsTabPanel .channel-card')[0]; 
+                if (defaultCard) {
+                    switchStandardChannel(allChannels[0], defaultCard);
+                }
+            }, 400);
+        });
     </script>
 </body>
 </html>
