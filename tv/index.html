@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Zion Sports — Ultimate OTT</title>
     <base href="https://fifalive.click/">
 
@@ -17,9 +17,9 @@
     <style>
         :root {
             --purple-primary: #7c3aed;
-            --purple-glow: rgba(124, 58, 237, 0.4);
-            --purple-bg-dark: #090514;
-            --panel-bg: rgba(22, 14, 45, 0.6);
+            --purple-glow: rgba(124, 58, 237, 0.5);
+            --purple-bg-dark: #05020a;
+            --panel-bg: rgba(18, 10, 36, 0.7);
             --card-border: rgba(124, 58, 237, 0.25);
         }
 
@@ -30,19 +30,21 @@
             min-height: 100vh; 
             margin: 0;
             padding: 0;
+            overflow-x: hidden;
         }
 
         .ott-nav { 
-            background: rgba(9, 5, 20, 0.85) !important; 
+            background: rgba(5, 20, 10, 0.9) !important; 
             backdrop-filter: blur(20px); 
             height: 55px; 
             display: flex; 
             align-items: center; 
             padding: 0 15px; 
-            border-bottom: 1px solid rgba(124, 58, 237, 0.2); 
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid rgba(124, 58, 237, 0.25); 
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.7);
         }
 
+        /* 📺 স্ক্রিনে ফাঁকা জায়গা না রাখার জন্য থিয়েটার এবং ভিডিও ফিক্স */
         .theater-screen-sticky-wrapper {
             position: -webkit-sticky;
             position: sticky;
@@ -50,7 +52,7 @@
             z-index: 2050;
             background: #000;
             width: 100%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.9);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.9);
         }
         
         .theater-screen { 
@@ -58,15 +60,23 @@
             width: 100%; 
             aspect-ratio: 16 / 9; 
             overflow: hidden; 
+            background: #000;
         }
         
         #plyr-wrapper { width: 100%; height: 100%; position: absolute; top:0; left:0; z-index: 1; }
-        video { width: 100%; height: 100%; background: #000; object-fit: contain !important; }
-        .plyr { width: 100%; height: 100%; }
+        
+        /* 🚨 ভিডিওর ডানে বামে কোনো ফাঁকা জায়গা (Black Bars) রাখবে না */
+        video { 
+            width: 100% !important; 
+            height: 100% !important; 
+            background: #000; 
+            object-fit: cover !important; 
+        }
+        .plyr video { object-fit: cover !important; }
 
         .player-click-overlay {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: calc(100% - 50px);
+            top: 0; left: 0; width: 100%; height: calc(100% - 55px);
             z-index: 2;
             pointer-events: auto;
             cursor: pointer;
@@ -77,26 +87,54 @@
         .active-logo-img { width: 34px; height: 38px; object-fit: contain; border-radius: 6px; background: rgba(255,255,255,0.08); padding: 2px; border: 1px solid rgba(124, 58, 237, 0.3); }
         
         .badge-live { background: linear-gradient(135deg, #ef4444, #dc2626); color: #fff; font-size: 10px; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; font-weight: bold; }
-        .horizontal-panel { margin-top: 12px; background: var(--panel-bg); padding: 14px; border-radius: 14px; border: 1px solid rgba(124, 58, 237, 0.1); }
         
         .btn-reload-stream {
             margin-left: auto;
-            background: rgba(124, 58, 237, 0.1);
+            background: rgba(124, 58, 237, 0.15);
             color: #c084fc;
             border: 1px solid rgba(124, 58, 237, 0.4);
-            padding: 6px 12px;
+            padding: 6px 14px;
             font-size: 12px;
             font-weight: 700;
-            border-radius: 6px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             gap: 5px;
             cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-reload-stream:hover { background: var(--purple-primary); color: #fff; }
+
+        /* 🚀 বিশাল সাইজের ফুলস্ক্রিন ও অটো-রোটেট মাস্টার বাটন */
+        .btn-giant-fullscreen {
+            width: 100%;
+            background: linear-gradient(135deg, #7c3aed, #5b21b6);
+            color: #fff;
+            border: none;
+            padding: 16px;
+            font-size: 15px;
+            font-weight: 700;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 14px;
+            box-shadow: 0 4px 20px var(--purple-glow);
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.2s ease-in-out;
+        }
+        .btn-giant-fullscreen:hover {
+            transform: scale(1.01);
+            box-shadow: 0 0 25px rgba(124, 58, 237, 0.7);
         }
 
+        .horizontal-panel { margin-top: 14px; background: var(--panel-bg); padding: 14px; border-radius: 14px; border: 1px solid rgba(124, 58, 237, 0.1); }
         .iptv-grid-row { display: flex; flex-direction: column; gap: 12px; }
 
-        /* 🔥 বাটনগুলো বড় বড় এবং প্রিমিয়াম লুক দেওয়ার মাস্টার সিএসএস */
+        /* বড় বড় বাটন স্টাইল */
         .channel-card { 
             background: rgba(255, 255, 255, 0.03); 
             padding: 18px 20px; 
@@ -127,7 +165,19 @@
         .card-name { font-weight: 700; font-size: 15px; color: #f8fafc; text-transform: uppercase; letter-spacing: 0.4px; }
         .card-group { font-size: 10px; color: #a78bfa; text-transform: uppercase; font-weight: 700; background: rgba(124, 58, 237, 0.15); padding: 2px 8px; border-radius: 20px; }
 
-        .plyr--video { --plyr-color-main: var(--purple-primary); }
+        /* 🎨 প্রিমিয়াম কাস্টম প্লেয়ার কন্ট্রোলস ও সুন্দর সাউন্ড লোগো ফিক্স */
+        .plyr--video { 
+            --plyr-color-main: var(--purple-primary); 
+            --plyr-video-control-background-hover: rgba(124, 58, 237, 0.3);
+        }
+        .plyr__control--overlaid {
+            background: rgba(124, 58, 237, 0.8) !important;
+            box-shadow: 0 0 20px var(--purple-glow) !important;
+        }
+        .plyr__controls {
+            background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.85)) !important;
+            padding: 15px 10px 10px !important;
+        }
 
         @media (min-width: 992px) {
             .ott-main-layout {
@@ -150,7 +200,7 @@
             }
             .ott-dashboard { padding: 0 !important; }
             .horizontal-panel {
-                max-height: calc(100vh - 120px);
+                max-height: calc(100vh - 180px);
                 overflow-y: auto;
                 padding-right: 5px;
             }
@@ -166,7 +216,7 @@
     <div class="ott-main-layout">
         
         <div class="left-column-wrapper">
-            <div class="theater-screen-sticky-wrapper">
+            <div class="theater-screen-sticky-wrapper" id="videoContainer">
                 <div class="theater-screen">
                     <div id="plyr-wrapper">
                         <video id="player" playsinline controls autoplay></video>
@@ -182,6 +232,10 @@
                 
                 <button class="btn-reload-stream" onclick="reloadCurrentStream()"><i class="bi bi-arrow-clockwise"></i> Reload</button>
             </div>
+
+            <button class="btn-giant-fullscreen" onclick="goPremiumFullscreen()">
+                <i class="bi bi-arrows-fullscreen"></i> Expand To Fullscreen / Rotate
+            </button>
         </div>
 
         <div class="container-fluid ott-dashboard">
@@ -198,7 +252,6 @@
     <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
 
     <script>
-        // 📥 শুধুমাত্র দুটি সচল লাইভ সার্ভার
         const fifaChannels = [
             { "name": "FIFA Live (Server 1)", "url": "https://cdn011.viaplus.site/fox-usa.m3u8", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png" },
             { "name": "FIFA Live (Server 2)", "url": "https://cdn011.viaplus.site/telemundo-usa.m3u8", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png" }
@@ -211,7 +264,7 @@
 
         const plyr = new Plyr(video, { 
             autoplay: true, 
-            controls: ['play-large', 'play', 'progress', 'current-time', 'volume', 'pip', 'fullscreen'] 
+            controls: ['play-large', 'play', 'progress', 'current-time', 'volume', 'mute', 'pip', 'fullscreen'] 
         });
 
         const overlay = document.getElementById('player-overlay');
@@ -312,11 +365,35 @@
             }
         }
 
+        // 🔄 ফুলস্ক্রিন ও অটো-রোটেট এর মূল জাভাস্ক্রিপ্ট ট্রিপ ফিক্স
+        function goPremiumFullscreen() {
+            const container = document.getElementById('videoContainer');
+            if (!document.fullscreenElement) {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (video.webkitEnterFullscreen) {
+                    video.webkitEnterFullscreen();
+                }
+                
+                // 📱 মোবাইল ডিভাইসে ল্যান্ডস্কেপ মোডে স্ক্রিন লক করার চেষ্টা করবে
+                if (screen.orientation && screen.orientation.lock) {
+                    screen.orientation.lock('landscape').catch(function(error) {
+                        console.log("Orientation lock bypassed:", error);
+                    });
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
             renderLists();
             
             setTimeout(() => {
-                // 🏆 'FIFA Live (Server 2)' [Index 1]-কে ডিফল্ট অটো-প্লে চ্যানেল সেট করা হলো
                 const defaultCard = document.querySelectorAll('#fifaTabPanel .channel-card')[1]; 
                 if (defaultCard) {
                     switchStandardChannel(fifaChannels[1], defaultCard);
