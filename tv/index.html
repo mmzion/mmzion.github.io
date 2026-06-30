@@ -29,7 +29,6 @@
             min-height: 100vh; 
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
         }
 
         .ott-nav { 
@@ -43,6 +42,7 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
+        /* 📺 মোবাইল ও ডেক্সটপে প্লেয়ার স্টিকি রাখার আল্ট্রা ফিক্স সিএসএস */
         .theater-screen-sticky-wrapper {
             position: -webkit-sticky;
             position: sticky;
@@ -94,24 +94,22 @@
             cursor: pointer;
         }
 
-        .ott-tabs-wrapper { margin-top: 12px; background: rgba(22, 14, 45, 0.8); padding: 4px; border-radius: 10px; display: flex; gap: 4px; border: 1px solid rgba(124, 58, 237, 0.15); width: 100%; overflow-x: auto; white-space: nowrap; }
-        .ott-tabs-wrapper::-webkit-scrollbar { display: none; }
+        .ott-tabs-wrapper { margin-top: 12px; background: rgba(22, 14, 45, 0.8); padding: 4px; border-radius: 10px; display: inline-flex; gap: 4px; border: 1px solid rgba(124, 58, 237, 0.15); width: 100%; overflow-x: auto; white-space: nowrap; }
         .tab-trigger { background: transparent; color: #7c7299; border: none; padding: 8px 14px; font-size: 10px; font-weight: 700; text-transform: uppercase; border-radius: 7px; transition: all 0.2s; }
         .tab-trigger.active { background: var(--purple-primary); color: #fff; box-shadow: 0 0 10px var(--purple-glow); }
 
-        /* 📦 ৪টি কলাম বিশিষ্ট ছোট বক্স গ্রিড লেআউট (নো-সাইড-স্ক্রল) */
-        .iptv-grid-row { 
-            display: grid; 
-            grid-template-columns: repeat(4, 1fr); 
-            gap: 8px; 
+        /* 📦 চ্যানেলগুলো রেসপনসিভ গ্রিড — phone/pc সব জায়গায় perfectly fit, কোনো পাশের scroll নেই */
+        .iptv-grid-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 8px;
             width: 100%;
-            box-sizing: border-box;
         }
         .panel-grid-hidden { display: none !important; }
 
         .channel-card { 
             background: rgba(255,255,255,0.02); 
-            padding: 10px 4px; 
+            padding: 10px 6px; 
             border-radius: 10px; 
             cursor: pointer; 
             display: flex; 
@@ -120,31 +118,18 @@
             justify-content: center; 
             text-align: center;
             gap: 6px;
-            aspect-ratio: 1 / 1; 
+            aspect-ratio: 1.1 / 1;
             border: 1px solid var(--card-border); 
             transition: all 0.2s ease; 
             width: 100%;
-            box-sizing: border-box;
-            overflow: hidden; 
+            min-width: 0;
         }
         .channel-card:hover { border-color: rgba(124, 58, 237, 0.3); background: rgba(124, 58, 237, 0.02); }
         .channel-card.active { border: 1.5px solid var(--purple-primary); background: rgba(124, 58, 237, 0.12); box-shadow: 0 0 15px rgba(124, 58, 237, 0.15); }
         
-        .logo-img { width: 30px; height: 30px; object-fit: contain; border-radius: 6px; padding: 2px; background: rgba(255,255,255,0.04); }
+        .logo-img { width: 34px; height: 34px; object-fit: contain; border-radius: 6px; padding: 2px; background: rgba(255,255,255,0.04); }
         .card-info-box { display: flex; flex-direction: column; align-items: center; width: 100%; overflow: hidden; }
-        
-        .card-name { 
-            font-weight: 600; 
-            font-size: 8px; 
-            color: #cbd5e1; 
-            text-transform: uppercase; 
-            text-overflow: ellipsis; 
-            overflow: hidden; 
-            white-space: nowrap; 
-            width: 100%; 
-            padding: 0 4px;
-            box-sizing: border-box;
-        }
+        .card-name { font-weight: 600; font-size: 10px; color: #cbd5e1; text-transform: uppercase; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; width: 100%; }
 
         .plyr--video { --plyr-color-main: var(--purple-primary); }
 
@@ -177,7 +162,6 @@
             }
             .horizontal-panel::-webkit-scrollbar { width: 5px; }
             .horizontal-panel::-webkit-scrollbar-thumb { background: var(--purple-primary); border-radius: 10px; }
-            .iptv-grid-row { grid-template-columns: repeat(6, 1fr); } 
         }
     </style>
 </head>
@@ -209,10 +193,10 @@
         <div class="container-fluid ott-dashboard">
             
             <div class="ott-tabs-wrapper mt-0">
-                <button id="tabFifa" class="tab-trigger active" onclick="togglePanelTab('fifa', this)"><i class="bi bi-trophy-fill me-1"></i> FIFA</button>
-                <button id="tabSports" class="tab-trigger" onclick="togglePanelTab('sports', this)"><i class="bi bi-broadcast me-1"></i> Sports</button>
-                <button id="tabBangla" class="tab-trigger" onclick="togglePanelTab('bangla', this)"><i class="bi bi-flag-fill me-1"></i> Bangla</button>
-                <button id="tabChannels" class="tab-trigger" onclick="togglePanelTab('channels', this)"><i class="bi bi-tv me-1"></i> All</button>
+                <button id="tabFifa" class="tab-trigger active" onclick="togglePanelTab('fifa', this)"><i class="bi bi-trophy-fill me-1"></i> FIFA Premium</button>
+                <button id="tabSports" class="tab-trigger" onclick="togglePanelTab('sports', this)"><i class="bi bi-broadcast me-1"></i> Live Sports</button>
+                <button id="tabBangla" class="tab-trigger" onclick="togglePanelTab('bangla', this)"><i class="bi bi-flag-fill me-1"></i> Bangla TV</button>
+                <button id="tabChannels" class="tab-trigger" onclick="togglePanelTab('channels', this)"><i class="bi bi-tv me-1"></i> Live Channels</button>
             </div>
 
             <div class="horizontal-panel">
@@ -309,7 +293,7 @@
 
             const channels = database[key];
             if (!channels || channels.length === 0) {
-                panel.innerHTML = `<div class="text-muted text-center p-3" style="grid-column: span 4; font-size:11px;">No channels live.</div>`;
+                panel.innerHTML = `<div class="text-muted text-center p-3" style="grid-column: 1 / -1;">No channels live.</div>`;
                 return;
             }
 
