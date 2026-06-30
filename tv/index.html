@@ -6,90 +6,44 @@
     <title>Zion Sports — Ultimate OTT</title>
     <base href="https://fifalive.click/">
 
-    <!-- Social Meta Engine -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Zion Sports — Ultimate OTT Edition">
-    <meta property="og:description" content="Stream live global sports in ultimate cinematic fidelity.">
+    <meta property="og:title" content="Zion Sports — Ultimate OTT">
+    <meta property="og:description" content="Watch Live Premium Streams smoothly on Zion Sports.">
     <meta property="og:image" content="https://i.ibb.co.com/ymJhZWxG/1000075445-clean.png">
 
-    <!-- Frameworks & Fonts -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
     <style>
         :root {
-            --neon-purple: #a855f7;
-            --neon-cyan: #00f2fe;
-            --neon-glow-purple: rgba(168, 85, 247, 0.4);
-            --neon-glow-cyan: rgba(0, 242, 254, 0.3);
-            --bg-master: #030008;
-            --glass-card: rgba(18, 12, 38, 0.7);
-            --glass-border: rgba(168, 85, 247, 0.18);
+            --purple-primary: #7c3aed;
+            --purple-glow: rgba(124, 58, 237, 0.4);
+            --purple-bg-dark: #090514;
+            --panel-bg: rgba(22, 14, 45, 0.6);
+            --card-border: rgba(124, 58, 237, 0.15);
         }
 
         body { 
-            background: var(--bg-master) !important;
-            color: #f8fafc !important; 
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--purple-bg-dark) !important; 
+            color: #f1f5f9 !important; 
+            font-family: sans-serif; 
             min-height: 100vh; 
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
-            letter-spacing: -0.3px;
         }
 
-        /* 🌌 ডাইনামিক লাইভ অ্যাম্বিয়েন্ট ব্যাকগ্রাউন্ড ইফেক্ট */
-        .ambient-bg {
-            position: fixed;
-            top: -20%; left: -20%; width: 140%; height: 140%;
-            background: radial-gradient(circle at 20% 30%, rgba(168, 85, 247, 0.15) 0%, transparent 40%),
-                        radial-gradient(circle at 80% 70%, rgba(0, 242, 254, 0.12) 0%, transparent 45%);
-            z-index: -1;
-            pointer-events: none;
-            filter: blur(60px);
-        }
-
-        /* 👑 লাক্সারি গ্লাসমরফিক নেভিগেশন বার */
         .ott-nav { 
-            background: rgba(3, 0, 8, 0.75) !important; 
-            backdrop-filter: blur(30px) saturate(180%); 
-            -webkit-backdrop-filter: blur(30px) saturate(180%);
-            height: 65px; 
+            background: rgba(9, 5, 20, 0.85) !important; 
+            backdrop-filter: blur(20px); 
+            height: 55px; 
             display: flex; 
             align-items: center; 
-            padding: 0 24px; 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06); 
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-            position: relative;
-            z-index: 2100;
+            padding: 0 15px; 
+            border-bottom: 1px solid rgba(124, 58, 237, 0.2); 
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
-        .brand-logo {
-            font-weight: 800;
-            font-size: 20px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            background: linear-gradient(135deg, #ffffff 10%, var(--neon-purple) 60%, var(--neon-cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .brand-logo i {
-            font-size: 24px;
-            background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 10px var(--neon-glow-purple));
-        }
-
-        /* 📺 ফুল-স্ক্রিন ফিট এবং নো-ব্ল্যাক-বার মাস্টার আর্কিটেকচার */
+        /* 📺 মোবাইল ভার্সনে প্লেয়ার ওপরে ইউটিউবের মতো পারফেক্টলি আটকে রাখার মাস্টার সিএসএস ফিক্স */
         .theater-screen-sticky-wrapper {
             position: -webkit-sticky;
             position: sticky;
@@ -97,7 +51,7 @@
             z-index: 2050;
             background: #000;
             width: 100%;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.95);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.9);
         }
         
         .theater-screen { 
@@ -105,232 +59,107 @@
             width: 100%; 
             aspect-ratio: 16 / 9; 
             overflow: hidden; 
-            background: #000;
         }
         
         #plyr-wrapper { width: 100%; height: 100%; position: absolute; top:0; left:0; z-index: 1; }
-        
-        video { 
-            width: 100% !important; 
-            height: 100% !important; 
-            background: #000; 
-            object-fit: cover !important; 
-        }
-        .plyr video { object-fit: cover !important; }
+        video { width: 100%; height: 100%; background: #000; object-fit: contain !important; }
+        .plyr { width: 100%; height: 100%; }
 
         .player-click-overlay {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: calc(100% - 60px);
+            top: 0; left: 0; width: 100%; height: calc(100% - 50px);
             z-index: 2;
             pointer-events: auto;
             cursor: pointer;
         }
 
-        .ott-dashboard { padding: 16px; position: relative; z-index: 10; }
+        .ott-dashboard { padding: 12px; }
+        .stream-details { background: var(--panel-bg); padding: 10px 14px; border-radius: 12px; border: 1px solid rgba(124, 58, 237, 0.15); display: flex; align-items: center; gap: 12px; position: relative; }
+        .active-logo-img { width: 30px; height: 34px; object-fit: contain; border-radius: 6px; background: rgba(255,255,255,0.08); padding: 2px; border: 1px solid rgba(124, 58, 237, 0.3); }
         
-        .stream-details { 
-            background: var(--glass-card); 
-            padding: 16px 20px; 
-            border-radius: 18px; 
-            border: 1px solid var(--glass-border); 
-            display: flex; 
-            align-items: center; 
-            gap: 16px; 
-            position: relative;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-        }
-
-        .active-logo-img { 
-            width: 40px; 
-            height: 44px; 
-            object-fit: contain; 
-            border-radius: 8px; 
-            background: rgba(255,255,255,0.06); 
-            padding: 4px; 
-            border: 1px solid rgba(0, 242, 254, 0.3); 
-        }
-        
-        .badge-live { 
-            background: linear-gradient(135deg, #ff0055, #bc003c); 
-            color: #fff; 
-            font-size: 11px; 
-            padding: 4px 12px; 
-            border-radius: 6px; 
-            text-transform: uppercase; 
-            font-weight: 800; 
-            letter-spacing: 1px;
-            box-shadow: 0 0 15px rgba(255, 0, 85, 0.45);
-        }
+        .badge-live { background: linear-gradient(135deg, #ef4444, #dc2626); color: #fff; font-size: 9px; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; font-weight: bold; }
+        .horizontal-panel { margin-top: 12px; background: var(--panel-bg); padding: 12px; border-radius: 14px; border: 1px solid rgba(124, 58, 237, 0.1); }
         
         .btn-reload-stream {
             margin-left: auto;
-            background: rgba(255, 255, 255, 0.05);
-            color: #e2e8f0;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 8px 18px;
-            font-size: 13px;
+            background: rgba(124, 58, 237, 0.1);
+            color: #c084fc;
+            border: 1px solid rgba(124, 58, 237, 0.4);
+            padding: 4px 10px;
+            font-size: 10px;
             font-weight: 700;
-            border-radius: 10px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .btn-reload-stream:hover { 
-            background: rgba(168, 85, 247, 0.2); 
-            color: #ffffff;
-            border-color: var(--neon-purple);
-            box-shadow: 0 0 15px var(--neon-glow-purple);
         }
 
-        /* 🚀 গ্লোবাল বেস্ট ফুলস্ক্রিন ও গাইরোস্কোপ অটো-রোটেটর বাটন */
-        .btn-giant-fullscreen {
-            width: 100%;
-            background: linear-gradient(135deg, var(--neon-purple), #7c3aed);
-            color: #fff;
-            border: none;
-            padding: 18px;
-            font-size: 16px;
-            font-weight: 800;
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 16px;
-            box-shadow: 0 8px 30px var(--neon-glow-purple);
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .btn-giant-fullscreen:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 35px rgba(168, 85, 247, 0.7);
-            background: linear-gradient(135deg, #bd68ff, var(--neon-purple));
-        }
+        .iptv-grid-row { display: flex; flex-direction: column; gap: 8px; }
 
-        .horizontal-panel { 
-            margin-top: 18px; 
-            background: var(--glass-card); 
-            padding: 18px; 
-            border-radius: 20px; 
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-        }
-        .iptv-grid-row { display: flex; flex-direction: column; gap: 14px; }
-
-        /* ✨ থিয়েটার স্টাইল প্রিমিয়াম লিষ্ট কার্ড বাটন */
         .channel-card { 
-            background: rgba(255, 255, 255, 0.02); 
-            padding: 22px; 
-            border-radius: 18px; 
+            background: rgba(255,255,255,0.02); 
+            padding: 12px 14px; 
+            border-radius: 10px; 
             cursor: pointer; 
             display: flex; 
             flex-direction: row; 
             align-items: center; 
             justify-content: flex-start; 
-            gap: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05); 
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); 
+            gap: 14px;
+            border: 1px solid var(--card-border); 
+            transition: all 0.2s ease; 
             width: 100%;
-            position: relative;
         }
-        .channel-card:hover { 
-            border-color: var(--neon-cyan); 
-            background: rgba(0, 242, 254, 0.06);
-            transform: translateY(-2px);
-            box-shadow: 0 0 20px rgba(6, 182, 212, 0.15);
-        }
-        .channel-card.active { 
-            border: 2px solid var(--cyan-accent); 
-            background: rgba(6, 182, 212, 0.12); 
-            box-shadow: 0 0 25px rgba(6, 182, 212, 0.25); 
-        }
-        .channel-card.active::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 25%;
-            height: 50%;
-            width: 4px;
-            background: var(--cyan-accent);
-            border-radius: 0 4px 4px 0;
-            box-shadow: 0 0 10px var(--cyan-accent);
-        }
+        .channel-card:hover { border-color: rgba(124, 58, 237, 0.3); background: rgba(124, 58, 237, 0.02); }
+        .channel-card.active { border: 1.5px solid var(--purple-primary); background: rgba(124, 58, 237, 0.12); box-shadow: 0 0 15px rgba(124, 58, 237, 0.15); }
         
-        .logo-img { 
-            width: 46px; 
-            height: 46px; 
-            object-fit: contain; 
-            border-radius: 8px; 
-            padding: 2px; 
-            background: rgba(255,255,255,0.06); 
-        }
-        .card-info-box { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
-        .card-name { font-weight: 700; font-size: 15px; color: #f8fafc; text-transform: uppercase; letter-spacing: 0.4px; }
-        .card-group { font-size: 10px; color: #a78bfa; text-transform: uppercase; font-weight: 700; background: rgba(124, 58, 237, 0.15); padding: 2px 8px; border-radius: 20px; }
+        .logo-img { width: 36px; height: 36px; object-fit: contain; border-radius: 6px; padding: 2px; background: rgba(255,255,255,0.04); }
+        .card-info-box { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+        .card-name { font-weight: 600; font-size: 13px; color: #cbd5e1; text-transform: uppercase; letter-spacing: 0.3px; }
+        .card-group { font-size: 9px; color: #7c7299; text-transform: uppercase; font-weight: 700; }
 
-        /* 🎨 প্রিমিয়াম কাস্টม প্লেয়ার কন্ট্রোলস */
-        .plyr--video { 
-            --plyr-color-main: var(--neon-purple); 
-            --plyr-video-control-background-hover: rgba(124, 58, 237, 0.3);
-        }
-        .plyr__control--overlaid {
-            background: rgba(124, 58, 237, 0.8) !important;
-            box-shadow: 0 0 20px var(--neon-glow-purple) !important;
-        }
-        .plyr__controls {
-            background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.85)) !important;
-            padding: 15px 10px 10px !important;
-        }
+        .plyr--video { --plyr-color-main: var(--purple-primary); }
 
+        /* 💻 ডেক্সটপ এবং ল্যাপটপ থিয়েটার গ্রিড লেআউট ফিক্স */
         @media (min-width: 992px) {
             .ott-main-layout {
                 display: grid;
-                grid-template-columns: 62% 38%;
-                gap: 24px;
-                padding: 24px;
+                grid-template-columns: 60% 40%;
+                gap: 20px;
+                padding: 20px;
                 align-items: start;
             }
             .left-column-wrapper {
                 position: sticky;
-                top: 24px;
+                top: 20px;
                 z-index: 10;
             }
             .theater-screen-sticky-wrapper {
-                position: relative;
-                border-radius: 14px;
+                position: relative; /* ডেক্সটপে স্ক্রল গ্রিড আনলক */
+                border-radius: 12px;
                 overflow: hidden;
                 box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             }
             .ott-dashboard { padding: 0 !important; }
             .horizontal-panel {
-                max-height: calc(100vh - 180px);
+                max-height: calc(100vh - 100px);
                 overflow-y: auto;
                 padding-right: 5px;
             }
-            .horizontal-panel::-webkit-scrollbar { width: 6px; }
-            .horizontal-panel::-webkit-scrollbar-thumb { background: var(--neon-purple); border-radius: 10px; }
+            .horizontal-panel::-webkit-scrollbar { width: 5px; }
+            .horizontal-panel::-webkit-scrollbar-thumb { background: var(--purple-primary); border-radius: 10px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ব্যাকগ্রাউন্ড অ্যাম্বিয়েন্ট লাইট লুপ -->
-    <div class="ambient-bg"></div>
-
-    <nav class="ott-nav"><div class="text-white fw-bold"><i class="bi bi-play-circle text-purple-primary" style="color: var(--neon-purple);"></i> ZION SPORTS</div></nav>
+    <nav class="ott-nav"><div class="text-white fw-bold"><i class="bi bi-play-circle text-purple-primary" style="color: var(--purple-primary);"></i> ZION SPORTS</div></nav>
 
     <div class="ott-main-layout">
         
         <div class="left-column-wrapper">
-            <div class="theater-screen-sticky-wrapper" id="videoContainer">
+            <div class="theater-screen-sticky-wrapper">
                 <div class="theater-screen">
                     <div id="plyr-wrapper">
                         <video id="player" playsinline controls autoplay></video>
@@ -346,25 +175,18 @@
                 
                 <button class="btn-reload-stream" onclick="reloadCurrentStream()"><i class="bi bi-arrow-clockwise"></i> Reload</button>
             </div>
-
-            <!-- 🔥 বিশাল সাইজের এক্সp্যান্ড স্ক্রিন ও অটো রোটেট বাটন -->
-            <button class="btn-giant-fullscreen" onclick="goPremiumFullscreen()">
-                <i class="bi bi-arrows-fullscreen"></i> Expand To Fullscreen / Rotate
-            </button>
         </div>
 
         <div class="container-fluid ott-dashboard">
             <div class="horizontal-panel mt-0">
                 <div id="fifaTabPanel" class="iptv-grid-row">
-                    <!-- লাইভ এপিআই ডাটা এখানে অটো রেন্ডার হবে -->
-                </div>
+                    </div>
             </div>
-            <div class="text-center mt-5 text-muted" style="font-size: 11px; opacity: 0.25; letter-spacing: 1px;">© 2026 Zion Sports • The Pinnacle of Streaming Experience</div>
+            <div class="text-center mt-5 text-muted" style="font-size: 10px; opacity: 0.2;">© 2026 Zion Sports • Powered by GitHub Pages</div>
         </div>
 
     </div>
 
-    <!-- High-Performance Global Engines -->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
     <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
@@ -525,31 +347,7 @@
             }
         }
 
-        // 🔄 সুপার সায়ান মাল্টি-রোটেশন ও হার্ডওয়্যার এক্সপ্যান্ড ইঞ্জিন
-        function goPremiumFullscreen() {
-            const container = document.getElementById('videoContainer');
-            if (!document.fullscreenElement) {
-                if (container.requestFullscreen) {
-                    container.requestFullscreen();
-                } else if (container.webkitRequestFullscreen) {
-                    container.webkitRequestFullscreen();
-                } else if (video.webkitEnterFullscreen) {
-                    video.webkitEnterFullscreen();
-                }
-                
-                if (screen.orientation && screen.orientation.lock) {
-                    screen.orientation.lock('landscape').catch(function(err) {
-                        console.log("Orientation handled smoothly.");
-                    });
-                }
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                }
-            }
-        }
-
-        // 🏆 'Bein Sports 1' কে ডিফল্ট প্লে করার ট্র্যাকার
+        // 🏆 'Bein Sports 1' চ্যানেলকে অটো-প্লে ট্র্যাকার পলিসি
         function autoPlayDefaultChannel() {
             if (fifaChannels.length === 0) return;
             
