@@ -42,6 +42,7 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
+        /* 📺 মোবাইল ও ডেক্সটপে প্লেয়ার স্টিকি রাখার আল্ট্রা ফিক্স সিএসএস */
         .theater-screen-sticky-wrapper {
             position: -webkit-sticky;
             position: sticky;
@@ -97,7 +98,7 @@
         .tab-trigger { background: transparent; color: #7c7299; border: none; padding: 8px 14px; font-size: 10px; font-weight: 700; text-transform: uppercase; border-radius: 7px; transition: all 0.2s; }
         .tab-trigger.active { background: var(--purple-primary); color: #fff; box-shadow: 0 0 10px var(--purple-glow); }
 
-        /* 📦 বক্স লেআউট গ্রিড */
+        /* 📦 চ্যানেলগুলো মডার্ন বক্স আকারে (Compact Grid) প্রদর্শনের সিএসএস */
         .iptv-grid-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
         .panel-grid-hidden { display: none !important; }
 
@@ -115,6 +116,7 @@
             aspect-ratio: 1.1 / 1;
             border: 1px solid var(--card-border); 
             transition: all 0.2s ease; 
+            width: 100%;
         }
         .channel-card:hover { border-color: rgba(124, 58, 237, 0.3); background: rgba(124, 58, 237, 0.02); }
         .channel-card.active { border: 1.5px solid var(--purple-primary); background: rgba(124, 58, 237, 0.12); box-shadow: 0 0 15px rgba(124, 58, 237, 0.15); }
@@ -205,7 +207,6 @@
 
     </div>
 
-    <!-- Core Player Script Engines -->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
     <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
@@ -253,23 +254,14 @@
             }
         });
 
-        // 🛠️ CORS Policy বাইপাস ফেচ ফাংশন
-        async function fetchWithProxy(url) {
-            const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
-            const response = await fetch(proxyUrl);
-            if (!response.ok) throw new Error('Network proxy error');
-            const data = await response.json();
-            return JSON.parse(data.contents);
-        }
-
         async function fetchAllPlaylists() {
-            document.getElementById('activeTitle').innerText = "Bypassing restrictions & syncing...";
+            document.getElementById('activeTitle').innerText = "Syncing All Live Servers...";
             try {
                 const [fifaRes, sportsRes, banglaRes, channelsRes] = await Promise.all([
-                    fetchWithProxy(apiUrls.fifa).catch(() => []),
-                    fetchWithProxy(apiUrls.sports).catch(() => []),
-                    fetchWithProxy(apiUrls.bangla).catch(() => []),
-                    fetchWithProxy(apiUrls.channels).catch(() => [])
+                    fetch(apiUrls.fifa).then(r => r.json()).catch(() => []),
+                    fetch(apiUrls.sports).then(r => r.json()).catch(() => []),
+                    fetch(apiUrls.bangla).then(r => r.json()).catch(() => []),
+                    fetch(apiUrls.channels).then(r => r.json()).catch(() => [])
                 ]);
 
                 database.fifa = fifaRes;
@@ -285,7 +277,7 @@
                 autoPlayDefaultChannel();
             } catch (error) {
                 console.error("Playlist sync failed:", error);
-                document.getElementById('activeTitle').innerText = "Sync Failed. Try Hard Refresh (Ctrl+F5)!";
+                document.getElementById('activeTitle').innerText = "Sync Failed. Please Reload Page!";
             }
         }
 
@@ -416,6 +408,7 @@
         function autoPlayDefaultChannel() {
             if (!database.fifa || database.fifa.length === 0) return;
             
+            // নিখুঁত কেস-ইনসেনসিটিভ সার্চ লজিক দিয়ে সরাসরি সঠিক অবজেক্ট খুঁজে বের করা
             let targetIdx = database.fifa.findIndex(ch => ch.name.toLowerCase() === "bein sports 1");
             if (targetIdx === -1) {
                 targetIdx = database.fifa.findIndex(ch => ch.name.toLowerCase().includes("bein sports 1"));
