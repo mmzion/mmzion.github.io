@@ -408,7 +408,7 @@
         function autoPlayDefaultChannel() {
             if (!database.fifa || database.fifa.length === 0) return;
             
-            // নিখুঁত কেস-ইনসেনসিটিভ সার্চ লজিক দিয়ে সরাসরি সঠিক অবজেক্ট খুঁজে বের করা
+            //  সার্চ লজিক দিয়ে সরাসরি সঠিক অবজেক্ট খুঁজে বের করা
             let targetIdx = database.fifa.findIndex(ch => ch.name.toLowerCase() === "bein sports 1");
             if (targetIdx === -1) {
                 targetIdx = database.fifa.findIndex(ch => ch.name.toLowerCase().includes("bein sports 1"));
