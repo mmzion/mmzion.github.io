@@ -22,10 +22,12 @@
             --card-border: rgba(124, 58, 237, 0.15);
         }
 
+        * { box-sizing: border-box; }
+
         body { 
             background-color: var(--purple-bg-dark) !important; 
             color: #f1f5f9 !important; 
-            font-family: sans-serif; 
+            font-family: 'Segoe UI', Roboto, sans-serif; 
             min-height: 100vh; 
             margin: 0;
             padding: 0;
@@ -41,8 +43,10 @@
             border-bottom: 1px solid rgba(124, 58, 237, 0.2); 
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
+        .ott-nav .brand { font-weight: 800; letter-spacing: 0.5px; }
+        .ott-nav .brand i { color: var(--purple-primary); }
 
-        /* 📺 মোবাইল ও ডেক্সটপে প্লেয়ার স্টিকি রাখার আল্ট্রা ফিক্স সিএসএস */
+        /* 📺 YouTube-style sticky player */
         .theater-screen-sticky-wrapper {
             position: -webkit-sticky;
             position: sticky;
@@ -50,33 +54,97 @@
             z-index: 2090; 
             background: #000;
             width: 100%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.9);
+            transition: box-shadow .25s ease;
         }
-        
+        .theater-screen-sticky-wrapper.is-stuck {
+            box-shadow: 0 12px 28px rgba(0,0,0,0.85);
+        }
+
         .theater-screen { 
             position: relative; 
             width: 100%; 
             aspect-ratio: 16 / 9; 
             overflow: hidden; 
+            background: #000;
         }
         
         #plyr-wrapper { width: 100%; height: 100%; position: absolute; top:0; left:0; z-index: 1; }
         video { width: 100% !important; height: 100% !important; background: #000; object-fit: contain !important; }
         .plyr { width: 100%; height: 100%; }
 
-        .player-click-overlay {
+        /* Loading spinner shown while stream buffers */
+        .player-loader {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: calc(100% - 50px);
-            z-index: 2;
-            pointer-events: auto;
-            cursor: pointer;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 10px;
+            background: radial-gradient(ellipse at center, rgba(124,58,237,0.08), #000 75%);
+            z-index: 3;
+            pointer-events: none;
+            transition: opacity .25s ease;
         }
+        .player-loader.hidden { opacity: 0; visibility: hidden; }
+        .spinner-ring {
+            width: 36px; height: 36px;
+            border: 3px solid rgba(124, 58, 237, 0.2);
+            border-top-color: var(--purple-primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .player-loader span { font-size: 11px; color: #a78bfa; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+
+        /* simple first-tap unmute overlay (removes itself after one tap) */
+        .unmute-overlay {
+            position: absolute;
+            bottom: 14px; left: 50%; transform: translateX(-50%);
+            z-index: 4;
+            background: rgba(0,0,0,0.7);
+            border: 1px solid rgba(124,58,237,0.5);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 7px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            gap: 6px;
+            backdrop-filter: blur(6px);
+        }
+        .unmute-overlay.show { display: inline-flex; }
 
         .ott-dashboard { padding: 12px; }
-        .stream-details { background: var(--panel-bg); padding: 10px 14px; border-radius: 12px; border: 1px solid rgba(124, 58, 237, 0.15); display: flex; align-items: center; gap: 12px; position: relative; }
-        .active-logo-img { width: 30px; height: 34px; object-fit: contain; border-radius: 6px; background: rgba(255,255,255,0.08); padding: 2px; border: 1px solid rgba(124, 58, 237, 0.3); }
-        
-        .badge-live { background: linear-gradient(135deg, #ef4444, #dc2626); color: #fff; font-size: 9px; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; font-weight: bold; }
+
+        .stream-details { 
+            background: var(--panel-bg); 
+            padding: 10px 14px; 
+            border-radius: 12px; 
+            border: 1px solid rgba(124, 58, 237, 0.15); 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            position: relative; 
+        }
+        .active-logo-img { width: 32px; height: 32px; object-fit: contain; border-radius: 6px; background: rgba(255,255,255,0.08); padding: 3px; border: 1px solid rgba(124, 58, 237, 0.3); flex-shrink: 0; }
+        #activeTitle { font-size: 14px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+        .badge-live { 
+            background: linear-gradient(135deg, #ef4444, #dc2626); 
+            color: #fff; font-size: 9px; padding: 3px 7px; 
+            border-radius: 4px; text-transform: uppercase; font-weight: bold; 
+            flex-shrink: 0;
+            display: flex; align-items: center; gap: 4px;
+        }
+        .badge-live::before {
+            content: ''; width: 5px; height: 5px; border-radius: 50%; background: #fff;
+            animation: pulse-dot 1.4s infinite;
+        }
+        @keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
         .horizontal-panel { margin-top: 12px; background: var(--panel-bg); padding: 12px; border-radius: 14px; border: 1px solid rgba(124, 58, 237, 0.1); }
         
         .btn-reload-stream {
@@ -84,21 +152,27 @@
             background: rgba(124, 58, 237, 0.1);
             color: #c084fc;
             border: 1px solid rgba(124, 58, 237, 0.4);
-            padding: 4px 10px;
-            font-size: 10px;
+            padding: 6px 12px;
+            font-size: 11px;
             font-weight: 700;
-            border-radius: 6px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             gap: 5px;
             cursor: pointer;
+            flex-shrink: 0;
+            transition: all 0.2s;
         }
+        .btn-reload-stream:hover { background: rgba(124, 58, 237, 0.25); }
+        .btn-reload-stream:active { transform: scale(0.95); }
+        .btn-reload-stream.spinning i { animation: spin 0.6s linear; }
 
-        .ott-tabs-wrapper { margin-top: 12px; background: rgba(22, 14, 45, 0.8); padding: 4px; border-radius: 10px; display: inline-flex; gap: 4px; border: 1px solid rgba(124, 58, 237, 0.15); width: 100%; overflow-x: auto; white-space: nowrap; }
-        .tab-trigger { background: transparent; color: #7c7299; border: none; padding: 8px 14px; font-size: 10px; font-weight: 700; text-transform: uppercase; border-radius: 7px; transition: all 0.2s; }
+        .ott-tabs-wrapper { margin-top: 12px; background: rgba(22, 14, 45, 0.8); padding: 4px; border-radius: 10px; display: inline-flex; gap: 4px; border: 1px solid rgba(124, 58, 237, 0.15); width: 100%; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
+        .ott-tabs-wrapper::-webkit-scrollbar { display: none; }
+        .tab-trigger { background: transparent; color: #7c7299; border: none; padding: 9px 16px; font-size: 11px; font-weight: 700; text-transform: uppercase; border-radius: 7px; transition: all 0.2s; }
         .tab-trigger.active { background: var(--purple-primary); color: #fff; box-shadow: 0 0 10px var(--purple-glow); }
 
-        /* 📦 চ্যানেলগুলো রেসপনসিভ গ্রিড — phone/pc সব জায়গায় perfectly fit, কোনো পাশের scroll নেই */
+        /* 📦 রেসপনসিভ চ্যানেল গ্রিড */
         .iptv-grid-row {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
@@ -131,7 +205,11 @@
         .card-info-box { display: flex; flex-direction: column; align-items: center; width: 100%; overflow: hidden; }
         .card-name { font-weight: 600; font-size: 10px; color: #cbd5e1; text-transform: uppercase; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; width: 100%; }
 
+        /* Plyr theme polish */
         .plyr--video { --plyr-color-main: var(--purple-primary); }
+        .plyr__control--overlaid { background: rgba(124, 58, 237, 0.85) !important; }
+        .plyr__control--overlaid:hover { background: var(--purple-primary) !important; }
+        .plyr--video .plyr__controls { background: linear-gradient(transparent, rgba(0,0,0,0.85)); }
 
         @media (min-width: 992px) {
             .ott-main-layout {
@@ -150,9 +228,10 @@
             }
             .theater-screen-sticky-wrapper {
                 position: relative; 
-                border-radius: 12px;
+                border-radius: 14px;
                 overflow: hidden;
                 box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+                border: 1px solid rgba(124, 58, 237, 0.2);
             }
             .ott-dashboard { padding: 0 !important; }
             .horizontal-panel {
@@ -167,17 +246,21 @@
 </head>
 <body>
 
-    <nav class="ott-nav"><div class="text-white fw-bold"><i class="bi bi-play-circle text-purple-primary" style="color: var(--purple-primary);"></i> ZION SPORTS</div></nav>
+    <nav class="ott-nav"><div class="text-white brand"><i class="bi bi-play-circle"></i> ZION SPORTS</div></nav>
 
     <div class="ott-main-layout">
         
         <div class="left-column-wrapper">
-            <div class="theater-screen-sticky-wrapper">
+            <div class="theater-screen-sticky-wrapper" id="stickyWrapper">
                 <div class="theater-screen">
                     <div id="plyr-wrapper">
                         <video id="player" playsinline controls autoplay></video>
-                        <div class="player-click-overlay" id="player-overlay"></div>
                     </div>
+                    <div class="player-loader" id="playerLoader">
+                        <div class="spinner-ring"></div>
+                        <span>Loading Stream</span>
+                    </div>
+                    <button class="unmute-overlay" id="unmuteBtn"><i class="bi bi-volume-mute-fill"></i> Tap to unmute</button>
                 </div>
             </div>
             
@@ -186,7 +269,7 @@
                 <img id="activeLogo" src="" class="active-logo-img" alt="logo" onerror="this.style.display='none'">
                 <h1 class="h6 m-0" id="activeTitle">Loading Server...</h1>
                 
-                <button class="btn-reload-stream" onclick="reloadCurrentStream()"><i class="bi bi-arrow-clockwise"></i> Reload</button>
+                <button class="btn-reload-stream" id="reloadBtn" onclick="reloadCurrentStream()"><i class="bi bi-arrow-clockwise"></i> Reload</button>
             </div>
         </div>
 
@@ -226,41 +309,47 @@
 
         let database = { fifa: [], sports: [], bangla: [], channels: [] };
         const video = document.getElementById('player');
+        const loader = document.getElementById('playerLoader');
+        const unmuteBtn = document.getElementById('unmuteBtn');
+        const reloadBtn = document.getElementById('reloadBtn');
         let hls = null;
         let dashPlayer = null;
-        let currentActiveUrl = ''; 
         let savedCurrentChannelData = null;
 
         const plyr = new Plyr(video, { 
             autoplay: true, 
-            controls: ['play-large', 'play', 'progress', 'current-time', 'volume', 'mute', 'pip', 'fullscreen'] 
+            clickToPlay: true,
+            controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'pip', 'fullscreen']
         });
 
-        const overlay = document.getElementById('player-overlay');
-        overlay.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if(video.muted) {
-                video.muted = false;
-                video.volume = 1.0;
-            }
+        function showLoader() { loader.classList.remove('hidden'); }
+        function hideLoader() { loader.classList.add('hidden'); }
 
-            const controls = document.querySelector('.plyr__controls');
-            if (controls) {
-                const isControlsVisible = controls.style.opacity === '1' || 
-                                          window.getComputedStyle(controls).visibility === 'visible' ||
-                                          controls.classList.contains('plyr__controls--visible');
-                
-                if (isControlsVisible) {
-                    if (video.paused) video.play();
-                    else video.pause();
-                } else {
-                    plyr.toggleControls(true);
-                }
-            }
+        video.addEventListener('waiting', showLoader);
+        video.addEventListener('playing', () => { hideLoader(); checkMuteState(); });
+        video.addEventListener('canplay', hideLoader);
+        video.addEventListener('error', () => { loader.querySelector('span').innerText = 'Stream Error — try Reload'; });
+
+        function checkMuteState() {
+            unmuteBtn.classList.toggle('show', video.muted);
+        }
+        unmuteBtn.addEventListener('click', () => {
+            video.muted = false;
+            video.volume = 1.0;
+            unmuteBtn.classList.remove('show');
         });
+
+        // Sticky shadow toggle (YouTube-style stuck indicator on mobile)
+        const stickyWrapper = document.getElementById('stickyWrapper');
+        const stickyObserver = new IntersectionObserver(
+            ([e]) => stickyWrapper.classList.toggle('is-stuck', e.intersectionRatio < 1),
+            { threshold: [1] }
+        );
+        stickyObserver.observe(stickyWrapper);
 
         async function fetchAllPlaylists() {
             document.getElementById('activeTitle').innerText = "Syncing All Live Servers...";
+            showLoader();
             try {
                 const [fifaRes, sportsRes, banglaRes, channelsRes] = await Promise.all([
                     fetch(apiUrls.fifa).then(r => r.json()).catch(() => []),
@@ -283,6 +372,7 @@
             } catch (error) {
                 console.error("Playlist sync failed:", error);
                 document.getElementById('activeTitle').innerText = "Sync Failed. Please Reload Page!";
+                hideLoader();
             }
         }
 
@@ -297,7 +387,7 @@
                 return;
             }
 
-            channels.forEach((ch, idx) => {
+            channels.forEach((ch) => {
                 const card = document.createElement("div");
                 card.className = "channel-card";
 
@@ -319,10 +409,11 @@
 
         function switchStandardChannel(channelObj, el) {
             savedCurrentChannelData = channelObj;
-            currentActiveUrl = channelObj.url; 
+            showLoader();
+            loader.querySelector('span').innerText = 'Loading Stream';
             
             document.querySelectorAll('.channel-card').forEach(c => c.classList.remove('active'));
-            if(el) el.classList.add('active');
+            if (el) el.classList.add('active');
             
             document.getElementById('activeTitle').innerText = channelObj.name;
             const activeLogo = document.getElementById('activeLogo');
@@ -363,8 +454,14 @@
                         video.volume = 1.0;
                         video.play().catch(() => {
                             video.muted = true;
-                            video.play().then(handleMuteBypass);
+                            video.play().then(checkMuteState);
                         });
+                    });
+                    hls.on(Hls.Events.ERROR, function(event, data) {
+                        if (data.fatal) {
+                            loader.querySelector('span').innerText = 'Stream Error — try Reload';
+                            showLoader();
+                        }
                     });
                 } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
                     video.src = channelObj.url;
@@ -373,20 +470,11 @@
             }
         }
 
-        function handleMuteBypass() {
-            const unscrapeAudioLock = () => {
-                video.muted = false;
-                video.volume = 1.0;
-                document.removeEventListener('click', unscrapeAudioLock);
-                document.removeEventListener('touchend', unscrapeAudioLock);
-            };
-            document.addEventListener('click', unscrapeAudioLock);
-            document.addEventListener('touchend', unscrapeAudioLock);
-        }
-
         function reloadCurrentStream() {
             if (savedCurrentChannelData) {
+                reloadBtn.classList.add('spinning');
                 switchStandardChannel(savedCurrentChannelData, document.querySelector('.channel-card.active'));
+                setTimeout(() => reloadBtn.classList.remove('spinning'), 600);
             }
         }
 
