@@ -3,70 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Zion Sports — OTT Edition</title>
-    <base href="https://mmzion.github.io/tv/">
+    <title>Zion Sports — Ultimate OTT</title>
+    <base href="https://fifalive.click/">
 
+    <!-- Social Meta Engine -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Zion Sports — Ultimate OTT">
-    <meta property="og:description" content="Watch Live Premium Streams smoothly on Zion Sports.">
+    <meta property="og:title" content="Zion Sports — Ultimate OTT Edition">
+    <meta property="og:description" content="Stream live global sports in ultimate cinematic fidelity.">
     <meta property="og:image" content="https://i.ibb.co.com/ymJhZWxG/1000075445-clean.png">
 
+    <!-- Frameworks & Fonts -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --yt-black: #0f0f0f;
-            --yt-paper: #212121;
-            --yt-red: #f00;
-            --yt-text-main: #f1f1f1;
-            --yt-text-sub: #aaa;
+            --neon-purple: #a855f7;
+            --neon-cyan: #00f2fe;
+            --neon-glow-purple: rgba(168, 85, 247, 0.4);
+            --neon-glow-cyan: rgba(0, 242, 254, 0.3);
+            --bg-master: #030008;
+            --glass-card: rgba(18, 12, 38, 0.7);
+            --glass-border: rgba(168, 85, 247, 0.18);
         }
 
         body { 
-            background-color: var(--yt-black) !important; 
-            color: var(--yt-text-main) !important; 
-            font-family: 'Roboto', sans-serif;
+            background: var(--bg-master) !important;
+            color: #f8fafc !important; 
+            font-family: 'Plus Jakarta Sans', sans-serif;
             min-height: 100vh; 
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+            letter-spacing: -0.3px;
         }
 
-        /* 🔴 ক্লিন হেডার বার */
+        /* 🌌 ডাইনামিক লাইভ অ্যাম্বিয়েন্ট ব্যাকগ্রাউন্ড ইফেক্ট */
+        .ambient-bg {
+            position: fixed;
+            top: -20%; left: -20%; width: 140%; height: 140%;
+            background: radial-gradient(circle at 20% 30%, rgba(168, 85, 247, 0.15) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, rgba(0, 242, 254, 0.12) 0%, transparent 45%);
+            z-index: -1;
+            pointer-events: none;
+            filter: blur(60px);
+        }
+
+        /* 👑 লাক্সারি গ্লাসমরফিক নেভিগেশন বার */
         .ott-nav { 
-            background: var(--yt-black); 
-            height: 56px; 
+            background: rgba(3, 0, 8, 0.75) !important; 
+            backdrop-filter: blur(30px) saturate(180%); 
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            height: 65px; 
             display: flex; 
             align-items: center; 
-            padding: 0 16px; 
-            position: sticky;
-            top: 0;
+            padding: 0 24px; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06); 
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            position: relative;
             z-index: 2100;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
         .brand-logo {
-            font-weight: 700;
+            font-weight: 800;
             font-size: 20px;
-            letter-spacing: -0.5px;
-            color: var(--yt-text-main);
-            text-decoration: none;
+            letter-spacing: 0.5px;
             text-transform: uppercase;
+            background: linear-gradient(135deg, #ffffff 10%, var(--neon-purple) 60%, var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .brand-logo span {
-            font-size: 11px;
-            color: var(--yt-red);
-            margin-left: 4px;
-            font-weight: 700;
+        .brand-logo i {
+            font-size: 24px;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px var(--neon-glow-purple));
         }
 
-        /* 📺 প্লেয়ার আর্কিটেকচার */
+        /* 📺 ফুল-স্ক্রিন ফিট এবং নো-ব্ল্যাক-বার মাস্টার আর্কিটেকচার */
         .theater-screen-sticky-wrapper {
             position: -webkit-sticky;
             position: sticky;
@@ -74,6 +97,7 @@
             z-index: 2050;
             background: #000;
             width: 100%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.95);
         }
         
         .theater-screen { 
@@ -81,6 +105,7 @@
             width: 100%; 
             aspect-ratio: 16 / 9; 
             overflow: hidden; 
+            background: #000;
         }
         
         #plyr-wrapper { width: 100%; height: 100%; position: absolute; top:0; left:0; z-index: 1; }
@@ -95,273 +120,212 @@
 
         .player-click-overlay {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: calc(100% - 48px);
+            top: 0; left: 0; width: 100%; height: calc(100% - 60px);
             z-index: 2;
             pointer-events: auto;
             cursor: pointer;
         }
 
-        .ott-dashboard { padding: 16px; }
-
-        /* 📝 ভিডিও মেটাডাটা এরিয়া */
-        .video-meta-block {
-            padding: 14px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+        .ott-dashboard { padding: 16px; position: relative; z-index: 10; }
+        
+        .stream-details { 
+            background: var(--glass-card); 
+            padding: 16px 20px; 
+            border-radius: 18px; 
+            border: 1px solid var(--glass-border); 
+            display: flex; 
+            align-items: center; 
+            gap: 16px; 
+            position: relative;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         }
 
-        .video-title {
-            font-size: 18px;
-            font-weight: 700;
-            line-height: 24px;
-            margin-bottom: 12px;
-            color: var(--yt-text-main);
+        .active-logo-img { 
+            width: 40px; 
+            height: 44px; 
+            object-fit: contain; 
+            border-radius: 8px; 
+            background: rgba(255,255,255,0.06); 
+            padding: 4px; 
+            border: 1px solid rgba(0, 242, 254, 0.3); 
         }
-
-        .channel-info-bar {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        
+        .badge-live { 
+            background: linear-gradient(135deg, #ff0055, #bc003c); 
+            color: #fff; 
+            font-size: 11px; 
+            padding: 4px 12px; 
+            border-radius: 6px; 
+            text-transform: uppercase; 
+            font-weight: 800; 
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(255, 0, 85, 0.45);
         }
-
-        .channel-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #282828;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: #fff;
-            border: 1px solid rgba(255,255,255,0.1);
-            font-size: 16px;
-        }
-
-        .channel-name-box {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .channel-name {
-            font-weight: 500;
-            font-size: 15px;
-            color: var(--yt-text-main);
-        }
-
-        .btn-yt-reload {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--yt-text-main);
-            border: none;
-            padding: 8px 16px;
-            border-radius: 18px;
-            font-size: 13px;
-            font-weight: 500;
+        
+        .btn-reload-stream {
             margin-left: auto;
-            cursor: pointer;
-            transition: background 0.2s;
+            background: rgba(255, 255, 255, 0.05);
+            color: #e2e8f0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 18px;
+            font-size: 13px;
+            font-weight: 700;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             gap: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
-        .btn-yt-reload:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+        .btn-reload-stream:hover { 
+            background: rgba(168, 85, 247, 0.2); 
+            color: #ffffff;
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 15px var(--neon-glow-purple);
         }
 
-        /* 🔁 সাজেস্টেড ভিডিও লিস্ট */
-        .horizontal-panel { margin-top: 16px; }
-        .iptv-grid-row { display: flex; flex-direction: column; gap: 12px; }
+        /* 🚀 গ্লোবাল বেস্ট ফুলস্ক্রিন ও গাইরোস্কোপ অটো-রোটেটর বাটন */
+        .btn-giant-fullscreen {
+            width: 100%;
+            background: linear-gradient(135deg, var(--neon-purple), #7c3aed);
+            color: #fff;
+            border: none;
+            padding: 18px;
+            font-size: 16px;
+            font-weight: 800;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 16px;
+            box-shadow: 0 8px 30px var(--neon-glow-purple);
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .btn-giant-fullscreen:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 35px rgba(168, 85, 247, 0.7);
+            background: linear-gradient(135deg, #bd68ff, var(--neon-purple));
+        }
 
+        .horizontal-panel { 
+            margin-top: 18px; 
+            background: var(--glass-card); 
+            padding: 18px; 
+            border-radius: 20px; 
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+        .iptv-grid-row { display: flex; flex-direction: column; gap: 14px; }
+
+        /* ✨ থিয়েটার স্টাইল প্রিমিয়াম লিষ্ট কার্ড বাটন */
         .channel-card { 
+            background: rgba(255, 255, 255, 0.02); 
+            padding: 22px; 
+            border-radius: 18px; 
+            cursor: pointer; 
             display: flex; 
             flex-direction: row; 
-            align-items: flex-start; 
-            gap: 12px;
-            cursor: pointer; 
+            align-items: center; 
+            justify-content: flex-start; 
+            gap: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); 
             width: 100%;
-            padding: 2px 0;
-        }
-
-        .thumb-wrapper {
             position: relative;
-            width: 145px;
-            aspect-ratio: 16 / 9;
-            border-radius: 8px;
-            overflow: hidden;
-            background: #202020;
-            flex-shrink: 0;
         }
-
-        .thumb-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .channel-card:hover { 
+            border-color: var(--neon-cyan); 
+            background: rgba(0, 242, 254, 0.06);
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.15);
         }
-
-        .duration-badge {
+        .channel-card.active { 
+            border: 2px solid var(--cyan-accent); 
+            background: rgba(6, 182, 212, 0.12); 
+            box-shadow: 0 0 25px rgba(6, 182, 212, 0.25); 
+        }
+        .channel-card.active::before {
+            content: '';
             position: absolute;
-            bottom: 4px;
-            right: 4px;
-            background: rgba(0,0,0,0.8);
-            color: #fff;
-            font-size: 10px;
-            padding: 1px 4px;
-            border-radius: 2px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-        .duration-badge.live {
-            background: var(--yt-red);
-        }
-
-        .card-info-box { 
-            display: flex; 
-            flex-direction: column; 
-            align-items: flex-start; 
-            gap: 2px;
-            overflow: hidden;
-        }
-
-        .card-name { 
-            font-weight: 500; 
-            font-size: 14px; 
-            color: var(--yt-text-main); 
-            line-height: 18px;
-            max-height: 36px;
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-        }
-
-        .card-group { 
-            font-size: 12px; 
-            color: var(--yt-text-sub); 
-            margin-top: 2px;
-        }
-
-        .channel-card.active .card-name {
-            color: #3ea6ff;
-        }
-
-        /* 🎯 ইউটিউব ওয়েব প্লেয়ার সিবি ক্লোন সিএসএস */
-        .plyr--video { 
-            --plyr-color-main: var(--yt-red); 
-            --plyr-video-control-background-hover: transparent;
-            --plyr-control-spacing: 8px;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        .plyr__controls {
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.3) 60%, transparent 100%) !important;
-            padding: 30px 14px 6px !important;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .plyr__progress__container {
-            width: 100% !important;
-            flex: none !important;
-            margin: 0 0 4px 0 !important;
-            padding: 0 !important;
-            order: -1; 
-        }
-
-        .plyr__progress input[type=range] {
-            height: 4px !important;
-            transition: height 0.1s ease;
-            cursor: pointer;
-        }
-
-        .plyr__progress:hover input[type=range] {
-            height: 6px !important;
-        }
-
-        .plyr__control {
-            padding: 6px 10px !important;
-            background: transparent !important;
-            color: #fff !important;
-            border-radius: 0 !important;
-            transition: opacity 0.1s ease;
-        }
-
-        .plyr__control:hover {
-            background: transparent !important;
-            opacity: 0.9;
-        }
-
-        .plyr__control svg {
-            width: 20px !important;
-            height: 20px !important;
-            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));
-        }
-
-        .plyr__control--overlaid {
-            background: rgba(0, 0, 0, 0.6) !important;
-            border-radius: 50% !important;
-            width: 64px !important;
-            height: 64px !important;
-        }
-        .plyr__control--overlaid svg {
-            width: 30px !important;
-            height: 30px !important;
-            margin-left: 4px;
-        }
-
-        .plyr__time {
-            font-size: 13px !important;
-            padding: 0 6px !important;
-            color: #e1e1e1 !important;
-        }
-
-        .plyr__volume {
-            align-items: center;
-            max-width: 85px !important;
-        }
-
-        .plyr__volume input[type=range] {
-            height: 3px !important;
-        }
-
-        .plyr__menu, 
-        .plyr__control[data-plyr='pip'], 
-        .plyr__control[data-plyr='fullscreen'] {
-            margin-left: auto;
+            left: 0;
+            top: 25%;
+            height: 50%;
+            width: 4px;
+            background: var(--cyan-accent);
+            border-radius: 0 4px 4px 0;
+            box-shadow: 0 0 10px var(--cyan-accent);
         }
         
-        .plyr__control[data-plyr='pip'] + .plyr__control[data-plyr='fullscreen'] {
-            margin-left: 0 !important;
+        .logo-img { 
+            width: 46px; 
+            height: 46px; 
+            object-fit: contain; 
+            border-radius: 8px; 
+            padding: 2px; 
+            background: rgba(255,255,255,0.06); 
+        }
+        .card-info-box { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+        .card-name { font-weight: 700; font-size: 15px; color: #f8fafc; text-transform: uppercase; letter-spacing: 0.4px; }
+        .card-group { font-size: 10px; color: #a78bfa; text-transform: uppercase; font-weight: 700; background: rgba(124, 58, 237, 0.15); padding: 2px 8px; border-radius: 20px; }
+
+        /* 🎨 প্রিমিয়াম কাস্টม প্লেয়ার কন্ট্রোলস */
+        .plyr--video { 
+            --plyr-color-main: var(--neon-purple); 
+            --plyr-video-control-background-hover: rgba(124, 58, 237, 0.3);
+        }
+        .plyr__control--overlaid {
+            background: rgba(124, 58, 237, 0.8) !important;
+            box-shadow: 0 0 20px var(--neon-glow-purple) !important;
+        }
+        .plyr__controls {
+            background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.85)) !important;
+            padding: 15px 10px 10px !important;
         }
 
-        /* 💻 ডেক্সটপ লেআউট গ্রিড */
         @media (min-width: 992px) {
             .ott-main-layout {
                 display: grid;
-                grid-template-columns: 1fr 380px;
+                grid-template-columns: 62% 38%;
                 gap: 24px;
                 padding: 24px;
-                max-width: 1280px;
-                margin: 0 auto;
+                align-items: start;
             }
             .left-column-wrapper {
-                position: relative;
+                position: sticky;
+                top: 24px;
+                z-index: 10;
             }
             .theater-screen-sticky-wrapper {
                 position: relative;
-                border-radius: 12px;
+                border-radius: 14px;
                 overflow: hidden;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             }
             .ott-dashboard { padding: 0 !important; }
-            .horizontal-panel { margin-top: 0px; }
-            .thumb-wrapper { width: 168px; }
+            .horizontal-panel {
+                max-height: calc(100vh - 180px);
+                overflow-y: auto;
+                padding-right: 5px;
+            }
+            .horizontal-panel::-webkit-scrollbar { width: 6px; }
+            .horizontal-panel::-webkit-scrollbar-thumb { background: var(--neon-purple); border-radius: 10px; }
         }
     </style>
 </head>
 <body>
 
-    <nav class="ott-nav">
-        <a href="/" class="brand-logo">Zion Sports <span>LIVE</span></a>
-    </nav>
+    <!-- ব্যাকগ্রাউন্ড অ্যাম্বিয়েন্ট লাইট লুপ -->
+    <div class="ambient-bg"></div>
+
+    <nav class="ott-nav"><div class="text-white fw-bold"><i class="bi bi-play-circle text-purple-primary" style="color: var(--neon-purple);"></i> ZION SPORTS</div></nav>
 
     <div class="ott-main-layout">
         
@@ -375,112 +339,39 @@
                 </div>
             </div>
             
-            <div class="video-meta-block container-fluid">
-                <h1 class="video-title" id="activeTitle">Loading Server...</h1>
-                <div class="channel-info-bar">
-                    <div class="channel-avatar">Z</div>
-                    <div class="channel-name-box">
-                        <div class="channel-name">Zion Sports Premium</div>
-                    </div>
-                    <button class="btn-yt-reload" onclick="reloadCurrentStream()"><i class="bi bi-arrow-clockwise"></i> Reload</button>
-                </div>
+            <div class="stream-details mt-3">
+                <span class="badge-live">Live</span>
+                <img id="activeLogo" src="" class="active-logo-img" alt="logo" onerror="this.style.display='none'">
+                <h1 class="h6 m-0" id="activeTitle">Loading Server...</h1>
+                
+                <button class="btn-reload-stream" onclick="reloadCurrentStream()"><i class="bi bi-arrow-clockwise"></i> Reload</button>
             </div>
+
+            <!-- 🔥 বিশাল সাইজের এক্সp্যান্ড স্ক্রিন ও অটো রোটেট বাটন -->
+            <button class="btn-giant-fullscreen" onclick="goPremiumFullscreen()">
+                <i class="bi bi-arrows-fullscreen"></i> Expand To Fullscreen / Rotate
+            </button>
         </div>
 
         <div class="container-fluid ott-dashboard">
-            <div class="horizontal-panel">
+            <div class="horizontal-panel mt-0">
                 <div id="fifaTabPanel" class="iptv-grid-row">
-                    </div>
+                    <!-- লাইভ এপিআই ডাটা এখানে অটো রেন্ডার হবে -->
+                </div>
             </div>
+            <div class="text-center mt-5 text-muted" style="font-size: 11px; opacity: 0.25; letter-spacing: 1px;">© 2026 Zion Sports • The Pinnacle of Streaming Experience</div>
         </div>
 
     </div>
 
+    <!-- High-Performance Global Engines -->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
     <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
 
     <script>
-        // 📥 সম্পূর্ণ নতুন আপডেটকৃত চ্যানেল ডাটাবেজ
-        const fifaChannels = [
-            { "name": "HD SERVER", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://instreams.pro/US/MLB1/tracks-v1a1/mono.m3u8?", "group": "HD", "tag": "HD" }, 
-            { "name": "HIGHLIGHTS [EN]", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://soccerfull.net/hls/14555.m3u8", "group": "HIGHLIGHTS", "tag": "M3U8" }, 
-            { "name": "HIGHLIGHTS [EN]", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://fullmatchshows.embedseek.com/hlsmod/p16-ad-site-sign-sg.tiktokcdn.com/ZRAWAQ6uqzz3vv6kLlPTTw/luy/qt5b8318/qgblaa/tt/master.m3u8", "group": "HIGHLIGHTS", "tag": "M3U8" }, 
-            { "name": "EX. HIGHLIGHTS [EN]", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://fullmatchshows.embedseek.com/hlsmod/p16-ad-site-sign-sg.tiktokcdn.com/LqqISZaRkRJqGw4XWjlkxQ/6hp/qt5b8318/e3q1oa/tt/master.m3u8", "group": "EX.", "tag": "M3U8" }, 
-            { "name": "ET & PEN [EN]", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://soccerfull.net/hls/14553.m3u8", "group": "ET", "tag": "M3U8" }, 
-            { "name": "FULL MATCH [EN]", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://fullmatchshows.embedseek.com/hlsmod/p16-ad-site-sign-sg.tiktokcdn.com/q11IWIP3SbiOaV1rd9jrSQ/ox/qt5b8318/kzvici/tt/master.m3u8", "group": "FULL", "tag": "M3U8" }, 
-            { "name": "FULL MATCH [RU]", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://soccerfull.net/hls/14554.m3u8", "group": "FULL", "tag": "M3U8" }, 
-            { "name": "WILLOW FHD", "logo": "https://s21.q4cdn.com/819998841/files/doc_news/2024/May/Willow-logo-transparent-cb.png", "url": "https://otte.cache.aiv-cdn.net/iad-nitro/live/clients/dash/enc/rquannm6kn/out/v1/96ada7c3e2c64821b78ebd08a4e68780/cenc.mpd", "type": "dash", "group": "WILLOW", "kid": "3a3043c3e12a8ff1f06eb68094225ea4", "key": "14b6bad42a42e707e89b9be2cb88e63a", "tag": "DASH" }, 
-            { "name": "SKY MAIN EVENT", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://tmaxapp.site/skymainevent.m3u8", "group": "SKY", "tag": "M3U8" }, 
-            { "name": "SKY SPORT NZ", "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVqp07x_6pIyvUttdbXc5LMugRMGfldjYKQbI9X_X7txzS2d7WPph", "url": "https://tmaxapp.site/skynz1.m3u8", "group": "SKY", "tag": "LIVE" }, 
-            { "name": "SKY SPORTS MIX", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://tmaxapp.site/skymix.m3u8", "group": "SKY", "tag": "M3U8" }, 
-            { "name": "SKY SPORTS PLUS", "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVqp1Plsy44x_6pIyvUttdbXc5LMugRMGfldjYKQbI9X_X7txzS2d7WPph", "url": "https://tmaxapp.site/skyplussd.m3u8", "group": "SKY", "tag": "LIVE" }, 
-            { "name": "HIGHLIGHTS [EN] (Alt)", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://fullmatchshows.embedseek.com/hlsmod/p16-ad-site-sign-sg.tiktokcdn.com/VLzvWDw4Zl_U7r1D8R3_0A/6hp/qt5b8318/68n3bd/tt/master.m3u8", "group": "HIGHLIGHTS", "tag": "M3U8" }, 
-            { "name": "HIGHLIGHTS", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://soccerfull.net/hls/14545.m3u8", "group": "HIGHLIGHTS", "tag": "M3U8" }, 
-            { "name": "FULL MATCH [TSN]", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://fullmatchshows.embedseek.com/hlsmod/p16-ad-site-sign-sg.tiktokcdn.com/1zCZVBoMxa7VmOOqi2HYrA/xy/qt5b8318/nxfxwb/tt/master.m3u8", "group": "FULL", "tag": "M3U8" }, 
-            { "name": "FULL MATCH [FOX]", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://fullmatchshows.embedseek.com/hlsmod/p16-ad-site-sign-sg.tiktokcdn.com/o9d-z0567wCLlHEcttSZDA/sc/qt5b8318/e3q3qe/tt/master.m3u8", "group": "FULL", "tag": "M3U8" }, 
-            { "name": "FULL MATCH [AR]", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://fullmatchshows.embedseek.com/hlsmod/p16-ad-site-sign-sg.tiktokcdn.com/L6WojRvSC3k-mPHkoFbvxQ/jcp/fmg9yic3/xnoust/tt/master.m3u8", "group": "FULL", "tag": "M3U8" }, 
-            { "name": "FULL MATCH [RU] (Alt)", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://soccerfull.net/hls/14544.m3u8", "group": "FULL", "tag": "M3U8" }, 
-            { "name": "WC TV FHD", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://qp-pldt-live-bpk-ucd-prod.akamaized.net/bpk-tv/fifa_ppv1/default/index.mpd", "type": "dash", "group": "WC", "kid": "2c338a117d434ce4bbe3569231af90f1", "key": "a9633d901ee8a3f4f58ac314b5c5f4fb", "tag": "DASH" }, 
-            { "name": "TIPIK FR FHD", "logo": "https://upload.wikimedia.org/wikipedia/fr/b/bb/Logo_Tipik_2025.png", "url": "https://c9851ec-rbm-hilv-fsly.cdn.redbee.live/L26/6b640fa2/a765d074.isml/dash/.mpd", "type": "dash", "group": "TIPIK", "kid": "adca25b8779e4168a0cd710f59f61ccf", "key": "be5383ed3cd8079f4ffe78ad067f476a", "tag": "DASH" }, 
-            { "name": "RTE SPORTS FHD", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://dai.google.com/linear/dash/pa/event/oPeAYQs9T9yTHS98aR1EjQ/stream/6b0f1602-73b1-4228-8e64-fe2cec5ae9a3:BRU/manifest.mpd", "type": "dash", "group": "RTE", "kid": "d816287e21496989eae1312925a423c5", "key": "00da00f13180e7e6cd5ce87d1c974e8d", "tag": "DASH" }, 
-            { "name": "NPO1 DUTCH FHD", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://npo-nl-ams-p30-am5.cdn.streamgate.nl/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3ODI4NTAxNDYsInVyaSI6IlwvbGl2ZVwvbnBvXC91XzNfNFwvbnBvcGx1c1wvZHJtXC9kYXNoX2NlbmNcL25wby0xXC8wXC8wXC8wXC9ucG8tMS5pc21sIiwidmlld2VyIjoidmlld2VyIiwicmlkIjoiN2FmNjY2MSJ9.duQUETqbOlZDaRwZyqdKtH5iDl2oWPe9auG3gtbpm94/live/npo/u_3_4/npoplus/drm/dash_cenc/npo-1/0/0/0/npo-1.isml/stream.mpd", "type": "dash", "group": "NPO1", "kid": "8d3c85fa30730fdc39efc09de476415f", "key": "8fdccd948bb2cc6d99d5305ccffebcb7", "tag": "DASH" }, 
-            { "name": "CT SPORTS CZ", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://dash2.antik.sk/stream/nvidia_ct_sport/playlist_cenc.mpd", "type": "dash", "group": "CT", "kid": "11223344556677889900112233445566", "key": "4b80724d0ef86bcb2c21f7999d67739d", "tag": "DASH" }, 
-            { "name": "GOLTV VIVO", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://vod-sev-orbit2-s2.izzigo.tv/out/u/startover/dash/VIX-MUNDIAL-90-HD/default.mpd", "type": "dash", "group": "GOLTV", "kid": "1c6bfd8d1cdd4df69ea5fc4dd2f025bb", "key": "b6fd90027dac7a94a9461f8b2638cbb4", "tag": "DASH" }, 
-            { "name": "IRIB 4K", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://ncdn.telewebion.ir/faratar/live/playlist.m3u8", "group": "IRIB", "tag": "4K" }, 
-            { "name": "SportzX Live", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://instreams.pro/US/NFLHD1/tracks-v1a1/mono.m3u8?", "group": "SportzX", "tag": "HD" }, 
-            { "name": "EX. HIGHLIGHTS (Alt)", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://fullmatchshows.embedseek.com/hlsmod/p16-ad-site-sign-sg.tiktokcdn.com/JHW-nkdSHqbt5bZ9rL6q9Q/vz1/qt5b8318/3egpb5/tt/master.m3u8", "group": "EX.", "tag": "M3U8" }, 
-            { "name": "HIGHLIGHTS [RU]", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://fullmatchshows.embedseek.com/hlsmod/p16-ad-site-sign-sg.tiktokcdn.com/eqfPKsACTBTpXrqCLa1Oeg/vz1/qt5b8318/icj3mq/tt/master.m3u8", "group": "HIGHLIGHTS", "tag": "M3U8" }, 
-            { "name": "ET & PEN [EN] (Alt)", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://fullmatchshows.embedseek.com/hlsmod/p16-ad-site-sign-sg.tiktokcdn.com/_iUrV7Hftm3Cwh2ytHaxRw/mf/qt5b8318/nxfmip/tt/master.m3u8", "group": "ET", "tag": "M3U8" }, 
-            { "name": "FULL MATCH [EN] (Alt)", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://fullmatchshows.embedseek.com/hlsmod/p16-ad-site-sign-sg.tiktokcdn.com/hyfM3s5lHt9KFVX0n95k7A/xy/qt5b8318/mjdcqe/tt/master.m3u8", "group": "FULL", "tag": "M3U8" }, 
-            { "name": "FULL MATCH [RU] (Server 3)", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://soccerfull.net/hls/14549.m3u8", "group": "FULL", "tag": "M3U8" }, 
-            { "name": "1st HALF", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://fullmatchshows.embedseek.com/hlsmod/p16-ad-site-sign-sg.tiktokcdn.com/fV_U-Xc8pM-Uu5IPlo6cag/djx/qt5b8318/ht83y8/tt/master.m3u8", "group": "1st", "tag": "M3U8" }, 
-            { "name": "2nd HALF", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://fullmatchshows.embedseek.com/hlsmod/p16-ad-site-sign-sg.tiktokcdn.com/QgF4SUICr2Crp_sfD8dBqA/9a/qt5b8318/s5cvzc/tt/master.m3u8", "group": "2nd", "tag": "M3U8" }, 
-            { "name": "SonyLiv - ENG", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://sonymtmnew-akamaized.pages.dev/hls/live/2105080/cricodi2606/ENG/master.m3u8", "group": "SonyLiv", "tag": "LIVE" }, 
-            { "name": "SonyLiv - HIN", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://sonymtmnew-akamaized.pages.dev/hls/live/2105079/cricodi2606/HIN/master.m3u8", "group": "SonyLiv", "tag": "LIVE" }, 
-            { "name": "SonyLiv - TAM", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://sonymtmnew-akamaized.pages.dev/hls/live/2018457/cricodi2606/TAM/master.m3u8", "group": "SonyLiv", "tag": "LIVE" }, 
-            { "name": "SonyLiv - TEL", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://sonymtmnew-akamaized.pages.dev/hls/live/2037142/cricodi2606/TEL/master.m3u8", "group": "SonyLiv", "tag": "LIVE" }, 
-            { "name": "SonyLiv - KAN", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://sonymtmnew-akamaized.pages.dev/hls/live/2037143/cricodi2606/KAN/master.m3u8", "group": "SonyLiv", "tag": "LIVE" }, 
-            { "name": "CTV SPORTS FHD", "logo": "https://r2.thesportsdb.com/images/media/channel/logo/wwr35d1665918725.png", "url": "https://otte.cache.aiv-cdn.net/iad-nitro/live/clients/dash/enc/sh9xmjbhhr/out/v1/6b4982b95f7843659ead6393341dd532/cenc.mpd", "type": "dash", "group": "CTV", "kid": "ac59787c884c9b19e3a6219c974c2fd2", "key": "443fd36e2a294f3ce69fdb7488fdd65a", "tag": "DASH" }, 
-            { "name": "ISCREEN BD FHD", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://livecdn.rockstreamer.com/main/Iscreen_fifa_main/main/in4_1080p/chunks.m3u8", "group": "ISCREEN", "tag": "LIVE" }, 
-            { "name": "CAZE TV FHD", "logo": "https://duckduckgo.com/i/dab0d6887915781c.png", "url": "https://otte.cache.aiv-cdn.net/iad-nitro/live/clients/dash/enc/vzeco5ty0v/out/v1/44c6b8f31a2544e3b2a9bb41ed5e241e/cenc.mpd", "type": "dash", "group": "CAZE", "kid": "ac7abaa9c9481aacfbdac64fc3ec3312", "key": "c0c504a2ed2e70b879a650b8770a38c6", "tag": "DASH" }, 
-            { "name": "FOX ONE HD", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://lb.xyzcloud3.xyz/FOX/index.m3u8?", "group": "FOX", "tag": "HD" }, 
-            { "name": "TELEMUNDO FHD", "logo": "https://duckduckgo.com/i/2e3815a5b7ddd3c9.png", "url": "https://lb.xyzcloud3.xyz/Telemundo/index.m3u8?", "group": "TELEMUNDO", "tag": "HD" }, 
-            { "name": "SportzX Live (Server 2)", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://instreams.pro/EU/HDWC1/tracks-v1a1/mono.m3u8?", "group": "SportzX", "tag": "HD" }, 
-            { "name": "Bein Sports 2 Arabic", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://1nyaler.streamhostingcdn.top/stream/21/index.m3u8", "group": "beIN", "tag": "LIVE" }, 
-            { "name": "TSN SPORTS FHD", "logo": "https://www.bellmedia.ca/lede/wp-content/uploads/2024/09/18581592_10155403529061055_8240563011649656197_n.jpg", "url": "https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/cjglydxghe/out/v1/8977baf175da4b94873194613dd3fe55/cenc.mpd", "type": "dash", "group": "TSN", "kid": "85b277daf5aae05833fe43a68f587968", "key": "d52d7e9bc0bcd98787efd547ac91eca0", "tag": "DASH" }, 
-            { "name": "FOX SPORTS HD", "logo": "https://images.seeklogo.com/logo-png/28/1/fox-sports-logo-png_seeklogo-284763.png", "url": "https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/cizlveblk4/out/v1/e5c36c41621e4384b80427d87199433a/cenc.mpd", "type": "dash", "group": "FOX", "kid": "d7d78ea2021a29541136bd5dc8352fe7", "key": "6425ac4c0cdf906fe0cce5cf40dc8933", "tag": "DASH" }, 
-            { "name": "D Sports FHD", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/rgilyeubta/out/v1/09a67027b18f4fd78aaa3794a2aacfe8/cenc.mpd", "type": "dash", "group": "D", "kid": "03f12d6a3dbfd3a6fa7dd7f6417e0c11", "key": "ea07b87acdf2e45be824cde4a1cf3504", "tag": "DASH" }, 
-            { "name": "CAZE TV FHD (Server 2)", "logo": "https://duckduckgo.com/i/dab0d6887915781c.png", "url": "https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/ui54qo0g6h/out/v1/620e1448188d4bbe9a28d0dd52f45bb7/cenc.mpd", "type": "dash", "group": "CAZE", "kid": "ba6aca5a550163c38d06646bb50f04e7", "key": "516c3b471fce48a5b7a2e5ee7dd505f2", "tag": "DASH" }, 
-            { "name": "FOX SPORTS 4K", "logo": "https://duckduckgo.com/i/2e3815a5b7ddd3c9.png", "url": "https://lb.xyzcloud3.xyz/FS1/index.m3u8?", "group": "FOX", "tag": "4K" }, 
-            { "name": "D SPORTS 1080p", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://pub-4d2103f8af8641e2974e9590622c3264.r2.dev/d-sports/d-sports.m3u8", "group": "D Sports", "tag": "FHD" }, 
-            { "name": "BEIN Sports 5", "logo": "https://carboncredits.com/wp-content/uploads/2025/09/shutterstock_2306088965-e1757112807302.jpg", "url": "http://starhub.pro/live/farhat-3379/67897-913379/744527.ts", "group": "BeIN", "tag": "HD" }, 
-            { "name": "BeIN MAX 1", "logo": "https://images.fotmob.com/image_resources/logo/teamlogo/6720.png", "url": "https://tmaxapp.site/beinmax1.m3u8", "group": "BeIN", "tag": "LIVE" }, 
-            { "name": "BeIN MAX 2", "logo": "https://images.fotmob.com/image_resources/logo/teamlogo/6719.png", "url": "https://tmaxapp.site/beinmax2.m3u8", "group": "BeIN", "tag": "LIVE" }, 
-            { "name": "BeIN MAX SD", "logo": "https://images.fotmob.com/image_resources/logo/teamlogo/8570.png", "url": "https://prod-fastly-eu-west-1.video.pscp.tv/Transcoding/v1/hls/dpXv_Bj52CxsfzkpeY2HfAG9GNFBl7qI6s8HSUWcyRO-cjXHZqH9jkGzhEIgwNcw6R5ZRRUbA8ZV7S0DXKMrkQ/non_transcode/eu-west-1/periscope-replay-direct-prod-eu-west-1-public/master_dynamic_delta.m3u8?type=live", "group": "BeIN", "tag": "SD" }, 
-            { "name": "Bein Sports 1", "logo": "https://i.ibb.co.com/S7tZS6cg/Bein-Sports-1-Direct.png", "url": "https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8", "group": "BeIN", "tag": "LIVE" }, 
-            { "name": "D SPORTS", "logo": "https://images.fotmob.com/image_resources/logo/teamlogo/8570.png", "url": "https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/3gg2jnixjn/out/v1/e1840e01f3f14563b66bbb944d5cc54c/cenc.mpd", "group": "D Sports", "type": "dash", "kid": "f8b207c10f3f76aeba32a360ec52b9e4", "key": "afad49d20eb39670e93e371c1d669921", "tag": "DASH" }, 
-            { "name": "LIVE 1", "logo": "https://cdn.sportmonks.com/images/cricket/teams/8/72.png", "url": "https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tll6uwepxa/out/v1/a7f67cbb33df46539312956427343886/cenc.mpd", "group": "Live", "type": "dash", "kid": "290e09c837da78d5cd961978d390515c", "key": "b748836c71e6a4ca68ef5b5652db6247", "tag": "DASH" }, 
-            { "name": "ARABIC LIVE", "logo": "https://images.fotmob.com/image_resources/logo/teamlogo/8570.png", "url": "https://live-aburayhan1111.telewebion.ir/ek/sport1/live/720p/index.m3u8", "group": "FIFA", "tag": "LIVE" }, 
-            { "name": "LVE 1", "logo": "https://images.fotmob.com/image_resources/logo/teamlogo/8263.png", "url": "https://pullsgp.yyzb456.top/live/stream-506605_lhd.m3u8", "group": "FIFA", "tag": "HD" }, 
-            { "name": "Match! Football 1", "logo": "https://images.fotmob.com/image_resources/logo/teamlogo/6719.png", "url": "https://bl.video.matchtv.ru/media/playlist/free_d46d0cf1712c0542ec7fd4f0808f600a_hd/17_89756005/1080/e6bef86de8a133cd7b27deb040758a00/4796141934.m3u8", "group": "FIFA", "tag": "LIVE" }, 
-            { "name": "SportzX Live (Server 3)", "logo": "https://www.bellmedia.ca/lede/wp-content/uploads/2024/09/18581592_10155403529061055_8240563011649656197_n.jpg", "url": "https://instreams.pro/EU/HDWC1/tracks-v1a1/mono.m3u8", "group": "SportzX", "tag": "HD" }, 
-            { "name": "TVE La 1 FHD", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://otte.cache.aiv-cdn.net/iad-nitro/live/clients/dash/enc/c7di7zkdor/out/v1/f7d5b356e048494a8325563e8916d50b/cenc.mpd", "type": "dash", "group": "TVE", "kid": "745cd6ec34a58f2f7ac2af35dc3da6d2", "key": "ae008f1e47e6567fe4201a6ff8f1ae54", "tag": "DASH" }, 
-            { "name": "TELEMUNDO HD", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://instreams.pro/EU/HDWC2/tracks-v1a1/mono.m3u8?", "group": "TELEMUNDO", "tag": "HD" }, 
-            { "name": "Sony Liv [Asia]", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://sonymtmnew-akamaized.pages.dev/hls/live/20000291/England_2906/ENG/master.m3u8", "group": "Sony", "tag": "LIVE" }, 
-            { "name": "FOX CRICKET HD", "logo": "https://yt3.googleusercontent.com/ytc/AIdro_mMJL3P-vcTLif2h4V_S17ksNozzOICQKXMMmfdowlx9Q=s900-c-k-c0x00ffffff-no-rj", "url": "https://tmaxapp.site/foxcricket.m3u8", "group": "FOX", "tag": "HD" }, 
-            { "name": "TAPMAD FHD", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://pastebin.com/raw/U2LaqQne?&.m3u8", "group": "TAPMAD", "tag": "FHD" }, 
-            { "name": "FANCODE - SD", "logo": "https://m.media-amazon.com/images/I/21K+HipHr6L.png", "url": "https://abfjk4haaaaaaaampv6ofhkihi4r6.bia-cf.live.pv-cdn.net/iad-nitro/live/clients/dash-sd/enc/qddnwqthpp/out/v1/6c25cddab58043a6ace0ac64d97983f0/cenc-sd.mpd", "type": "dash", "group": "FANCODE", "kid": "709c812e1b4174002605df1d17d34a4c", "key": "0bbee6c9c20a0f065bf8369d54cbf83e", "tag": "DASH" }, 
-            { "name": "TSN5 SPORTS FHD", "logo": "https://www.bellmedia.ca/lede/wp-content/uploads/2024/09/18581592_10155403529061055_8240563011649656197_n.jpg", "url": "https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/cscevwljkq/out/v1/972185041b244140860b7d56398e9aaf/cenc.mpd", "type": "dash", "group": "TSN", "tag": "DASH" }, 
-            { "name": "SP0TV HD", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://qp-pldt-live-grp-13-prod.akamaized.net/out/u/dr_spotv2hd.mpd", "type": "dash", "group": "SP0TV", "tag": "DASH" }, 
-            { "name": "CT SPORTS CZ", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://dash2.antik.sk/stream/nvidia_ct_sport/playlist_cenc.mpd", "type": "dash", "group": "CT", "tag": "DASH" }, 
-            { "name": "EUROSPORT2 FHD", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://dash2.antik.sk/stream/nvidia_eurosport2/playlist_cenc.mpd", "type": "dash", "group": "EUROSPORT2", "tag": "DASH" }, 
-            { "name": "HD SERVER (Alt 1)", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://instreams.pro/US/MLB13/tracks-v1a1/mono.m3u8?", "group": "HD", "tag": "HD" }, 
-            { "name": "HD SERVER (Alt 2)", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "https://instreams.pro/US/MLB12/tracks-v1a1/mono.m3u8?", "group": "HD", "tag": "HD" }, 
-            { "name": "TOFFEE AQ (BDIX)", "logo": "https://cdn.livesoccertv.com/images/channels/thumbnails/toffee-live.png", "url": "https://pastebin.com/raw/nJ3WYKnG?e=.m3u8", "group": "TOFFEE", "tag": "BDIX" }, 
-            { "name": "NOW TV 4K", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png", "url": "http://starhub.pro/live/farhat-3379/67897-913379/745270.ts", "group": "NOW", "tag": "4K" }
-        ];
-
+        const jsonApiUrl = "https://iamshajon.com/playlist/fifa.json";
+        let fifaChannels = [];
         const video = document.getElementById('player');
         let hls = null;
         let dashPlayer = null;
@@ -515,6 +406,22 @@
             }
         });
 
+        // 🔄 এপিআই থেকে লাইভ ডাটা লোড করার সিস্টেম
+        async function fetchLivePlaylist() {
+            try {
+                document.getElementById('activeTitle').innerText = "Fetching channels...";
+                const response = await fetch(jsonApiUrl);
+                if (!response.ok) throw new Error('Network response error');
+                
+                fifaChannels = await response.json();
+                renderLists();
+                autoPlayDefaultChannel();
+            } catch (error) {
+                console.error("Failed to load playlist:", error);
+                document.getElementById('activeTitle').innerText = "Failed to update playlist. Try reloading!";
+            }
+        }
+
         function renderLists() {
             const panel = document.getElementById("fifaTabPanel");
             if (!panel) return;
@@ -530,14 +437,14 @@
                     };
                 })(idx);
 
+                const logoSrc = ch.logo && ch.logo !== "" ? ch.logo : "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png";
+                const displayTag = ch.tag ? ch.tag : (ch.type === "dash" ? "DASH" : "LIVE");
+
                 card.innerHTML = `
-                    <div class="thumb-wrapper">
-                        <img src="${ch.logo}" alt="Thumbnail" onerror="this.src='https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png'">
-                        <span class="duration-badge ${ch.tag === 'LIVE' || ch.tag === '4K' ? 'live' : ''}">${ch.tag}</span>
-                    </div>
+                    <img src="${logoSrc}" class="logo-img" alt="${ch.name}" onerror="this.src='https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png'">
                     <div class="card-info-box">
                         <div class="card-name">${ch.name}</div>
-                        <div class="card-group">Zion Sports • Live</div>
+                        <div class="card-group">${displayTag} SERVER</div>
                     </div>
                 `;
                 panel.appendChild(card);
@@ -552,11 +459,14 @@
             if(el) el.classList.add('active');
             
             document.getElementById('activeTitle').innerText = channelObj.name;
+            const activeLogo = document.getElementById('activeLogo');
+            activeLogo.src = channelObj.logo ? channelObj.logo : "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png"; 
+            activeLogo.style.display = 'inline-block';
             
             if (hls) { hls.destroy(); hls = null; }
             if (dashPlayer) { dashPlayer.reset(); dashPlayer = null; }
 
-            // MPEG-DASH / DRM ট্র্যাকিং সিস্টেম
+            // MPEG-DASH / DRM হ্যান্ডলার ইঞ্জিন
             if (channelObj.type === 'dash' || channelObj.url.includes('.mpd')) {
                 dashPlayer = dashjs.MediaPlayer().create();
                 
@@ -576,8 +486,10 @@
             } else {
                 if (Hls.isSupported()) {
                     hls = new Hls({
-                        maxBufferLength: 30,
-                        enableWorker: true
+                        maxBufferLength: 40,
+                        maxMaxBufferLength: 80,
+                        enableWorker: true,
+                        liveSyncDurationCount: 3
                     });
                     hls.loadSource(channelObj.url);
                     hls.attachMedia(video);
@@ -613,19 +525,45 @@
             }
         }
 
-        window.addEventListener('DOMContentLoaded', () => {
-            renderLists();
-            
-            setTimeout(() => {
-                // 'Bein Sports 1' চ্যানেলটিকে ডাটাবেজে ট্র্যাক করে ডিফল্ট অটো-প্লে করা হলো
-                const targetIdx = fifaChannels.findIndex(ch => ch.name === "Bein Sports 1");
-                const finalIdx = targetIdx !== -1 ? targetIdx : 0;
-                
-                const defaultCard = document.querySelectorAll('#fifaTabPanel .channel-card')[finalIdx]; 
-                if (defaultCard) {
-                    switchStandardChannel(fifaChannels[finalIdx], defaultCard);
+        // 🔄 সুপার সায়ান মাল্টি-রোটেশন ও হার্ডওয়্যার এক্সপ্যান্ড ইঞ্জিন
+        function goPremiumFullscreen() {
+            const container = document.getElementById('videoContainer');
+            if (!document.fullscreenElement) {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (video.webkitEnterFullscreen) {
+                    video.webkitEnterFullscreen();
                 }
-            }, 400);
+                
+                if (screen.orientation && screen.orientation.lock) {
+                    screen.orientation.lock('landscape').catch(function(err) {
+                        console.log("Orientation handled smoothly.");
+                    });
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        // 🏆 'Bein Sports 1' কে ডিফল্ট প্লে করার ট্র্যাকার
+        function autoPlayDefaultChannel() {
+            if (fifaChannels.length === 0) return;
+            
+            const targetIdx = fifaChannels.findIndex(ch => ch.name.toLowerCase().includes("bein sports 1"));
+            const finalIdx = targetIdx !== -1 ? targetIdx : 0;
+            
+            const defaultCard = document.querySelectorAll('#fifaTabPanel .channel-card')[finalIdx]; 
+            if (defaultCard) {
+                switchStandardChannel(fifaChannels[finalIdx], defaultCard);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchLivePlaylist();
         });
     </script>
 </body>
