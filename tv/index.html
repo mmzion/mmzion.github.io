@@ -94,7 +94,6 @@
             cursor: pointer;
         }
 
-        /* 📱 ইউটিউবের মতো সিঙ্গেল কলাম ভার্টিকাল লিস্ট */
         .iptv-grid-row { display: flex; flex-direction: column; gap: 8px; }
 
         .channel-card { 
@@ -179,27 +178,21 @@
         <div class="container-fluid ott-dashboard">
             <div class="horizontal-panel mt-0">
                 <div id="fifaTabPanel" class="iptv-grid-row">
-                    <!-- JavaScript এর মাধ্যমে সার্ভারগুলো নিচে নিচে রেন্ডার হবে -->
-                </div>
+                    </div>
             </div>
             <div class="text-center mt-5 text-muted" style="font-size: 10px; opacity: 0.2;">© 2026 Zion Sports • Powered by GitHub Pages</div>
         </div>
 
     </div>
 
-    <!-- HLS Player & Plyr Engine -->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
 
     <script>
-        // 📥 নতুন ৬টি সার্ভারের ক্লিন ডাটাবেজ
+        // 📥 শুধুমাত্র সচল ২ এবং ৩ নম্বর সার্ভার দুটি ফিল্টার করা হলো
         const fifaChannels = [
-            { "name": "FIFA Live (Server 1)", "url": "https://prod-cdn01-live.toffeelive.com/live/FIFA-2026-3/0/master_1750.m3u8?hdntl=Expires=1782866074~_GO=Generated~URLPrefix=aHR0cHM6Ly9wcm9kLWNkbjAxLWxpdmUudG9mZmVlbGl2ZS5jb20~Signature=AeQsclCGelVte2IiOGcwsJnkVmlh9kIGZARR9-eMUV_OPS2_vvtjSSYwO-FbiiXEh7epqBKkckq6D9zMuD4nm4j2BHQL", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png" },
-            { "name": "FIFA Live (Server 2)", "url": "https://cdn011.viaplus.site/fox-usa.m3u8", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png" },
-            { "name": "FIFA Live (Server 3)", "url": "https://cdn011.viaplus.site/telemundo-usa.m3u8", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png" },
-            { "name": "FIFA Live (Server 4)", "url": "https://cdn011.viaplus.site/tsn1-ca.m3u8", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png" },
-            { "name": "FIFA Live (Server 5)", "url": "https://cdn011.viaplus.site/fox4k-usa.m3u8", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png" },
-            { "name": "FIFA Live (Server 6)", "url": "https://cdn011.viaplus.site/fussballtv1uhd-de.m3u8", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png" }
+            { "name": "FIFA Live (Server 1)", "url": "https://cdn011.viaplus.site/fox-usa.m3u8", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png" },
+            { "name": "FIFA Live (Server 2)", "url": "https://cdn011.viaplus.site/telemundo-usa.m3u8", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png" }
         ];
 
         const video = document.getElementById('player');
