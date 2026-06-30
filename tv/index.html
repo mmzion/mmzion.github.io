@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Zion Sports — Ultimate OTT</title>
-    <base href="https://fifalive.click/">
+    <base href="https://mmzion.github.io/tv/">
 
     <meta property="og:type" content="website">
     <meta property="og:title" content="Zion Sports — Ultimate OTT">
@@ -43,12 +43,12 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
-        /* 📺 মোবাইল ভার্সনে প্লেয়ার ওপরে ইউটিউবের মতো পারফেক্টলি আটকে রাখার মাস্টার সিএসএস ফিক্স */
+        /* 📺 মোবাইল ও ডেক্সটপে প্লেয়ার নিখুঁতভাবে স্টিকি রাখার আল্ট্রা ফিক্স সিএসএস */
         .theater-screen-sticky-wrapper {
             position: -webkit-sticky;
             position: sticky;
             top: 0;
-            z-index: 2050;
+            z-index: 2090; /* হেডার বা ট্যাবের ওপরে থাকবে */
             background: #000;
             width: 100%;
             box-shadow: 0 10px 30px rgba(0,0,0,0.9);
@@ -62,7 +62,7 @@
         }
         
         #plyr-wrapper { width: 100%; height: 100%; position: absolute; top:0; left:0; z-index: 1; }
-        video { width: 100%; height: 100%; background: #000; object-fit: contain !important; }
+        video { width: 100% !important; height: 100% !important; background: #000; object-fit: contain !important; }
         .plyr { width: 100%; height: 100%; }
 
         .player-click-overlay {
@@ -95,8 +95,15 @@
             cursor: pointer;
         }
 
-        .iptv-grid-row { display: flex; flex-direction: column; gap: 8px; }
+        /* 🏷️ প্রিমিয়াম ক্যাটাগরি ট্যাব মেনু সিএসএস */
+        .ott-tabs-wrapper { margin-top: 12px; background: rgba(22, 14, 45, 0.8); padding: 4px; border-radius: 10px; display: inline-flex; gap: 4px; border: 1px solid rgba(124, 58, 237, 0.15); width: 100%; overflow-x: auto; white-space: nowrap; }
+        .tab-trigger { background: transparent; color: #7c7299; border: none; padding: 8px 14px; font-size: 10px; font-weight: 700; text-transform: uppercase; border-radius: 7px; transition: all 0.2s; }
+        .tab-trigger.active { background: var(--purple-primary); color: #fff; box-shadow: 0 0 10px var(--purple-glow); }
 
+        .iptv-grid-row { display: flex; flex-direction: column; gap: 8px; }
+        .panel-grid-hidden { display: none !important; }
+
+        /* 📱 নিচে নিচে ইউটিউব স্টাইল লিস্ট কার্ড */
         .channel-card { 
             background: rgba(255,255,255,0.02); 
             padding: 12px 14px; 
@@ -121,7 +128,6 @@
 
         .plyr--video { --plyr-color-main: var(--purple-primary); }
 
-        /* 💻 ডেক্সটপ এবং ল্যাপটপ থিয়েটার গ্রিড লেআউট ফিক্স */
         @media (min-width: 992px) {
             .ott-main-layout {
                 display: grid;
@@ -136,14 +142,14 @@
                 z-index: 10;
             }
             .theater-screen-sticky-wrapper {
-                position: relative; /* ডেক্সটপে স্ক্রল গ্রিড আনলক */
+                position: relative; 
                 border-radius: 12px;
                 overflow: hidden;
                 box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             }
             .ott-dashboard { padding: 0 !important; }
             .horizontal-panel {
-                max-height: calc(100vh - 100px);
+                max-height: calc(100vh - 150px);
                 overflow-y: auto;
                 padding-right: 5px;
             }
@@ -159,6 +165,7 @@
     <div class="ott-main-layout">
         
         <div class="left-column-wrapper">
+            <!-- ফিক্সড স্টিকি কন্টেইনার -->
             <div class="theater-screen-sticky-wrapper">
                 <div class="theater-screen">
                     <div id="plyr-wrapper">
@@ -178,22 +185,54 @@
         </div>
 
         <div class="container-fluid ott-dashboard">
-            <div class="horizontal-panel mt-0">
+            
+            <!-- 🏷️ ৪টি সেকশনের ডাইনামিক ট্যাব মেনু -->
+            <div class="ott-tabs-wrapper mt-0">
+                <button id="tabFifa" class="tab-trigger active" onclick="togglePanelTab('fifa', this)"><i class="bi bi-trophy-fill me-1"></i> FIFA Premium</button>
+                <button id="tabSports" class="tab-trigger" onclick="togglePanelTab('sports', this)"><i class="bi bi-broadcast me-1"></i> Live Sports</button>
+                <button id="tabBangla" class="tab-trigger" onclick="togglePanelTab('bangla', this)"><i class="bi bi-flag-fill me-1"></i> Bangla TV</button>
+                <button id="tabChannels" class="tab-trigger" onclick="togglePanelTab('channels', this)"><i class="bi bi-tv me-1"></i> Live Channels</button>
+            </div>
+
+            <div class="horizontal-panel">
+                
                 <div id="fifaTabPanel" class="iptv-grid-row">
-                    </div>
+                    <!-- FIFA Data -->
+                </div>
+
+                <div id="sportsTabPanel" class="iptv-grid-row panel-grid-hidden">
+                    <!-- Sports Data -->
+                </div>
+
+                <div id="banglaTabPanel" class="iptv-grid-row panel-grid-hidden">
+                    <!-- Bangla Data -->
+                </div>
+
+                <div id="channelsTabPanel" class="iptv-grid-row panel-grid-hidden">
+                    <!-- Channels Data -->
+                </div>
+
             </div>
             <div class="text-center mt-5 text-muted" style="font-size: 10px; opacity: 0.2;">© 2026 Zion Sports • Powered by GitHub Pages</div>
         </div>
 
     </div>
 
+    <!-- Core Player Script Engines -->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
     <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
 
     <script>
-        const jsonApiUrl = "https://iamshajon.com/playlist/fifa.json";
-        let fifaChannels = [];
+        // 📥 ৪টি আলাদা এপিআই এন্ডপয়েন্ট কনফিগারেশন
+        const apiUrls = {
+            fifa: "https://iamshajon.com/playlist/fifa.json",
+            sports: "https://iamshajon.com/playlist/sports.json",
+            bangla: "https://iamshajon.com/playlist/bangla.json",
+            channels: "https://iamshajon.com/playlist/channels.json"
+        };
+
+        let database = { fifa: [], sports: [], bangla: [], channels: [] };
         const video = document.getElementById('player');
         let hls = null;
         let dashPlayer = null;
@@ -228,36 +267,52 @@
             }
         });
 
-        // 🔄 এপিআই থেকে লাইভ ডাটা লোড করার সিস্টেম
-        async function fetchLivePlaylist() {
+        // 🔄 ৪টি এপিআই ডাটা একযোগে লোড করার মাস্টার ইঞ্জিন
+        async function fetchAllPlaylists() {
+            document.getElementById('activeTitle').innerText = "Syncing All Live Servers...";
             try {
-                document.getElementById('activeTitle').innerText = "Fetching channels...";
-                const response = await fetch(jsonApiUrl);
-                if (!response.ok) throw new Error('Network response error');
-                
-                fifaChannels = await response.json();
-                renderLists();
+                const [fifaRes, sportsRes, banglaRes, channelsRes] = await Promise.all([
+                    fetch(apiUrls.fifa).then(r => r.json()).catch(() => []),
+                    fetch(apiUrls.sports).then(r => r.json()).catch(() => []),
+                    fetch(apiUrls.bangla).then(r => r.json()).catch(() => []),
+                    fetch(apiUrls.channels).then(r => r.json()).catch(() => [])
+                ]);
+
+                database.fifa = fifaRes;
+                database.sports = sportsRes;
+                database.bangla = banglaRes;
+                database.channels = channelsRes;
+
+                renderListSection('fifa', 'fifaTabPanel');
+                renderListSection('sports', 'sportsTabPanel');
+                renderListSection('bangla', 'banglaTabPanel');
+                renderListSection('channels', 'channelsTabPanel');
+
                 autoPlayDefaultChannel();
             } catch (error) {
-                console.error("Failed to load playlist:", error);
-                document.getElementById('activeTitle').innerText = "Failed to update playlist. Try reloading!";
+                console.error("Playlist sync failed:", error);
+                document.getElementById('activeTitle').innerText = "Sync Failed. Please Reload Page!";
             }
         }
 
-        function renderLists() {
-            const panel = document.getElementById("fifaTabPanel");
+        function renderListSection(key, panelId) {
+            const panel = document.getElementById(panelId);
             if (!panel) return;
             panel.innerHTML = "";
 
-            fifaChannels.forEach((ch, idx) => {
+            const channels = database[key];
+            if (channels.length === 0) {
+                panel.innerHTML = `<div class="text-muted text-center p-3">No channels live in this section.</div>`;
+                return;
+            }
+
+            channels.forEach((ch, idx) => {
                 const card = document.createElement("div");
                 card.className = "channel-card";
 
-                card.onclick = (function(index) {
-                    return function() {
-                        switchStandardChannel(fifaChannels[index], this);
-                    };
-                })(idx);
+                card.onclick = function() {
+                    switchStandardChannel(ch, this);
+                };
 
                 const logoSrc = ch.logo && ch.logo !== "" ? ch.logo : "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png";
                 const displayTag = ch.tag ? ch.tag : (ch.type === "dash" ? "DASH" : "LIVE");
@@ -266,7 +321,7 @@
                     <img src="${logoSrc}" class="logo-img" alt="${ch.name}" onerror="this.src='https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png'">
                     <div class="card-info-box">
                         <div class="card-name">${ch.name}</div>
-                        <div class="card-group">${displayTag} SERVER</div>
+                        <div class="card-group">${ch.group || displayTag} SERVER</div>
                     </div>
                 `;
                 panel.appendChild(card);
@@ -288,7 +343,7 @@
             if (hls) { hls.destroy(); hls = null; }
             if (dashPlayer) { dashPlayer.reset(); dashPlayer = null; }
 
-            // MPEG-DASH / DRM হ্যান্ডলার ইঞ্জিন
+            // MPD DASH বা ClearKey DRM প্রোটেকশন প্লেয়ার জেনারেশন
             if (channelObj.type === 'dash' || channelObj.url.includes('.mpd')) {
                 dashPlayer = dashjs.MediaPlayer().create();
                 
@@ -347,21 +402,41 @@
             }
         }
 
-        // 🏆 'Bein Sports 1' চ্যানেলকে অটো-প্লে ট্র্যাকার পলিসি
+        function togglePanelTab(tabName, buttonElement) {
+            document.querySelectorAll('.tab-trigger').forEach(t => t.classList.remove('active'));
+            buttonElement.classList.add('active');
+
+            document.getElementById('fifaTabPanel').classList.add('panel-grid-hidden');
+            document.getElementById('sportsTabPanel').classList.add('panel-grid-hidden');
+            document.getElementById('banglaTabPanel').classList.add('panel-grid-hidden');
+            document.getElementById('channelsTabPanel').classList.add('panel-grid-hidden');
+
+            if (tabName === 'fifa') {
+                document.getElementById('fifaTabPanel').classList.remove('panel-grid-hidden');
+            } else if (tabName === 'sports') {
+                document.getElementById('sportsTabPanel').classList.remove('panel-grid-hidden');
+            } else if (tabName === 'bangla') {
+                document.getElementById('banglaTabPanel').classList.remove('panel-grid-hidden');
+            } else if (tabName === 'channels') {
+                document.getElementById('channelsTabPanel').classList.remove('panel-grid-hidden');
+            }
+        }
+
+        // Bein Sports 1 ডিফল্ট অটো-প্লে ট্র্যাকার পলিসি
         function autoPlayDefaultChannel() {
-            if (fifaChannels.length === 0) return;
+            if (database.fifa.length === 0) return;
             
-            const targetIdx = fifaChannels.findIndex(ch => ch.name.toLowerCase().includes("bein sports 1"));
+            const targetIdx = database.fifa.findIndex(ch => ch.name.toLowerCase().includes("bein sports 1"));
             const finalIdx = targetIdx !== -1 ? targetIdx : 0;
             
             const defaultCard = document.querySelectorAll('#fifaTabPanel .channel-card')[finalIdx]; 
             if (defaultCard) {
-                switchStandardChannel(fifaChannels[finalIdx], defaultCard);
+                switchStandardChannel(database.fifa[finalIdx], defaultCard);
             }
         }
 
         window.addEventListener('DOMContentLoaded', () => {
-            fetchLivePlaylist();
+            fetchAllPlaylists();
         });
     </script>
 </body>
