@@ -29,7 +29,7 @@
             min-height: 100vh; 
             margin: 0;
             padding: 0;
-            overflow-x: hidden; /* গ্যারান্টিড নো-সাইড-স্ক্রল */
+            overflow-x: hidden;
         }
 
         .ott-nav { 
@@ -43,7 +43,6 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
-        /* 📺 মোবাইল ও ডেক্সটপে প্লেয়ার স্টিকি রাখার আল্ট্রা ফিক্স সিএসএস */
         .theater-screen-sticky-wrapper {
             position: -webkit-sticky;
             position: sticky;
@@ -100,10 +99,10 @@
         .tab-trigger { background: transparent; color: #7c7299; border: none; padding: 8px 14px; font-size: 10px; font-weight: 700; text-transform: uppercase; border-radius: 7px; transition: all 0.2s; }
         .tab-trigger.active { background: var(--purple-primary); color: #fff; box-shadow: 0 0 10px var(--purple-glow); }
 
-        /* 📦 আল্ট্রা-ফিক্ড বক্স গ্রিড লেআউট (১০০% পারফেক্ট নো-সাইড-স্ক্রল) */
+        /* 📦 ৪টি কলাম বিশিষ্ট ছোট বক্স গ্রিড লেআউট (নো-সাইড-স্ক্রল) */
         .iptv-grid-row { 
             display: grid; 
-            grid-template-columns: repeat(4, 1fr); /* ফোনে এক লাইনে ৪টি সমান বক্স */
+            grid-template-columns: repeat(4, 1fr); 
             gap: 8px; 
             width: 100%;
             box-sizing: border-box;
@@ -121,12 +120,12 @@
             justify-content: center; 
             text-align: center;
             gap: 6px;
-            aspect-ratio: 1 / 1; /* চারকোনা বক্স গ্যারান্টি */
+            aspect-ratio: 1 / 1; 
             border: 1px solid var(--card-border); 
             transition: all 0.2s ease; 
             width: 100%;
             box-sizing: border-box;
-            overflow: hidden; /* টেক্সট ওভারফ্লো লক */
+            overflow: hidden; 
         }
         .channel-card:hover { border-color: rgba(124, 58, 237, 0.3); background: rgba(124, 58, 237, 0.02); }
         .channel-card.active { border: 1.5px solid var(--purple-primary); background: rgba(124, 58, 237, 0.12); box-shadow: 0 0 15px rgba(124, 58, 237, 0.15); }
@@ -134,10 +133,9 @@
         .logo-img { width: 30px; height: 30px; object-fit: contain; border-radius: 6px; padding: 2px; background: rgba(255,255,255,0.04); }
         .card-info-box { display: flex; flex-direction: column; align-items: center; width: 100%; overflow: hidden; }
         
-        /* 🚨 টেক্সট ওভারফ্লো ফিক্সড ইঞ্জিন */
         .card-name { 
             font-weight: 600; 
-            font-size: 8px; /* ফোনে পড়ার উপযোগী ক্ষুদ্র ফন্ট */
+            font-size: 8px; 
             color: #cbd5e1; 
             text-transform: uppercase; 
             text-overflow: ellipsis; 
@@ -179,7 +177,7 @@
             }
             .horizontal-panel::-webkit-scrollbar { width: 5px; }
             .horizontal-panel::-webkit-scrollbar-thumb { background: var(--purple-primary); border-radius: 10px; }
-            .iptv-grid-row { grid-template-columns: repeat(6, 1fr); } /* পিসিতে ৬ কলাম */
+            .iptv-grid-row { grid-template-columns: repeat(6, 1fr); } 
         }
     </style>
 </head>
