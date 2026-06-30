@@ -20,7 +20,7 @@
             --purple-glow: rgba(124, 58, 237, 0.4);
             --purple-bg-dark: #090514;
             --panel-bg: rgba(22, 14, 45, 0.6);
-            --card-border: rgba(124, 58, 237, 0.15);
+            --card-border: rgba(124, 58, 237, 0.25);
         }
 
         body { 
@@ -73,19 +73,19 @@
         }
 
         .ott-dashboard { padding: 12px; }
-        .stream-details { background: var(--panel-bg); padding: 10px 14px; border-radius: 12px; border: 1px solid rgba(124, 58, 237, 0.15); display: flex; align-items: center; gap: 12px; position: relative; }
-        .active-logo-img { width: 30px; height: 34px; object-fit: contain; border-radius: 6px; background: rgba(255,255,255,0.08); padding: 2px; border: 1px solid rgba(124, 58, 237, 0.3); }
+        .stream-details { background: var(--panel-bg); padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(124, 58, 237, 0.15); display: flex; align-items: center; gap: 12px; position: relative; }
+        .active-logo-img { width: 34px; height: 38px; object-fit: contain; border-radius: 6px; background: rgba(255,255,255,0.08); padding: 2px; border: 1px solid rgba(124, 58, 237, 0.3); }
         
-        .badge-live { background: linear-gradient(135deg, #ef4444, #dc2626); color: #fff; font-size: 9px; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; font-weight: bold; }
-        .horizontal-panel { margin-top: 12px; background: var(--panel-bg); padding: 12px; border-radius: 14px; border: 1px solid rgba(124, 58, 237, 0.1); }
+        .badge-live { background: linear-gradient(135deg, #ef4444, #dc2626); color: #fff; font-size: 10px; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; font-weight: bold; }
+        .horizontal-panel { margin-top: 12px; background: var(--panel-bg); padding: 14px; border-radius: 14px; border: 1px solid rgba(124, 58, 237, 0.1); }
         
         .btn-reload-stream {
             margin-left: auto;
             background: rgba(124, 58, 237, 0.1);
             color: #c084fc;
             border: 1px solid rgba(124, 58, 237, 0.4);
-            padding: 4px 10px;
-            font-size: 10px;
+            padding: 6px 12px;
+            font-size: 12px;
             font-weight: 700;
             border-radius: 6px;
             display: flex;
@@ -94,58 +94,67 @@
             cursor: pointer;
         }
 
-        .iptv-grid-row { display: flex; flex-direction: column; gap: 8px; }
+        .iptv-grid-row { display: flex; flex-direction: column; gap: 12px; }
 
+        /* 🔥 বাটনগুলো বড় বড় এবং প্রিমিয়াম লুক দেওয়ার মাস্টার সিএসএস */
         .channel-card { 
-            background: rgba(255,255,255,0.02); 
-            padding: 12px 14px; 
-            border-radius: 10px; 
+            background: rgba(255, 255, 255, 0.03); 
+            padding: 18px 20px; 
+            border-radius: 14px; 
             cursor: pointer; 
             display: flex; 
             flex-direction: row; 
             align-items: center; 
             justify-content: flex-start; 
-            gap: 14px;
+            gap: 16px;
             border: 1px solid var(--card-border); 
-            transition: all 0.2s ease; 
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); 
             width: 100%;
         }
-        .channel-card:hover { border-color: rgba(124, 58, 237, 0.3); background: rgba(124, 58, 237, 0.02); }
-        .channel-card.active { border: 1.5px solid var(--purple-primary); background: rgba(124, 58, 237, 0.12); box-shadow: 0 0 15px rgba(124, 58, 237, 0.15); }
+        .channel-card:hover { 
+            border-color: rgba(124, 58, 237, 0.6); 
+            background: rgba(124, 58, 237, 0.08);
+            transform: translateY(-2px);
+        }
+        .channel-card.active { 
+            border: 2px solid var(--purple-primary); 
+            background: rgba(124, 58, 237, 0.18); 
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.3); 
+        }
         
-        .logo-img { width: 36px; height: 36px; object-fit: contain; border-radius: 6px; padding: 2px; background: rgba(255,255,255,0.04); }
-        .card-info-box { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
-        .card-name { font-weight: 600; font-size: 13px; color: #cbd5e1; text-transform: uppercase; letter-spacing: 0.3px; }
-        .card-group { font-size: 9px; color: #7c7299; text-transform: uppercase; font-weight: 700; }
+        .logo-img { width: 44px; height: 44px; object-fit: contain; border-radius: 8px; padding: 2px; background: rgba(255,255,255,0.06); }
+        .card-info-box { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+        .card-name { font-weight: 700; font-size: 15px; color: #f8fafc; text-transform: uppercase; letter-spacing: 0.4px; }
+        .card-group { font-size: 10px; color: #a78bfa; text-transform: uppercase; font-weight: 700; background: rgba(124, 58, 237, 0.15); padding: 2px 8px; border-radius: 20px; }
 
         .plyr--video { --plyr-color-main: var(--purple-primary); }
 
         @media (min-width: 992px) {
             .ott-main-layout {
                 display: grid;
-                grid-template-columns: 60% 40%;
-                gap: 20px;
-                padding: 20px;
+                grid-template-columns: 62% 38%;
+                gap: 24px;
+                padding: 24px;
                 align-items: start;
             }
             .left-column-wrapper {
                 position: sticky;
-                top: 20px;
+                top: 24px;
                 z-index: 10;
             }
             .theater-screen-sticky-wrapper {
                 position: relative;
-                border-radius: 12px;
+                border-radius: 14px;
                 overflow: hidden;
                 box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             }
             .ott-dashboard { padding: 0 !important; }
             .horizontal-panel {
-                max-height: calc(100vh - 100px);
+                max-height: calc(100vh - 120px);
                 overflow-y: auto;
                 padding-right: 5px;
             }
-            .horizontal-panel::-webkit-scrollbar { width: 5px; }
+            .horizontal-panel::-webkit-scrollbar { width: 6px; }
             .horizontal-panel::-webkit-scrollbar-thumb { background: var(--purple-primary); border-radius: 10px; }
         }
     </style>
@@ -189,7 +198,7 @@
     <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
 
     <script>
-        // 📥 শুধুমাত্র সচল ২ এবং ৩ নম্বর সার্ভার দুটি ফিল্টার করা হলো
+        // 📥 শুধুমাত্র দুটি সচল লাইভ সার্ভার
         const fifaChannels = [
             { "name": "FIFA Live (Server 1)", "url": "https://cdn011.viaplus.site/fox-usa.m3u8", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png" },
             { "name": "FIFA Live (Server 2)", "url": "https://cdn011.viaplus.site/telemundo-usa.m3u8", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png" }
@@ -307,9 +316,10 @@
             renderLists();
             
             setTimeout(() => {
-                const defaultCard = document.querySelectorAll('#fifaTabPanel .channel-card')[0]; 
+                // 🏆 'FIFA Live (Server 2)' [Index 1]-কে ডিফল্ট অটো-প্লে চ্যানেল সেট করা হলো
+                const defaultCard = document.querySelectorAll('#fifaTabPanel .channel-card')[1]; 
                 if (defaultCard) {
-                    switchStandardChannel(fifaChannels[0], defaultCard);
+                    switchStandardChannel(fifaChannels[1], defaultCard);
                 }
             }, 400);
         });
