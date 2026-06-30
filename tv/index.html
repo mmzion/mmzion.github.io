@@ -2,76 +2,214 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Zion Sports — Ultimate OTT</title>
-    
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Zion Sports — Ultimate OTT">
+    <meta property="og:description" content="Watch Live Premium Streams smoothly on Zion Sports.">
+    <meta property="og:image" content="https://i.ibb.co.com/ymJhZWxG/1000075445-clean.png">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
     <style>
         :root {
             --purple-primary: #7c3aed;
+            --purple-glow: rgba(124, 58, 237, 0.4);
             --purple-bg-dark: #090514;
             --panel-bg: #130a24;
+            --card-border: rgba(124, 58, 237, 0.2);
         }
 
-        body { background-color: var(--purple-bg-dark) !important; color: #fff !important; font-family: sans-serif; }
-
-        /* 📺 স্টি প্লেয়ার */
-        .sticky-player { position: sticky; top: 0; z-index: 1000; background: #000; width: 100%; aspect-ratio: 16/9; }
-        video { width: 100%; height: 100%; object-fit: contain; }
-
-        /* 📦 ছোট গ্রিড বক্স সিস্টেম */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr); /* ছোট বক্সের জন্য ৪ কলাম */
-            gap: 8px;
-            padding: 10px;
+        body { 
+            background-color: var(--purple-bg-dark) !important; 
+            color: #f1f5f9 !important; 
+            font-family: sans-serif; 
+            min-height: 100vh; 
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
         }
 
-        .channel-box {
-            background: var(--panel-bg);
-            border-radius: 8px;
-            padding: 8px;
-            text-align: center;
-            cursor: pointer;
-            border: 1px solid rgba(124, 58, 237, 0.2);
-            transition: 0.2s;
+        .ott-nav { 
+            background: rgba(9, 5, 20, 0.85) !important; 
+            backdrop-filter: blur(20px); 
+            height: 50px; 
+            display: flex; 
+            align-items: center; 
+            padding: 0 15px; 
+            border-bottom: 1px solid rgba(124, 58, 237, 0.2); 
         }
-        .channel-box:hover { border-color: var(--purple-primary); }
-        .channel-box.active { border: 2px solid var(--purple-primary); }
+
+        /* 📺 স্টিকি থিয়েটার স্ক্রিন কন্টেইনার ফিক্স */
+        .theater-screen-sticky-wrapper {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 2090; 
+            background: #000;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
         
-        .box-logo { width: 25px; height: 25px; object-fit: contain; margin-bottom: 5px; }
-        .box-name { font-size: 8px; font-weight: 700; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .theater-screen { 
+            position: relative; 
+            width: 100%; 
+            aspect-ratio: 16 / 9; 
+            overflow: hidden; 
+            background: #000;
+        }
+        
+        video { 
+            width: 100% !important; 
+            height: 100% !important; 
+            background: #000; 
+            object-fit: contain !important; 
+        }
 
-        /* ট্যাব মেনু নিচে নিচে কাজ করবে */
-        .tab-menu { display: flex; flex-wrap: wrap; gap: 5px; padding: 10px; justify-content: center; }
-        .tab-btn { background: #2d1b4e; color: #fff; border: none; padding: 6px 12px; border-radius: 5px; font-size: 11px; font-weight: 600; }
-        .tab-btn.active { background: var(--purple-primary); }
+        .ott-dashboard { padding: 8px; }
+        
+        .stream-details { 
+            background: var(--panel-bg); 
+            padding: 8px 12px; 
+            border-radius: 10px; 
+            border: 1px solid var(--card-border); 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            margin-top: 8px;
+        }
+        .active-logo-img { width: 24px; height: 24px; object-fit: contain; border-radius: 4px; background: rgba(255,255,255,0.08); }
+        .badge-live { background: linear-gradient(135deg, #ef4444, #dc2626); color: #fff; font-size: 8px; padding: 2px 5px; border-radius: 3px; text-transform: uppercase; font-weight: bold; }
+        .active-title-text { font-size: 11px; font-weight: 600; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; }
 
-        .hidden { display: none; }
+        .btn-reload-stream {
+            background: rgba(124, 58, 237, 0.15);
+            color: #c084fc;
+            border: 1px solid rgba(124, 58, 237, 0.4);
+            padding: 4px 8px;
+            font-size: 9px;
+            font-weight: 700;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* 🏷️ ক্যাটাগরি ট্যাব টিউনিং */
+        .ott-tabs-wrapper { margin-top: 10px; background: rgba(22, 14, 45, 0.8); padding: 4px; border-radius: 8px; display: flex; gap: 4px; border: 1px solid rgba(124, 58, 237, 0.15); overflow-x: auto; white-space: nowrap; }
+        .ott-tabs-wrapper::-webkit-scrollbar { display: none; }
+        .tab-trigger { background: transparent; color: #7c7299; border: none; padding: 6px 12px; font-size: 10px; font-weight: 700; text-transform: uppercase; border-radius: 6px; transition: all 0.2s; }
+        .tab-trigger.active { background: var(--purple-primary); color: #fff; }
+
+        .horizontal-panel { margin-top: 8px; }
+
+        /* 📦 আল্ট্রা-স্মল ফিক্সড নো-সাইড-স্ক্রল বক্স গ্রিড সিস্টেম */
+        .iptv-grid-row { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); /* মোবাইলে এক লাইনে ফিক্সড ৪টি বক্স */
+            gap: 6px; 
+        }
+        .panel-grid-hidden { display: none !important; }
+
+        .channel-card { 
+            background: rgba(255,255,255,0.02); 
+            padding: 8px 4px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center;
+            gap: 4px;
+            aspect-ratio: 1 / 1;
+            border: 1px solid var(--card-border); 
+            transition: all 0.15s ease; 
+            overflow: hidden;
+        }
+        .channel-card:hover { border-color: rgba(124, 58, 237, 0.4); }
+        .channel-card.active { border: 2px solid var(--purple-primary); background: rgba(124, 58, 237, 0.15); box-shadow: 0 0 10px rgba(124, 58, 237, 0.2); }
+        
+        .logo-img { width: 24px; height: 24px; object-fit: contain; border-radius: 4px; background: rgba(255,255,255,0.04); }
+        .card-info-box { width: 100%; overflow: hidden; }
+        .card-name { font-weight: 700; font-size: 8px; color: #cbd5e1; text-transform: uppercase; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; width: 100%; padding: 0 2px; }
+
+        .plyr--video { --plyr-color-main: var(--purple-primary); }
+
+        @media (min-width: 992px) {
+            .ott-main-layout {
+                display: grid;
+                grid-template-columns: 60% 40%;
+                gap: 20px;
+                padding: 20px;
+                max-width: 1300px;
+                margin: 0 auto;
+                align-items: start;
+            }
+            .left-column-wrapper {
+                position: sticky;
+                top: 20px;
+                z-index: 10;
+            }
+            .theater-screen-sticky-wrapper {
+                position: relative; 
+                border-radius: 12px;
+                overflow: hidden;
+            }
+            .ott-dashboard { padding: 0 !important; }
+            .horizontal-panel {
+                max-height: calc(100vh - 160px);
+                overflow-y: auto;
+                padding-right: 4px;
+            }
+            .horizontal-panel::-webkit-scrollbar { width: 4px; }
+            .horizontal-panel::-webkit-scrollbar-thumb { background: var(--purple-primary); border-radius: 4px; }
+            .iptv-grid-row { grid-template-columns: repeat(6, 1fr); } /* ডেক্সটপে এক লাইনে ৬টি বক্স */
+        }
     </style>
 </head>
 <body>
 
-    <div class="sticky-player">
-        <video id="player" playsinline controls autoplay></video>
+    <nav class="ott-nav"><div class="text-white fw-bold" style="font-size: 14px;"><i class="bi bi-play-circle-fill" style="color: var(--purple-primary);"></i> ZION SPORTS</div></nav>
+
+    <div class="ott-main-layout">
+        
+        <div class="left-column-wrapper">
+            <div class="theater-screen-sticky-wrapper">
+                <div class="theater-screen">
+                    <video id="player" playsinline controls autoplay></video>
+                </div>
+            </div>
+            
+            <div class="stream-details">
+                <span class="badge-live">Live</span>
+                <img id="activeLogo" src="" class="active-logo-img" alt="logo" onerror="this.style.display='none'">
+                <h1 class="active-title-text" id="activeTitle">Syncing Engine...</h1>
+                <button class="btn-reload-stream" onclick="reloadCurrentStream()"><i class="bi bi-arrow-clockwise"></i> Reload</button>
+            </div>
+        </div>
+
+        <div class="container-fluid ott-dashboard">
+            
+            <div class="ott-tabs-wrapper mt-0">
+                <button id="tabFifa" class="tab-trigger active" onclick="togglePanelTab('fifa', this)">FIFA</button>
+                <button id="tabSports" class="tab-trigger" onclick="togglePanelTab('sports', this)">Sports</button>
+                <button id="tabBangla" class="tab-trigger" onclick="togglePanelTab('bangla', this)">Bangla</button>
+                <button id="tabChannels" class="tab-trigger" onclick="togglePanelTab('channels', this)">All</button>
+            </div>
+
+            <div class="horizontal-panel">
+                <div id="fifaTabPanel" class="iptv-grid-row"></div>
+                <div id="sportsTabPanel" class="iptv-grid-row panel-grid-hidden"></div>
+                <div id="banglaTabPanel" class="iptv-grid-row panel-grid-hidden"></div>
+                <div id="channelsTabPanel" class="iptv-grid-row panel-grid-hidden"></div>
+            </div>
+            <div class="text-center mt-4 text-muted" style="font-size: 9px; opacity: 0.2;">© 2026 Zion Sports • Perfection Mode</div>
+        </div>
+
     </div>
 
-    <!-- ট্যাব মেনু -->
-    <div class="tab-menu">
-        <button class="tab-btn active" onclick="showTab('fifa', this)">FIFA</button>
-        <button class="tab-btn" onclick="showTab('sports', this)">SPORTS</button>
-        <button class="tab-btn" onclick="showTab('bangla', this)">BANGLA</button>
-        <button class="tab-btn" onclick="showTab('channels', this)">ALL</button>
-    </div>
-
-    <!-- গ্রিড এরিয়া -->
-    <div id="fifaTabPanel" class="grid-container"></div>
-    <div id="sportsTabPanel" class="grid-container hidden"></div>
-    <div id="banglaTabPanel" class="grid-container hidden"></div>
-    <div id="channelsTabPanel" class="grid-container hidden"></div>
-
+    <!-- Core Streaming Support Engine Dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
     <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
@@ -86,55 +224,155 @@
 
         let database = { fifa: [], sports: [], bangla: [], channels: [] };
         const video = document.getElementById('player');
-        const plyr = new Plyr(video, { autoplay: true });
+        let hlsEngine = null;
+        let dashEngine = null;
+        let savedCurrentChannelData = null;
 
-        async function init() {
-            const [f, s, b, c] = await Promise.all([
-                fetch(apiUrls.fifa).then(r => r.json()).catch(() => []),
-                fetch(apiUrls.sports).then(r => r.json()).catch(() => []),
-                fetch(apiUrls.bangla).then(r => r.json()).catch(() => []),
-                fetch(apiUrls.channels).then(r => r.json()).catch(() => [])
-            ]);
-            database = { fifa: f, sports: s, bangla: b, channels: c };
-            
-            render('fifa', 'fifaTabPanel');
-            render('sports', 'sportsTabPanel');
-            render('bangla', 'banglaTabPanel');
-            render('channels', 'channelsTabPanel');
-        }
+        // Plyr ইন্সট্যান্ট তৈরি
+        const plyrInstance = new Plyr(video, { 
+            autoplay: true, 
+            controls: ['play-large', 'play', 'progress', 'current-time', 'volume', 'mute', 'pip', 'fullscreen'] 
+        });
 
-        function render(key, id) {
-            const p = document.getElementById(id);
-            database[key].forEach(ch => {
-                const box = document.createElement('div');
-                box.className = 'channel-box';
-                box.innerHTML = `<img src="${ch.logo || 'https://i.ibb.co.com/ymJhZWxG/1000075445-clean.png'}" class="box-logo"><div class="box-name">${ch.name}</div>`;
-                box.onclick = () => play(ch, box);
-                p.appendChild(box);
-            });
-        }
+        async function fetchAllPlaylists() {
+            try {
+                const [fifaRes, sportsRes, banglaRes, channelsRes] = await Promise.all([
+                    fetch(apiUrls.fifa).then(r => r.json()).catch(() => []),
+                    fetch(apiUrls.sports).then(r => r.json()).catch(() => []),
+                    fetch(apiUrls.bangla).then(r => r.json()).catch(() => []),
+                    fetch(apiUrls.channels).then(r => r.json()).catch(() => [])
+                ]);
 
-        function showTab(key, btn) {
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            document.querySelectorAll('.grid-container').forEach(c => c.classList.add('hidden'));
-            document.getElementById(key + 'TabPanel').classList.remove('hidden');
-        }
+                database.fifa = fifaRes;
+                database.sports = sportsRes;
+                database.bangla = banglaRes;
+                database.channels = channelsRes;
 
-        function play(ch, el) {
-            document.querySelectorAll('.channel-box').forEach(b => b.classList.remove('active'));
-            el.classList.add('active');
-            if (ch.type === 'dash') {
-                const p = dashjs.MediaPlayer().create();
-                p.initialize(video, ch.url, true);
-            } else {
-                const h = new Hls();
-                h.loadSource(ch.url);
-                h.attachMedia(video);
+                renderListSection('fifa', 'fifaTabPanel');
+                renderListSection('sports', 'sportsTabPanel');
+                renderListSection('bangla', 'banglaTabPanel');
+                renderListSection('channels', 'channelsTabPanel');
+
+                autoPlayDefaultChannel();
+            } catch (error) {
+                document.getElementById('activeTitle').innerText = "Sync Failed. Please Refresh!";
             }
         }
 
-        init();
+        function renderListSection(key, panelId) {
+            const panel = document.getElementById(panelId);
+            if (!panel) return;
+            panel.innerHTML = "";
+
+            const channels = database[key];
+            if (!channels || channels.length === 0) {
+                panel.innerHTML = `<div class="text-muted text-center p-3" style="grid-column: span 4; font-size:10px;">Offline</div>`;
+                return;
+            }
+
+            channels.forEach((ch) => {
+                const card = document.createElement("div");
+                card.className = "channel-card";
+                card.onclick = function() {
+                    switchStandardChannel(ch, this);
+                };
+
+                const logoSrc = ch.logo && ch.logo !== "" ? ch.logo : "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png";
+                
+                card.innerHTML = `
+                    <img src="${logoSrc}" class="logo-img" alt="logo" onerror="this.src='https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png'">
+                    <div class="card-info-box">
+                        <div class="card-name">${ch.name}</div>
+                    </div>
+                `;
+                panel.appendChild(card);
+            });
+        }
+
+        function switchStandardChannel(channelObj, el) {
+            if (!channelObj || !channelObj.url) return;
+            savedCurrentChannelData = channelObj;
+            
+            document.querySelectorAll('.channel-card').forEach(c => c.classList.remove('active'));
+            if(el) el.classList.add('active');
+            
+            document.getElementById('activeTitle').innerText = channelObj.name;
+            const activeLogo = document.getElementById('activeLogo');
+            activeLogo.src = channelObj.logo ? channelObj.logo : "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png"; 
+            activeLogo.style.display = 'inline-block';
+            
+            // পুরোনো ইঞ্জিনের অবশিষ্টাংশ পুরোপুরি ডিলেট করা (Core Playback Fix)
+            if (hlsEngine) { hlsEngine.destroy(); hlsEngine = null; }
+            if (dashEngine) { dashEngine.reset(); dashEngine = null; }
+            video.src = "";
+            video.removeAttribute('src');
+
+            const isDash = channelObj.type === 'dash' || channelObj.url.includes('.mpd');
+
+            if (isDash) {
+                dashEngine = dashjs.MediaPlayer().create();
+                if (channelObj.kid && channelObj.key) {
+                    dashEngine.setProtectionData({
+                        "org.w3.clearkey": {
+                            "clearkeys": { [channelObj.kid]: channelObj.key }
+                        }
+                    });
+                }
+                dashEngine.initialize(video, channelObj.url, true);
+            } else {
+                if (Hls.isSupported()) {
+                    hlsEngine = new Hls({ maxBufferLength: 30, enableWorker: true });
+                    hlsEngine.loadSource(channelObj.url);
+                    hlsEngine.attachMedia(video);
+                    hlsEngine.on(Hls.Events.MANIFEST_PARSED, () => { video.play().catch(handleMuteAutoplay); });
+                } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                    video.src = channelObj.url;
+                    video.play().catch(handleMuteAutoplay);
+                }
+            }
+        }
+
+        function handleMuteAutoplay() {
+            video.muted = true;
+            video.play();
+        }
+
+        function reloadCurrentStream() {
+            if (savedCurrentChannelData) {
+                const allCards = document.querySelectorAll('.channel-card');
+                let targetEl = null;
+                allCards.forEach(c => {
+                    if(c.querySelector('.card-name').innerText === savedCurrentChannelData.name) { targetEl = c; }
+                });
+                switchStandardChannel(savedCurrentChannelData, targetEl);
+            }
+        }
+
+        function togglePanelTab(tabName, buttonElement) {
+            document.querySelectorAll('.tab-trigger').forEach(t => t.classList.remove('active'));
+            buttonElement.classList.add('active');
+
+            document.getElementById('fifaTabPanel').classList.add('panel-grid-hidden');
+            document.getElementById('sportsTabPanel').classList.add('panel-grid-hidden');
+            document.getElementById('banglaTabPanel').classList.add('panel-grid-hidden');
+            document.getElementById('channelsTabPanel').classList.add('panel-grid-hidden');
+
+            document.getElementById(tabName + 'TabPanel').classList.remove('panel-grid-hidden');
+        }
+
+        function autoPlayDefaultChannel() {
+            if (!database.fifa || database.fifa.length === 0) return;
+            let targetIdx = database.fifa.findIndex(ch => ch.name.toLowerCase() === "bein sports 1");
+            if (targetIdx === -1) { targetIdx = database.fifa.findIndex(ch => ch.name.toLowerCase().includes("bein sports 1")); }
+            const finalIdx = targetIdx !== -1 ? targetIdx : 0;
+            
+            setTimeout(() => {
+                const defaultCard = document.querySelectorAll(`#fifaTabPanel .channel-card`)[finalIdx]; 
+                if (defaultCard) { switchStandardChannel(database.fifa[finalIdx], defaultCard); }
+            }, 300);
+        }
+
+        window.addEventListener('DOMContentLoaded', fetchAllPlaylists);
     </script>
 </body>
 </html>
