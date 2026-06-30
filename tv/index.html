@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Zion Sports — YouTube Premium Edition</title>
+    <title>Zion Sports — OTT Edition</title>
     <base href="https://fifalive.click/">
 
     <meta property="og:type" content="website">
     <meta property="og:title" content="Zion Sports — Ultimate OTT">
-    <meta property="og:description" content="Watch Live Premium Streams smoothly on Zion Sports YouTube Clone.">
+    <meta property="og:description" content="Watch Live Premium Streams smoothly on Zion Sports.">
     <meta property="og:image" content="https://i.ibb.co.com/ymJhZWxG/1000075445-clean.png">
 
     <!-- Frameworks & Fonts -->
@@ -23,7 +23,7 @@
         :root {
             --yt-black: #0f0f0f;
             --yt-paper: #212121;
-            --yt-red: #ff0000;
+            --yt-red: #f00;
             --yt-text-main: #f1f1f1;
             --yt-text-sub: #aaa;
         }
@@ -38,7 +38,7 @@
             overflow-x: hidden;
         }
 
-        /* 🔴 ইউটিউব স্টাইল হেডার */
+        /* 🔴 ক্লিন হেডার বার (লোগো আইকন ছাড়া) */
         .ott-nav { 
             background: var(--yt-black); 
             height: 56px; 
@@ -48,34 +48,26 @@
             position: sticky;
             top: 0;
             z-index: 2100;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
         .brand-logo {
             font-weight: 700;
-            font-size: 19px;
+            font-size: 20px;
             letter-spacing: -0.5px;
             color: var(--yt-text-main);
-            display: flex;
-            align-items: center;
-            gap: 6px;
             text-decoration: none;
-        }
-
-        .brand-logo i {
-            color: var(--yt-red);
-            font-size: 24px;
+            text-transform: uppercase;
         }
 
         .brand-logo span {
             font-size: 11px;
-            color: var(--yt-text-sub);
-            align-self: flex-start;
-            margin-top: 3px;
-            margin-left: 2px;
-            font-weight: 400;
+            color: var(--yt-red);
+            margin-left: 4px;
+            font-weight: 700;
         }
 
-        /* 📺 ইউটিউব মেইন লেআউট ফিক্স */
+        /* 📺 ইউটিউব প্লেয়ার আর্কিটেকচার মাস্টার ফিক্স */
         .theater-screen-sticky-wrapper {
             position: -webkit-sticky;
             position: sticky;
@@ -112,17 +104,17 @@
 
         .ott-dashboard { padding: 16px; }
 
-        /* 📝 ভিডিও ইনফো এরিয়া (ইউটিউব স্টাইল) */
+        /* 📝 ভিডিও মেটাডাটা এরিয়া */
         .video-meta-block {
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
         }
 
         .video-title {
             font-size: 18px;
             font-weight: 700;
             line-height: 24px;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             color: var(--yt-text-main);
         }
 
@@ -130,7 +122,6 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-top: 12px;
         }
 
         .channel-avatar {
@@ -142,8 +133,9 @@
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            color: var(--yt-red);
+            color: #fff;
             border: 1px solid rgba(255,255,255,0.1);
+            font-size: 16px;
         }
 
         .channel-name-box {
@@ -153,18 +145,13 @@
 
         .channel-name {
             font-weight: 500;
-            font-size: 14px;
+            font-size: 15px;
             color: var(--yt-text-main);
         }
 
-        .channel-subs {
-            font-size: 12px;
-            color: var(--yt-text-sub);
-        }
-
-        .btn-yt-subscribe {
-            background-color: #f1f1f1;
-            color: #0f0f0f;
+        .btn-yt-reload {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--yt-text-main);
             border: none;
             padding: 8px 16px;
             border-radius: 18px;
@@ -172,29 +159,36 @@
             font-weight: 500;
             margin-left: auto;
             cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-yt-reload:hover {
+            background-color: rgba(255, 255, 255, 0.2);
         }
 
-        /* 🔁 সাজেস্টেড ভিডিও লিস্ট (ইউটিউব রাইট প্যানেল ক্লোন) */
+        /* 🔁 ইউটিউব স্টাইল সাজেস্টেড ভিডিও লিস্ট */
         .horizontal-panel { margin-top: 16px; }
-        .iptv-grid-row { display: flex; flex-direction: column; gap: 10px; }
+        .iptv-grid-row { display: flex; flex-direction: column; gap: 12px; }
 
         .channel-card { 
             display: flex; 
             flex-direction: row; 
             align-items: flex-start; 
-            gap: 10px;
+            gap: 12px;
             cursor: pointer; 
             width: 100%;
-            padding: 4px 0;
+            padding: 2px 0;
         }
 
         .thumb-wrapper {
             position: relative;
-            width: 140px;
+            width: 145px;
             aspect-ratio: 16 / 9;
             border-radius: 8px;
             overflow: hidden;
-            background: #282828;
+            background: #202020;
             flex-shrink: 0;
         }
 
@@ -243,20 +237,47 @@
         .card-group { 
             font-size: 12px; 
             color: var(--yt-text-sub); 
+            margin-top: 2px;
         }
 
-        /* একটিভ ভিডিও ট্র্যাকিং বর্ডার বর্জন (হুবহু ইউটিউব ওয়াচিং ফিল) */
         .channel-card.active .card-name {
             color: #3ea6ff;
         }
 
-        .plyr--video { --plyr-color-main: var(--yt-red); }
+        /* 🎨 ইউটিউব স্টাইল পিওর প্লেয়ার কাস্টমাইজেশন */
+        .plyr--video { 
+            --plyr-color-main: var(--yt-red); 
+            --plyr-video-control-background-hover: transparent;
+            font-family: 'Roboto', sans-serif;
+        }
+        .plyr__controls {
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.3), transparent) !important;
+            padding: 20px 10px 8px !important;
+        }
+        .plyr__control {
+            border-radius: 4px !important;
+            transition: transform 0.1s ease;
+        }
+        .plyr__control:hover {
+            background: transparent !important;
+            transform: scale(1.1);
+        }
+        /* ইউটিউব স্টাইল ফ্ল্যাট স্লাইডার ও থাম্বনাইল ট্র্যাকার */
+        .plyr__progress__container {
+            margin-bottom: 4px !important;
+        }
+        .plyr__progress input[type=range] {
+            cursor: pointer;
+        }
+        .plyr__volume {
+            max-width: 90px !important;
+        }
 
-        /* 💻 ডেস্কটপ স্পেশাল গ্রিড আর্কিটেকচার */
+        /* 💻 ডেক্সটপ লেআউট গ্রিড */
         @media (min-width: 992px) {
             .ott-main-layout {
                 display: grid;
-                grid-template-columns: 1fr 360px;
+                grid-template-columns: 1fr 380px;
                 gap: 24px;
                 padding: 24px;
                 max-width: 1280px;
@@ -280,14 +301,12 @@
 
     <!-- হেডার বার -->
     <nav class="ott-nav">
-        <a href="/" class="brand-logo">
-            <i class="bi bi-youtube"></i> Zion Sports <span>BD</span>
-        </a>
+        <a href="/" class="brand-logo">Zion Sports <span>LIVE</span></a>
     </nav>
 
     <div class="ott-main-layout">
         
-        <!-- বাম পাশের অংশ: প্লেয়ার এবং ভিডিও মেটাডাটা -->
+        <!-- বাম পাশের মেইন ইন্টারফেস -->
         <div class="left-column-wrapper">
             <div class="theater-screen-sticky-wrapper" id="videoContainer">
                 <div class="theater-screen">
@@ -304,25 +323,24 @@
                     <div class="channel-avatar">Z</div>
                     <div class="channel-name-box">
                         <div class="channel-name">Zion Sports Premium</div>
-                        <div class="channel-subs">1.45M subscribers</div>
                     </div>
-                    <button class="btn-yt-subscribe" onclick="reloadCurrentStream()"><i class="bi bi-arrow-clockwise"></i> Reload</button>
+                    <button class="btn-yt-reload" onclick="reloadCurrentStream()"><i class="bi bi-arrow-clockwise"></i> Reload</button>
                 </div>
             </div>
         </div>
 
-        <!-- ডান পাশের অংশ: ইউটিউব স্টাইল ভিডিওর সাজেস্টেড লিস্ট -->
+        <!-- ডান পাশের সাজেস্টেড ভিডিও এরিয়া -->
         <div class="container-fluid ott-dashboard">
             <div class="horizontal-panel">
                 <div id="fifaTabPanel" class="iptv-grid-row">
-                    <!-- ভিডিও লুপ কোড এখানে ইনজেক্ট হবে -->
+                    <!-- ভিডিও আইটেম এখানে লোড হবে -->
                 </div>
             </div>
         </div>
 
     </div>
 
-    <!-- high-fidelity engines -->
+    <!-- Core Player Engine -->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
 
@@ -387,7 +405,7 @@
                     </div>
                     <div class="card-info-box">
                         <div class="card-name">${ch.name}</div>
-                        <div class="card-group">Zion Sports • 45K views</div>
+                        <div class="card-group">Zion Sports • Live</div>
                     </div>
                 `;
                 panel.appendChild(card);
@@ -447,7 +465,7 @@
             renderLists();
             
             setTimeout(() => {
-                // ডিফল্ট হিসেবে ২ নম্বর চ্যানেলটি (Server 2) ফার্স্ট প্লে হবে
+                // ২ নম্বর চ্যানেলটি (Server 2) ডিফল্ট হিসেবে অটো-প্লে হবে
                 const defaultCard = document.querySelectorAll('#fifaTabPanel .channel-card')[1]; 
                 if (defaultCard) {
                     switchStandardChannel(fifaChannels[1], defaultCard);
